@@ -196,7 +196,7 @@
 \setcounter{page}{3}
 %Esta función permite comenzar el contador de las páginas para la numeración en el número 3, es importante puesto que los primeros números van dedicados a portada y contraportada y no se numeran. Así, la primera página numerada será la 3. 
 
-%\include{Chapters/0.Resumen}
+\include{Chapters/0.Resumen}
 
 \newpage
 %Función para incluir un salto a una nueva página.
@@ -204,7 +204,7 @@
 %Función para que dicha página no tenga ningún formato (ni número, ni encabezado).
 
 %Así con estas dos funciones de forma consecutiva se crea una página en blanco.
-%\include{Chapters/0.Abstract}
+\include{Chapters/0.Abstract}
 
 \newpage
 \thispagestyle{empty}
@@ -217,18 +217,28 @@
 \tableofcontents
 %Esta función permite introducir el índice de capítulos (hasta el subíndice que se haya indicado previamente).
 
+\newpage
+\thispagestyle{empty}
+
 \cleardoublepage
 %Esta función permite que aunque acabe en página impar, el siguiente apartado, comience en página impar. Con este comando te aseguras que se hace bien y que además se mantiene la numeración correspondiente en números romanos. Es decir, la página que se quedaría en blanco no está en blanco sino que mantiene la numeración. En caso de no querer numeración hay que utilizar los comando ("\newpage" y "\thispagestyle{empty}).
 
+\newpage
+\thispagestyle{empty}
+
 \listoffigures
 % Es la función que introduce el índice de figuras. Funciona exactamente igual que el de capítulos.
+\newpage
+\thispagestyle{empty}
+
 \cleardoublepage
 
 \listoftables
 %Por ultimo, se introduce el índice de tablas en caso de que las hubiera en vuestro documento. 
 
-\includepdf{PDF/Blanco}
-%Esta función permite introducir un pdf entre medias del documento o en cualquier momento que sea necesario. Así, el pdf utilizado en este caso es una página en blanco pero como se habrá observado puede servir para incluir la portada del proyecto, algún manual de instrucciones o cualquier archivo pdf que se desee. El argumento obligatorio debe contener el nombre del archivo y su dirección (en caso de que esté en el interior de alguna carpeta).
+\newpage
+\thispagestyle{empty}
+%Página en blanco
 
 \mainmatter
 %Esta función se utiliza para indicar que a partir de ahora la numeración pasa a ser con números estándar y no con romanos como se había venido utilizando hasta ahora.
