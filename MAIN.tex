@@ -1,0 +1,289 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% INTRODUCCIÓN A LA MEMORIA %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Buenos días, mi nombre es Miguel González Moreno, soy un antiguo estudiante de la promoción 2014-2019 de ADE+ITI en la Universidad de Deusto. La memoria de mi proyecto de fin de grado la desarrollé en LATEX y a raíz de dicha memoria se ha creado esta plantilla. La plantilla persigue el objetivo de ayudar a cualquier futuro estudiante que se quiera adentrar en este sistema de procesamiento de textos (LATEX). Intentaré explicar cada uno de los campos que aparecen a continuación de modo que todos estén lo más claros posibles y que así, la plantilla, sea de la mayor utilidad posible. Dicho lo cual, comenzamos. 
+
+%Concretamente la memoria y esta plantilla se han realizado en OVERLEAF, un editor de LATEX online pero existen numerosos otros programas que pueden usarse para escribir en este lenguaje. Sin embargo, es posible que algunos de los comandos o funciones cambien de un programa a otro por lo que en caso de cambiar de programa, es probable que algunos comandos no se ejecuten como deberían. En cualquier caso, utilizar otro programa no parece excesivamente complicado pues en caso de que algunos comandos cambien se pueden encontrar fácilmente los equivalentes por Internet. Es cuestión de dedicarle un poco más de tiempo.
+
+%Lo primero de todo, dejar claro que en absoluto soy un experto, es más, ni si quiera soy principiante. Todo lo incluido en esta plantilla se ha aprendido desde cero y lo más probable es que aquello que no está en la plantilla (o que pudiese estar hecho de mejor forma) no lo está puesto que actualmente desconozco como hacerlo, y no porque LATEX no pueda, ya que lo más seguro es que sí se pueda realizar. Así, explicaré todo aquello que sepa dejándoles de profundización en ciertas cuestiones a ustedes. Aquello que desconozca me limitaré a no comentarlo.
+
+%Como se puede observar al compilar, estos textos que aparecen en azul no se escriben en el documento, son comentarios. Los comentarios no son procesados sin embargo sí que se pueden leer en la pantalla de escritura. Intentaré explicar el proceso de creación de la memoria a partir de estos comentarios, siendo todos ellos suprimibles en cuanto el alumno haya comprendido la idea detrás de cada uno de ellos.
+
+%Aún así, si existiese cualquier duda con respecto a la plantilla o a las funciones utilizadas, mi única y principal fuente de conocimiento ha sido Internet, y los maravillosos (y diversos) blogs que se encuentran en la red. Os dejo a continuación aquellos que más me han servido de ayuda (pero la verdad es que hay infinidad). Cualquier función que busquéis, existe. Cualquier problema, lo ha tenido antes otra persona y ha preguntado por ello. Simplemente hay que tener tiempo para encontrar la fuente e ir probando. Esto es prueba y error. 
+
+%Blogs de utilidas: 
+%http://minisconlatex.blogspot.com/
+%https://tex.stackexchange.com/
+%http://metodos.fam.cie.uva.es/~latex/index.html
+
+%Consejo: Por lo general, buscad la ayuda en inglés, hay muchísima más información.
+
+%Finalizada la presentación de la plantilla ¡EMPEZAMOS CON LATEX!
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% INTRODUCCIÓN AL LATEX %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%La escritura en LATEX muy sencilla (una vez se domine lo básico) pero es necesario invertir tiempo para comprenderla, para conocer las funciones y sobre todo para profundizar en ella. Lo básico se aprende rápido. ¡Vamos a ello!
+
+%LATEX trabaja con funciones, todas aquellas palabras que aparecen en verde y van precedidas por el símbolo "\". Cada función suele tener una serie de parámetros opcionales, que se encuentran dentro de "[corchetes]", y una serie de parámetros obligatorios, que se encuentran dentro de "{llaves}". Lógicamente, siempre habrá que introducir un parámetro obligatorio. Los parámetros opcionales se añaden para modificar o precisar elementos de la función en cuestión (dependiendo del uso que le quiera dar el autor).
+
+%En general hay unas funciones básicas que se pueden llamar por defecto, sin embargo para otras es necesario cargar/incluir algunos paquetes especiales. Lo veremos a posteriori (simplemente tenerlo en cuenta).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% PRIMERA FUNCIÓN %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[a4paper,openright,10pt]{book}
+
+%Esta es la primera función del archivo y define el tipo de documento sobre le que se está trabajando. Realmente no tengo un conocimiento exhaustivo sobre los diferentes tipos de documentos en los que se puede trabajar pero encontrar información sobre esta función es muy sencillo.  En este caso, el tipo utilizado es "Book". Se ha utilizado este tipo porque es el más adecuado a documentos largos, con capítulos, secciones y demás. Hay otras clases de documentos como por ejemplo "article", "report" o "memoir". Cada uno con sus características propias. 
+
+%El tipo book permite llamar a otros archivos etcétera. ¿A qué me refiero con llamar a archivos? Como veis en la izquierda estamos trabajando sobre un archivo ".tex" denominado "MAIN.tex". Este archivos es el cuerpo central de nuestra memoria, sin embargo, en él no escribiremos todos los capítulos sino que los capítulos los escribiremos en otros archivos ".tex" (1.Intro.tex, 2.Objetivos.tex y sucesivos) y se llamarán desde "MAIN". Lo veremos más adelante, no os preocupéis. Esto es simplemente para llevar un mayor orden en el documento. Se podría perfectamente escribir toda la memoria en este mismo archivo pero sería algo más caótico y tardaría demasiado en cargar.
+
+%Esta función presntada tiene varios parámetros adicionales: "a4paper", el cual indica que el folio será del tamaño A4, "openright", el cual es utilizado para garantizar que los capítulos nuevos siempre empiecen en una página de la derecha (si en algún momento fuesen a empezar en una página izquierda, LATEX dejará una página en blanco para garantizar esta regla), "10pt" indica el tamaño predeterminado de la fuente a utilizar. 
+
+%Se han indicado así 3 parámetros adicionales. Si no se indican todos los que hay LATEX cogerá los parámetros por defecto en su configuración. Así, que únicamente se hayan indicado 3 no significa que sólo haya 3, probablemente hay muchos más en los que sí se quiere, se puede profundizar buscando información.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% DEFINICIÓN DE PAQUETES %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%LATEX, como se comentaba, no tiene cargadas todas las funciones por defecto (viene lo básico, pero se puede profundizar tanto como se quiera). Así, para ejecutar algunas funciones o símbolos es necesario que se incluyan algunos PAQUETES adicionales. Aquellos en los que se indica PAQUETEB son paquetes prácticamente de inicio, que toda memoria debería como mínimo tener (el resto varía según las necesidades de cada autor).
+
+%Los paquetes se cargan con la función "\usepackage" y aquellos que se han utilizado en la memoria son los siguientes:
+
+\usepackage[utf8]{inputenc}
+%PAQUETEB para incluir acentos al escribir en Castellano.
+\usepackage[spanish,es-tabla]{babel}
+%PAQUETEB para escribir en castellano.
+\usepackage{fancyhdr}
+%PAQUETEB para definir encabezado y pie de páginas.
+\usepackage{ragged2e}
+%PAQUETEB utilizado para alinear, justificar o centrar el texto de la memoria.
+\usepackage{setspace}
+ %PAQUETEB para delimitar el interlineado del texto.
+\usepackage{cite}
+%PAQUETEB para citar y referencia a lo largo del texto.
+\usepackage{enumerate} 
+%PAQUETEB para formar listas organizadas y darles formato. 
+\usepackage[font={color=RBlue},figurename=Fig.]{caption} 
+%Paquete para poner subtítulos a las imágenes y concretamente personalizado para que sean de colo azul (elección personal).
+\usepackage{graphicx} 
+%Paquete para utilizar distintos colores tanto en la escritura, como en tablas, títulos y demás.
+\usepackage{subfigure} 
+%Paquete para incluir sub-figuras.
+\usepackage{hyperref} 
+%Paquete para incluir hyperlinks en el PDF.
+\usepackage{eurosym} 
+%Paquete para incluir el símbolo "€" en el texto.
+\usepackage{pdfpages} 
+%Paquete para incluir PDFs a lo largo de la memoria, y modificar su formato.
+\usepackage{multirow, array} 
+%Paquete para dar formato a las tablas.
+\usepackage{float} 
+%Paquete para forzar que una foto se introduzca exactamente en un sitio determinado y que LATEX no la reposicione.
+\usepackage{longtable} 
+%Paquete para la gestión y el formateo tablas de mayor dimensión.
+\usepackage{xcolor,colortbl} 
+%Paquete para crear colores específicos según RGB.
+\usepackage{geometry}
+%Paquete para definir las dimensiones de los márgenes.
+
+\definecolor{RBlue}{RGB}{23,33,110} 
+\definecolor{Rojo}{RGB}{255,0,0}
+\definecolor{Cyan}{RGB}{214,234,240}
+\definecolor{Naranja}{RGB}{255,222,199}
+\definecolor{GrisTabla}{RGB}{245,245,245}
+%Ejemplo de funciones para definir colores a utilizar el documento, según sus dígitos RGB.
+
+%Paquetes para algoritmos matemáticos
+\usepackage{amsmath}
+\usepackage{algorithm}% http://ctan.org/pkg/algorithms
+\usepackage[noend]{algpseudocode}
+\makeatletter
+% Reinsert missing \algbackskip
+\def\algbackskip{\hskip-\ALG@thistlm}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% PROPIEDADES DEL DOCUMENTO (Funciones específicas) %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setcounter{secnumdepth}{5} 
+%Esta función permite que en el índice se indique hasta el sub-nivel número tres. Es decir que aparezcan hasta los apartados 1.1.1. Si se indicase {4}, se podrían observar hasta los sub-apartados 1.1.1.1. 
+
+\setlength{\headsep}{0.5in} 
+%La función "\setlength" permite cambiar (sobrescribir valores predeterminados) todas las distancias del documento. En función de que {parámetro} se indique se cambiará una distancia u otra. En este caso se está cambiando la distancia entre el encabezado y el texto para que esta sea durante todo el documento media pulgada. Se puede indicar la distancia que se quiera (cuestiones estéticas) y también se puede indicar la distancia en el sistema métrico (mm, cm).
+
+\onehalfspace 
+%Esta función determina que el interlineado a lo largo del documento sea de 1.5. Existen otras funciones para cambiar el interlineado como "\Doublespacing" para interlineado doble, "\singlespace" para interlineado sencillo o "\setspace{}" para indicar aquel que sea preferido de forma específica.
+
+\setlength{\parindent}{0cm}
+%Nuevamente se utiliza esta función para cambiar distancias del documento. Concretamente, en este caso se utiliza para cambiar la distancia de las sangrías al comenzar nuevo párrafo. Al marcar el valor en 0, se eliminan las sangrías del documento. Siempre se puede en momentos posteriores forzar la inclusión de alguna sangría o reescribir de nuevo el valor para indicar que a partir de ahí, comiencen las sangrías de nuevo.
+
+\includeonly{
+                Chapters/0.Resumen, 
+                Chapters/0.Abstract, 
+                Chapters/1.Intro, 
+                Chapters/3.Objetivos_y_Alcance, 
+                Chapters/Funciones,
+                Algorithms/ConsensoMath
+}
+%Esta función es de gran importancia. Como se puede observar a la izquierda, hay una carpeta que se ha creado con diferentes capítulos. Estos capítulos son los diferentes apartados de la memoria en los que se va a ir escribiendo. Por ejemplo, el capítulo de la introducción, el capítulo de objetivos, el capítulo de la memoria técnica, o el capítulo del plan de trabajo. Bien, de cara a poder incluirlos a posteriori en esto documento principal (MAIN.tex) es necesario indicarle a LATEX que los cargue y eso se realiza con esta función. Así, habrá que incluir tantos parámetros como capítulos se deseen cargar. Los parámetros son simplemente la dirección de la carpeta en la que se encuentran, y su nombre.
+
+\geometry{top=3cm, bottom=3cm, left=3.5cm, right=2.5cm}
+%Esta función determina los márgenes que se han de utilizar a lo largo de todo el documento. Así, el margen superior será de 3 centímetros, igual que el inferior y los márgenes exterior e interior serán de 3.5 y 2.5 centímetros respectivamente.
+
+\pagestyle{empty}
+%Esta función es bastante útil ante diversos problemas que puedan surgir a lo largo del documento con las páginas en blanco. Esta función determina que el estilo (encabezados y pies de página) de la página estrictamente posterior sea totalmente blanco (vacío - empty).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% COMIENZA EL DOCUMENTO (con la función \begin{document} %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%
+%%%% PAGINACIÓN %%%%
+%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{fancy}
+%Esta función es utilizada para crear un nuevo estilo de formato, es el formato "fancy". En él vamos a determinar a continuación cómo se quieren posicionar pies de página, encabezados y demás.
+
+\lhead{}
+%Esta función sirve para que no se escriba nada (parámetro obligatorio vacío) en el encabezado en la posición izquierda. 
+
+\chead{}
+%Esta función sirve para que no se escriba nada (parámetro obligatorio vacío) en el encabezado en la posición central. 
+
+\rhead{}
+%Esta función sirve para que no se escriba nada (parámetro obligatorio vacío) en el encabezado en la posición derecha. 
+
+\cfoot{}
+%Esta función sirve para que no se escriba nada (parámetro obligatorio vacío) en el pie de página en la posición central. 
+
+\fancyhead[OR]{}
+%Esta función sirve para que no se escriba nada (parámetro obligatorio vacío) en el las páginas impares, en el encabezado en la posición derecha.
+
+\fancyhead[OL]{}
+%Esta función sirve para que no se escriba nada (parámetro obligatorio vacío) en el las páginas impares, en el encabezado en la posición izquierda.
+
+\fancyhead[ER]{}
+%Esta función sirve para que no se escriba nada (parámetro obligatorio vacío) en el las páginas pares, en el encabezado en la posición derecha.
+
+\fancyhead[EL]{}
+%Esta función sirve para que no se escriba nada (parámetro obligatorio vacío) en el las páginas pares, en el encabezado en la posición izquierda.
+
+\fancyfoot[LE,RO]{\thepage} 
+%Esta función sirve para indicar que el número de la página correspondiente se escriba a la izquierda en las páginas pares y a la derecha en las páginas impares.
+
+\renewcommand{\headrulewidth}{0pt} 
+%Esta función sirve para renovar todo tipo de comandos o distancias en el documento. Concretamente, en este caso se indica que no exista (grosor 0pt) una linea debajo del encabezado que lo separe del texto.
+
+\includepdf[]{PDF/Portada_TFG_IngenieriaInformatica}
+%Esta función incluye el PDF de la portada correspondiente al TFG. Dicho documento PDF ha de estar cargado en el menú de la izquierda como se encuentra esta portada auxiliar. Es importante incluir en el parámetro obligatorio la dirección a dicho PDF con su normbre correspondiente.
+
+\newpage
+\thispagestyle{empty}
+
+
+\frontmatter
+%Esta función sirve para que, en las primeras páginas de la memoria (hasta que se indique lo contrario con otra función), la paginación sea en números romanos como lo indican los criterios de formato en índice, resumen y demás apartados.
+
+%como se puede ver, todo lo expuesto arriba (en términos de paginación) es un poco redundante y bastante lioso, aún así, funciona. Ahora, no tengo ninguna duda de que se puede optimizar, eliminar funciones o sustituir por otras para que sea más "user-friendly". Estaré encantado de escuchar como hacerlo, pero de momento desconozco como mejorar el código sin que genere errores. Dicho esto, como se comentaba al principio, es cuestión de dedicarle  tiempo y comprender más a fondo las funciones. 
+
+\setcounter{page}{3}
+%Esta función permite comenzar el contador de las páginas para la numeración en el número 3, es importante puesto que los primeros números van dedicados a portada y contraportada y no se numeran. Así, la primera página numerada será la 3. 
+
+%\include{Chapters/0.Resumen}
+
+\newpage
+%Función para incluir un salto a una nueva página.
+\thispagestyle{empty}
+%Función para que dicha página no tenga ningún formato (ni número, ni encabezado).
+
+%Así con estas dos funciones de forma consecutiva se crea una página en blanco.
+%\include{Chapters/0.Abstract}
+
+\newpage
+\thispagestyle{empty}
+
+\fancypagestyle{plain}
+{
+}
+%Se define mediante esta función el formato plain, que no tiene nada, ni encabezados ni pies de página. Realmente esta función podría ir a comienzo del documento o en cualquier lugar, es decir, se puede mover.
+
+\tableofcontents
+%Esta función permite introducir el índice de capítulos (hasta el subíndice que se haya indicado previamente).
+
+\cleardoublepage
+%Esta función permite que aunque acabe en página impar, el siguiente apartado, comience en página impar. Con este comando te aseguras que se hace bien y que además se mantiene la numeración correspondiente en números romanos. Es decir, la página que se quedaría en blanco no está en blanco sino que mantiene la numeración. En caso de no querer numeración hay que utilizar los comando ("\newpage" y "\thispagestyle{empty}).
+
+\listoffigures
+% Es la función que introduce el índice de figuras. Funciona exactamente igual que el de capítulos.
+\cleardoublepage
+
+\listoftables
+%Por ultimo, se introduce el índice de tablas en caso de que las hubiera en vuestro documento. 
+
+\includepdf{PDF/Blanco}
+%Esta función permite introducir un pdf entre medias del documento o en cualquier momento que sea necesario. Así, el pdf utilizado en este caso es una página en blanco pero como se habrá observado puede servir para incluir la portada del proyecto, algún manual de instrucciones o cualquier archivo pdf que se desee. El argumento obligatorio debe contener el nombre del archivo y su dirección (en caso de que esté en el interior de alguna carpeta).
+
+\mainmatter
+%Esta función se utiliza para indicar que a partir de ahora la numeración pasa a ser con números estándar y no con romanos como se había venido utilizando hasta ahora.
+
+\pagestyle{fancy}
+%A continuación se vuelve a redefinir el estilo “fancy” para que se adecúe al que ha de utilizarse a lo largo de toda la memoria. El estilo es el siguiente:
+
+\lhead{}
+%Encabezado a la izquierda vacío. En realidad debe de ir el nombre del capítulo en el que se está escribiendo pero ello se gestionará dentro de cada capítulo (pues el nombre cambia). Aquí se define el formato general.
+
+\chead{}
+%Encabezado en el centro vacío.
+
+\fancyhead[OR]{PROYECTO FIN DE GRADO}
+%En el encabezado a la derecha en las páginas pares se escribe: "PROYECTO FIN DE GRADO".
+
+\fancyhead[OL]{} 
+%Encabezado a la izquierda en las páginas pares vacío. Probablemente esta función sea redundante con la función \lhead y sería omitible.
+
+\fancyhead[ER]{}
+%Encabezado en las páginas impares a la derecha vacío.
+
+\cfoot{} 
+% Pie de página en el centro vacío.
+
+\fancyfoot[LE,RO]{\thepage} 
+%En el pie de página se va a escribir el número de la página correspondiente. Se escribirá en la derecha en las páginas pares y en la izquierda en las páginas impares.
+
+\renewcommand{\headrulewidth}{0pt} 
+
+
+%\include{Chapters/1.Intro}
+\include{Chapters/3.Objetivos_y_Alcance}
+%Funciones para incluir los otros documentos que se han desarrollado. Dichos documentos son los distintos capítulos de la memoria. Toda la escritura de los mismos se realizará en los documentos de forma específica y no en este archivo “MAIN.tex”. Así que vamos a ellos.
+
+
+\include{Algorithms/ConsensoMath}
+
+\bibliographystyle{unsrt}
+%Función que indica el estilo de bibliografía a utilizar.
+\bibliography{References.bib}
+%Función que incluye la biblografía en el documento.
+
+\end{document}
+%Función de final de documento.
+
+%Acuda a continuación a leer los comentarios de los capítulos de introducción, objetivos y sobretodo aquellos del archivo de funciones.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%% FINAL %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Sin nada más que añadir, espero que les haya sido de gran utilidad esta plantilla y que gracias a ellan puedan adentrarse en el mundo del LATEX.
+
+%Un saludo y mucho ánimo con la redacción y con el grado, falta muy poco.
+
+%Miguel González Moreno

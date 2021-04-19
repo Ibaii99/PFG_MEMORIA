@@ -1,0 +1,345 @@
+\chapter{Sistema de recomendación}
+\thispagestyle{fancy}
+\section{LightFM}
+LightFM es una implementación en python de varios algotitmos populares de recomendación.
+\subsection{Creación del modelo}
+El paso de creación del modelo es un paso complejo puesto que conlleva la correcta gestión de muchos datos e información. Asimismo, estos datos han de estar correctamente estructurados y construidos, puesto que LightFM requiere que la información este convertida a matrices dispersas y no tolera elementos vacíos en ellas. Para ello LightFM proveé de herramientas de creación de datasets que facilitan la creación de las matrices, de forma que sea más fácil incluirlas en el modelo. 
+\\ \\
+Entre estas erramientas se encuentran:
+
+\begin{itemize}
+    \item \textit{build\_user\_features($\ldots$)} \quad Permite crear la matriz CSR de usuarios y atributos de usuarios.
+    \item \textit{build\_item\_features($\ldots$)} \quad Permite crear la matriz CSR  de items y atributos de items.
+    \item \textit{build\_interactions($\ldots$)} \quad Permite crear las matriz COO de interacciones y las matriz COO de sus correspondientes pesos.
+\end{itemize}
+
+Hay que tener en cuenta que las matrices CSR (Compressed Sparse Row) hacen referencia a las matrices que admiten operaciones matriciales y acceso eficientemente; y que las matrices COO (Coordinate list) hacen referencia a las matrices que soportan modificaciones eficientemente, son generalmente utilizadas para construir matrices.
+
+
+\subsubsection{Atributos de los usuario}
+Para crear el modelo es necesario, entre otras cosas, disponer de las características de los usuarios. En este caso contamos con multitud de atributos sobre cada usuario: edad, género, nivel educativo, país, cultura de trabajo, perfil PST (Pinball, Shortcut, Thought-ful), barreras, intenciones y confianza.
+\\ \\
+Para convertir toda esa información del usuario a la matriz CSR que exige LightFM habrá que llamar a \textit{build\_user\_features($\ldots$)} con los IDs de usuario y y sus atributos, formando una lista que tenga listas de los IDs de los usuarios con sus listas de atributos, es decir:
+\begin{align*}
+    \begin{bmatrix}
+        \begin{bmatrix} 
+            userId$$_{1}$$ & \begin{bmatrix} feature$$_{11}$$ &\cdots & feature$$_{1w}$$ \end{bmatrix}$$_1$$
+        \end{bmatrix}
+        &
+        \ldots
+        &
+        \begin{bmatrix} 
+            userId$$_{v}$$ & \begin{bmatrix} feature$$_{v1}$$ &\cdots & feature$$_{vw}$$ \end{bmatrix}$$_v$$
+        \end{bmatrix}
+    \end{bmatrix}
+\end{align*}
+Teniendo en cuenta que:
+\begin{align*}
+    \textit{v}\gets & \textit{Cantidad de IDs de usuario }
+    &&\\
+    \textit{w} \gets & \textit{Contidad de atributos por usuario}
+    &&\\
+    \textit{userId$_{v}$} \gets & \textit{ID del usuario v}
+    &&\\
+    \textit{feature$_{vw}$} \gets & \textit{Atributo w del usuario v}
+\end{align*}
+%
+Una vez creada la lista y pasado como parámetro al método, obtendremos la matriz CSR de atributos de usuario.
+
+\subsubsection{Atributos de los elementos}
+Además de los usuarios y de sus atributos, también se ha de disponer de los elementos a ordenar en el ranking, llamados items, y de sus características. En este caso estos items representan las estrategias de persuasión por las que se preguntó a los usuarios en el cuestionario. Sin embargo, al contrario que en el punto anterior, no contamos con tantos atributos sobre estos items, sino que cada estrategia de persuasión cuenta con dos atributos llamados dimensiones. Estos atributos no se encuentran presente en todas las estrategias, lo que da como resultado que haya algunas que tengan dos, una o ninguna dimension.
+\\ \\
+Para convertir toda esa información de los items a la matriz CSR que exige LightFM habrá que llamar a \textit{build\_item\_features($\ldots$)} con los IDs de las estrategias y y sus atributos, formando una lista que tenga listas de los IDs de las estrategias con sus listas de atributos, es decir:
+\begin{align*}
+    \begin{bmatrix}
+        \begin{bmatrix} 
+            itemId$$_{1}$$ & \begin{bmatrix} feature$$_{11}$$ &\cdots & feature$$_{1w}$$ \end{bmatrix}$$_1$$
+        \end{bmatrix}
+        &
+        \ldots
+        &
+        \begin{bmatrix} 
+            itemId$$_{v}$$ & \begin{bmatrix} feature$$_{v1}$$ &\cdots & feature$$_{vw}$$ \end{bmatrix}$$_v$$
+        \end{bmatrix}
+    \end{bmatrix}
+\end{align*}
+Teniendo en cuenta que:
+\begin{align*}
+    \textit{v}\gets & \textit{Cantidad de IDs de estrategias }
+    &&\\
+    \textit{w} \gets & \textit{Contidad de dimensiones por estrategia}
+    &&\\
+    \textit{itemId$_{v}$} \gets & \textit{ID de la estrategia v}
+    &&\\
+    \textit{feature$_{vw}$} \gets & \textit{Atributo w de la estrategia v}
+\end{align*}
+%
+Una vez creada la lista y pasado como parámetro al método, obtendremos la matriz CSR de atributos de usuario.
+%
+%
+\subsubsection{Interacciones}
+
+
+Para crear un modelo de LightFM se necesita
+
+user\_features, item\_features 
+
+model = LightFM() 
+
+% model.fit(train\_interactions,
+%         user\_features=user\_features,
+%         sample\_weight=train\_weights,
+%         epochs=100,
+%         num\_threads=4,
+%         verbose=False)
+% ranks\_test = model.predict\_rank(test\_interactions, 
+%         #train\_interactions= train\_interactions, 
+%         user\_features=user\_features,
+%         check\_intersections=True)                    
+
+\subsection{Ajuste}
+\subsection{Predicción}
+
+
+\section{Evaluación}
+La evaluación de los resultados obtenidos de las predicciones de los modelos es un apartado fundamental que permite analizar la eficacia de estas predicciones. Además, la utilización de métricas y técnicas permitirá poder comparar los resultados entre sí para poder demostrar si la predicción es correcta, aceptable o erronea.
+\subsection{Métricas}
+
+Antes de realizar el ranking hay que definir una métrica que permita evaluar la precisión de este, y por ende, la precisión del modelo. Para esta labor se ha utilizado la métrica NDPM, medida de rendimiento normalizada basada en la distancia. Esta métrica se utiliza para sistemas de recomendación basados en ranking y mide la eficacia del modelo para predecir el correcto orden de los n elementos del ranking. 
+%
+\begin{align*}
+    \textit{NDPM} && \parbox[t]{8cm}{\raggedright Medida de rendimiento normalizada basada en la distancia (Normalized Distance-based Performance Measure)} \nonumber 
+\end{align*}
+%
+Cuanto menor sea el NDPM, mayor será la similitud entre el ranking predicho por el modelo y entre el declarado por el usuario. En el caso ideal donde la predicción hubiera acertado por completo el ranking del usuario, el NDPM sería 0. En caso contrario, es decir, que hubiera predicho un orden totalmente erroneo, el NDPM sería 1.
+
+\subsection{Técnicas}
+
+La lista de elementos a ser ordenados por los modelos LightFM son los siguientes:
+\begin{alignat*}{1}
+strats = \begin{bmatrix} 'v2' & 'v5' & 'v6' & 'v7' & 'v10' & 'v11' & 'v15' & 'v17' & 'v19' & 'v20' \end{bmatrix} 
+& \\
+\parbox[t]{8cm}{\raggedright Lista de estrategias a clasificar del 1 a n} \nonumber
+\end{alignat*}
+En esta lista solo aparecen los elementos más relevantes de las encuestas, ya que (nidea)
+%%
+
+\begin{align*}
+%%
+i && \parbox[t]{8cm}{\raggedright Número de modelos LightFM} \nonumber 
+%%
+&& \\
+%%
+n && \parbox[t]{8cm}{\raggedright Número de elementos a incluir en el ranking} \nonumber 
+%%
+&& \\
+%%
+m && \parbox[t]{8cm}{\raggedright Número de epochs sobre cada dataset} \nonumber
+%%
+&& \\
+%%
+a_{mn} && \parbox[t]{8cm}{\raggedright Índice del elemento n de la lista de strats en el ranking calculado en la epoch m} \nonumber
+%%
+&& \\
+%%
+matriz_{i[m,n]}= \begin{pmatrix}
+ a_{11}  &  a_{12}  &  \cdots   & a_{1n} \\ 
+ a_{21}  &  a_{22}  &  \cdots   & a_{2n}\\ 
+ \vdots  &  \vdots  &  \ddots & \vdots  \\ 
+ a_{m1}  &  a_{m2}  &  \cdots   & a_{mn}
+\end{pmatrix}  && \parbox[t]{8cm}{\raggedright Matriz numpy de los resultados de la predicción del modelo i} \nonumber
+%%
+&& \\ \\
+%%
+prediction_{m[1,n]}= \begin{bmatrix} a_{1}  &  a_{2}  &  \cdots   & a_{n} \end{bmatrix} && \parbox[t]{8cm}{\raggedright Lista de los índices de los n strat para el ranking del epoch m} \nonumber
+%%
+\\ \\
+Predictions_{i[m,n]} = \begin{bmatrix}
+ \begin{bmatrix} a_{11}  &  a_{12}  &  \cdots   & a_{1n} \end{bmatrix} \\ 
+ \begin{bmatrix} a_{21}  &  a_{22}  &  \cdots   & a_{2n} \end{bmatrix}\\ 
+ \vdots \\ 
+ \begin{bmatrix} a_{m1}  &  a_{m2}  &  \cdots   & a_{mn} \end{bmatrix}
+\end{bmatrix} && \parbox[t]{8cm}{\raggedright Lista de predicciones del modelo i por cada epoch m} \nonumber
+%%
+&& \\ \\
+%%
+ndpms_{i[1,m]}= \begin{bmatrix} ndpm_{1}  &  ndpm_{2}  &  \cdots   & ndpm_{m} \end{bmatrix} && \parbox[t]{8cm}{\raggedright Lista de NDPMs calculados sobre las predicciones de cada epoch m del  modelo i LightFM} \nonumber
+\end{align*}
+\\ \\
+%%
+Si se desagrupan las predicciones realizadas por cada epoch m y se agrupan en función de cada strat n tendremos la lista de valores que el modelo i da a cada uno de los elementos n de la lista de los strat. Esto quiere decir que si se agrupan en función del elemento que se ordena en el ranking en vez de en por predicción se obtendrá la lista de todas las predicciones de posición para cada uno de los elementos a ordenar.
+\begin{alignat*}{1}
+\parbox[t]{8cm}{\raggedright }\nonumber & \\
+Predictions_{i[m,n]}= \begin{bmatrix}
+\begin{bmatrix} a_{11} \\ a_{21} \\ \vdots \\ a_{m1} \end{bmatrix} 
+& \begin{bmatrix} a_{12} \\ a_{22} \\ \vdots \\ a_{m2} \end{bmatrix} 
+& \cdots
+& \begin{bmatrix} a_{1n} \\ a_{2n} \\ \vdots \\ a_{mn} \end{bmatrix} 
+\end{bmatrix}
+\end{alignat*}
+Una vez teniendo la lista de los valores para cada elemento se pueden aplicar métodos estadísticos como la media(\(\bar{x}\)), mediana(\(\tilde{x}\)) o moda (\(\hat{x}\)) para crear una única predicción consensuada para el modelo i al que pertenecen estas predicciones. Esta predicción consensuada permitirá combinar los rankings generados durante cada epoch para poder obtener la máxima precisión posible y la mínima desviación típica.
+\begin{alignat*}{2}
+\bar{x}   &  \parbox[t]{8cm}{\raggedright Media} \nonumber \\
+\tilde{x} & \parbox[t]{8cm}{\raggedright Mediana} \nonumber \\
+\hat{x}   & \parbox[t]{8cm}{\raggedright Moda} \nonumber
+\end{alignat*}
+Consenso por media de las m predicciones para el modelo i:
+\begin{alignat*}{1}
+\overline{consensous_{i[1,m]}}= \begin{bmatrix} \overline{a_{11}} &  \overline{a_{21}}  &  \cdots   & \overline{a_{m1}} \end{bmatrix} 
+\end{alignat*}
+\\
+Consenso por mediana de las m predicciones para el modelo i:
+\begin{alignat*}{1}
+\widetilde{consensous_{i[1,m]}}= \begin{bmatrix} \widetilde{a_{11}} &  \widetilde{a_{21}}  &  \cdots   & \widetilde{a_{m1}} \end{bmatrix} 
+\end{alignat*}
+\\
+Consenso por moda de las m predicciones para el modelo i:
+\begin{alignat*}{1}
+\widehat{consensous_{i[1,m]}}= \begin{bmatrix} \widehat{a_{11}} &  \widehat{a_{21}}  &  \cdots   & \widehat{a_{m1}} \end{bmatrix} 
+\end{alignat*}
+%%
+\\ \\ \\
+%%
+
+\begin{algorithm}
+\caption{Entrenamiento del modelo}\label{euclid}
+\begin{algorithmic}[1]
+\Procedure{Experimento}{}
+\State $\textit{// Lista de estrategias a clasificar del 1 a n:}$
+\State $strats \gets \begin{bmatrix} 'v2' & 'v5' & 'v6' & 'v7' & 'v10' & 'v11' & 'v15' & 'v17' & 'v19' & 'v20' \end{bmatrix}$ 
+\\
+\State $i \gets \parbox[t]{8cm}{\raggedright \textit{Cantidad de modelos a crear.}}\nonumber$
+\State $m \gets \parbox[t]{8cm}{\raggedright \textit{Cantidad de epochs sobre cada modelo i.}}\nonumber$
+\\
+\State $\textit{// Lista de listas de NDPMs, de cada predicción de la epoch m, de cada modelo i:}$
+\State \textit{// $[[ndpm_{1}$, $ndpm_{2}$, \ldots, $ndpm_{m}]_{1}$, \ldots, $[ndpm_{1}$, $ndpm_{2}$, \ldots, $ndpm_{m}]_{i}]$ } 
+\State $\textit{ndpms} \gets [[\textit{float}_{m}]_{i}]$
+\\
+\State $\textit{// Lista de NDPMs, de cada predicción consensuada, de cada modelo i:}$
+\State \textit{// $[ndpm_{1}$, $ndpm_{2}$, \ldots, $ndpm_{i}]$} 
+\State $\textit{commonNdpms} \gets [\textit{float}_{i}]$
+\\
+\State \textit{// Lista de los índices de los n strat para el ranking del epoch m}
+\State $\textit{// } 
+\begin{bmatrix} float_{n} \end{bmatrix} 
+=
+\begin{bmatrix} a_{1}  &  a_{2}  &  \cdots   & a_{n} \end{bmatrix}$
+%
+\State \textit{// Lista de los índices de los n strat, de cada epoch m}
+\State $ \textit{// }
+\begin{bmatrix} \begin{bmatrix} float_{n} \end{bmatrix}_{m} \end{bmatrix}
+=
+\begin{bmatrix} 
+    \begin{bmatrix} 
+        $$a_{1}$$ & $$a_{2}$$ & \ldots & $$a_{n}$$ 
+    \end{bmatrix}$$_{1}$$ 
+    & \ldots 
+    & \begin{bmatrix} 
+        $$a_{1}$$ & $$a_{2}$$ & \ldots & $$a_{n}$$ 
+    \end{bmatrix}$$_{m}$$
+\end{bmatrix}  $
+%
+\State \textit{// Lista de los índices de los n strat, de cada epoch m, de cada modelo i}
+\State $\textit{// }
+\begin{bmatrix} \begin{bmatrix} \begin{bmatrix} float_{n} \end{bmatrix}_{m} \end{bmatrix}_{i} \end{bmatrix}
+=
+\begin{bmatrix}
+    \begin{bmatrix}
+        \begin{bmatrix} $$a_{1}$$  &  $$a_{2}$$  &  \cdots   & $$a_{n}$$ \end{bmatrix}_{1} \\ 
+        \vdots \\ 
+        \begin{bmatrix} $$a_{1}$$  &  $$a_{2}$$  &  \cdots   & $$a_{n}$$ \end{bmatrix}_{m}
+    \end{bmatrix}_{1}
+    &
+    \cdots
+    &
+    \begin{bmatrix}
+        \begin{bmatrix} $$a_{1}$$  &  $$a_{2}$$  &  \cdots   & $$a_{n}$$ \end{bmatrix}_{1} \\ 
+        \vdots \\ 
+        \begin{bmatrix} $$a_{1}$$  &  $$a_{2}$$  &  \cdots   & $$a_{n}$$ \end{bmatrix}_{m}
+    \end{bmatrix}_{i}
+\end{bmatrix}$
+\\
+\State $\textit{predictions} \gets \begin{bmatrix} \begin{bmatrix} \begin{bmatrix} float_{n} \end{bmatrix}_{m} \end{bmatrix}_{i} \end{bmatrix}$
+\BState \emph{loop}:
+\For {$\textit{int}(j) \gets 0$ \textbf{to} $\textit{range}(i)$}
+    \State $userFeatures, itemFeatures \gets features()$ $\parbox[t]{4cm}{//\raggedright \textit{Obtiene todas las características de los usuarios y de los items}}\nonumber$
+    \\
+    \State $trainInteractions \gets \parbox[t]{8cm}{\raggedright \textit{Interacciones para entrenar el modelo. }}\nonumber$
+    \State $testInteractions \gets \parbox[t]{8cm}{\raggedright \textit{Interacciones para probar el modelo. }}\nonumber$
+    \\
+    \State $trainWeights \gets \parbox[t]{8cm}{\raggedright \textit{Peso de las interacciones de entrenamiento. }}\nonumber$
+    \\
+    \State $trainUerid \gets \parbox[t]{8cm}{\raggedright \textit{IDs de los usuarios que se utilizan para entrenar. }}\nonumber$
+    \State $testUserid \gets \parbox[t]{8cm}{\raggedright \textit{IDs de los usuarios que se utilizan para probar. }}\nonumber$
+    \BState \emph{loop}:
+    \For {$\textit{int}(k) \gets 0$ \textbf{to} $\textit{range}(m)$}
+        \State $modelo \gets LightFM()$ $\parbox[t]{8cm}{//\raggedright \textit{Se crea el modelo LightFM }}\nonumber$
+        \\
+        \State$\textit{//Ajustar modelo a la información extraida:}$
+        \State $modelo.fit(trainInteractions,userFeatures ,trainWeights)$ 
+        \\
+        \State$\textit{//Predicción del modelo para las interacciones de prueba:}$
+        \State $predictRank \gets modelo.predict(testInteractions, userFeatures)$
+        \\
+        \State $ndpms[i].append(ndpm(ranks_test))$ $\parbox[t]{8cm}{//\raggedright \textit{Añadir el valor NDPM del ranking creado por el modelo i, en la epoch m, a la lista de NDPMs del modelo i}}\nonumber$
+
+        %predictions[i].append(ranks_test.data)
+
+        \State \textbf{close};
+    \EndFor
+    
+    \State $i \gets i-1$.
+    \State \textbf{goto} \emph{loop}.
+    \State \textbf{close};
+\EndFor
+%%
+%%
+\EndProcedure
+\algstore{Experimento}
+\end{algorithmic}
+\end{algorithm}
+%%
+\begin{algorithm}
+\begin{algorithmic}[1]
+\algrestore{Experimento}
+\BState \emph{top}:
+\If {$i > \textit{stringlen}$} \Return false
+\EndIf
+\State $j \gets \textit{patlen}$
+\BState \emph{loop}:
+\If {$\textit{string}(i) = \textit{path}(j)$}
+\State $j \gets j-1$.
+\State $i \gets i-1$.
+\State \textbf{goto} \emph{loop}.
+\State \textbf{close};
+\EndIf
+\State $i \gets i+\max(\textit{delta}_1(\textit{string}(i)),\textit{delta}_2(j))$.
+\State \textbf{goto} \emph{top}.
+\end{algorithmic}
+\end{algorithm}
+%%
+\begin{algorithm}
+\caption{Algoritmo de consenso}\label{euclid}
+\begin{algorithmic}[1]
+\Procedure{Consensuar}{matriz}
+\State a
+
+\State $\textit{stringlen} \gets \text{length of }\textit{string}$
+\State $i \gets \textit{patlen}$
+
+\BState \emph{top}:
+\If {$i > \textit{stringlen}$} \Return false
+\EndIf
+\State $j \gets \textit{patlen}$
+\BState \emph{loop}:
+\If {$\textit{string}(i) = \textit{path}(j)$}
+\State $j \gets j-1$.
+\State $i \gets i-1$.
+\State \textbf{goto} \emph{loop}.
+\State \textbf{close};
+\EndIf
+\State $i \gets i+\max(\textit{delta}_1(\textit{string}(i)),\textit{delta}_2(j))$.
+\State \textbf{goto} \emph{top}.
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
