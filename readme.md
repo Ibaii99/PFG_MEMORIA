@@ -10,14 +10,16 @@ Este trabajo fin de grado pretende reforzar los aspectos de privacidad de la inf
 
 El repositorio cuenta con dos ramas, master y develop, cada una con un objetivo diferente. Todos los cambios se realizan en la rama develop y únicamente son pasados a máster cuando la versión es estable y limpia, las modificaciones que sean inestables no serán aceptadas como pull request hasta que se corrijan.
 
+<div class="mermaid">
 graph LR
-    A[master] --Develop Branch---> B((feature))
+    A[master] --Develop Branch--> B((feature))
     A --Stable version branch--> D
     B --> E((feature))
     E --> D[master]
     D --Develop Branch--> F((feature))
     D --Stable version branch--> G[master]
     F --> G
+</div>
 
 
 Por lo cual, si se quiere consultar el proyecto estable descargue la versión de la rama master, si prefiere conocer el estado del desarrollo puede descargar la rama develop.
