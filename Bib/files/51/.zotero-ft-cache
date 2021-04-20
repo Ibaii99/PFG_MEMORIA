@@ -1,0 +1,295 @@
+ 
+Reglamento General de Protección de Datos 
+De Wikipedia, la enciclopedia libre 
+Esta es la versión actual de esta página, editada a las 13:26 28 feb 2021 por Sergiofwc ( discusión · contribs. ) . La dirección URL es un enlace permanente a esta versión . 
+Versión a fecha de 13:26 28 feb 2021, por 
+( difs. ) ← Revisión anterior · Ver revisión actual (difs.) · Revisión siguiente → (difs.) 
+Ir a la navegación Ir a la búsqueda 
+Reglamento (EU) 2016/679 
+Reglamento de la Unión Europea 
+Título	Reglamento relativo a la protección de datos de las personas físicas en lo que respecta al tratamiento de datos personales y a la libre circulación de estos datos y por el que se deroga la Directiva 95/46/CE (Reglamento general de protección de datos) 
+Hecho por	Parlamento Europeo y Consejo de la Unión Europea 
+Referencia del DOUE 	L 119, 4.5.2016, p. 1–88 
+Historia 
+Fecha de aprobación	14 de abril de 2016 
+Fecha de aplicación	25 de mayo de 2018 
+Textos preparatorios 
+Propuesta de la Comisión 	COM/2012/010 final – 2012/0010 (COD) 
+Legislación relacionada 
+Reemplaza	Directiva de Protección de Datos 
+Legislación vigente 
+[ editar datos en Wikidata ] 
+ 
+El Reglamento General de Protección de Datos ( RGPD ) es el reglamento europeo relativo a la protección de las personas físicas en lo que respecta al tratamiento de sus datos personales y a la libre circulación de estos datos. Entró en vigor el 25 de mayo de 2016 y fue de aplicación el 25 de mayo de 2018, dos años durante los cuales las empresas, las organizaciones, los organismos y las instituciones se fueron adaptando para su cumplimiento. Es una normativa a nivel de la Unión Europea , por lo que cualquier empresa de la unión, o aquellas empresas que tengan negocios en la Unión Europea, que manejen información personal de cualquier tipo, deberán acogerse a ella. Las multas por el no cumplimiento del RGPD pueden llegar a los 20 millones de euros. 
+ 
+En España, el RGPD dejó obsoleta la Ley Orgánica de Protección de Datos de Carácter Personal (LOPD) de 1999, siendo sustituida el 6 de diciembre de 2018 por la Ley Orgánica de Protección de Datos Personales y garantía de los derechos digitales , acorde con el RGPD. [ 1 ] ​ 
+Índice 
+ 
+    1 Resumen 
+    2 Contenido 
+        2.1 Alcance 
+        2.2 Conjunto único de reglas y ventanilla única 
+        2.3 Responsabilidad 
+        2.4 Base legal para tratamiento 
+        2.5 Consentimiento 
+        2.6 Delegado de protección de datos 
+        2.7 Seudonimización 
+        2.8 Violaciones de datos 
+        2.9 Sanciones 
+    3 Cronología 
+    4 Mercado único digital de la UE 
+    5 Control Ciudadano de Datos Personales 
+    6 Referencias 
+    7 Enlaces externos 
+ 
+Resumen [ editar ] 
+ 
+El nuevo régimen de protección de datos de la UE amplía el alcance de la ley de protección de datos de la UE a todas las compañías extranjeras que tratan datos de residentes de la UE. Para cumplir con estas regulaciones, sin embargo, esto implica el coste de un estricto régimen de cumplimiento de protección de datos con penalizaciones severas de hasta el 4% de la facturación mundial ". [ 2 ] ​ 
+ 
+El RGPD también ofrece un nuevo conjunto de "derechos digitales" para los ciudadanos de la UE en una época en la que el valor económico de los datos personales está aumentando en la economía digital. 
+Contenido [ editar ] 
+ 
+El Reglamento General de Protección de Datos contiene los siguientes requisitos clave: [ 3 ] ​ [ 4 ] ​ 
+Alcance [ editar ] 
+ 
+La regulación se aplica si el controlador de datos (una organización que recolecta datos de residentes de la UE) o el procesador (una organización que trata datos en nombre del controlador de datos, por ejemplo, proveedores de servicios en la nube) o el interesado (persona) tiene su sede en la UE. Además, la regulación también se aplica a las organizaciones con sede fuera de la Unión Europea si recopilan o tratan datos personales de los residentes de la UE. Según la Comisión Europea, "los datos personales son cualquier información relacionada con un individuo, ya sea que se refiera a su vida privada, profesional o pública. Puede ser cualquier cosa desde un nombre, domicilio, foto, dirección de correo electrónico, detalles bancarios, publicaciones en sitios web de redes sociales, información médica o la dirección IP de una computadora ". [ 5 ] ​ 
+ 
+El reglamento no pretende aplicarse al tratamiento de datos personales para actividades de seguridad nacional o aplicación de la ley en la Unión Europea; sin embargo, grupos industriales preocupados por enfrentar un posible conflicto de leyes han cuestionado si el artículo 48 de la RGPD podría invocarse para evitar que un controlador de datos sujeto a las leyes de un tercer país cumpla con un orden legal de la aplicación de la ley de ese país, judicial, o las autoridades de seguridad nacional divulguen a dichas autoridades los datos personales de una persona de la UE, independientemente de si los datos residen dentro o fuera de la UE. 
+ 
+El artículo 48 establece que cualquier juicio de un tribunal o tribunal y cualquier decisión de una autoridad administrativa de un tercer país que requiera que un controlador o procesador transfiera o divulgue datos personales solo podrá ser reconocido o exigible de cualquier manera si se basa en un acuerdo internacional, tal como un tratado de asistencia jurídica mutua vigente entre el tercer país (no UE) solicitante y la Unión o un Estado miembro, el paquete de reforma de protección de datos también incluye una Directiva de protección de datos separada para el sector policial y de justicia penal que proporciona normas sobre personal intercambios de datos a nivel nacional, europeo e internacional. 
+Conjunto único de reglas y ventanilla única [ editar ] 
+ 
+Un único conjunto de reglas se aplicará a todos los estados miembros de la UE. Cada estado miembro establecerá una Autoridad de Supervisión (SA) independiente para escuchar e investigar denuncias, sancionar infracciones administrativas, etc. Las SA de cada Estado miembro cooperarán con otras SA, proporcionando asistencia mutua y organizando operaciones conjuntas. Cuando una empresa tenga múltiples establecimientos en la UE, tendrá una sola SA como su "autoridad principal", según la ubicación de su "establecimiento principal" (es decir, el lugar donde se llevan a cabo las principales actividades de tratamiento). La autoridad principal actuará como " ventanilla única " para supervisar todas las actividades de tratamiento de esa empresa en toda la UE. [ 6 ] ​ [ 7 ] ​ (Artículos 46–55 de la RGPD). La Junta Europea de Protección de Datos (EDPB) coordinará las SA. EDPB reemplazará al Artículo 29 Grupo de Trabajo . 
+ 
+Existen excepciones para los datos tratados ​​en un contexto de empleo y los datos tratados ​​para fines de seguridad nacional que aún podrían estar sujetos a las reglamentaciones de cada país (artículos 2 (2) (a) y 82 de la RGPD). 
+Responsabilidad [ editar ] 
+ 
+Los requisitos de notificación permanecen y se expanden. Deben incluir el tiempo de retención para los datos personales y la información de contacto para el controlador de datos y se debe proporcionar un delegado de protección de datos . 
+ 
+La toma de decisiones individual automatizada, incluida la elaboración de perfiles (artículo 22) es discutible, de forma similar a la Directiva de protección de datos (artículo 15). Los ciudadanos tienen el derecho de cuestionar y luchar contra las decisiones importantes que les afecten y que se hayan realizado sobre la base exclusiva de algoritmo ic. Muchos medios de comunicación han comentado la introducción de un "derecho a la explicación" de decisiones algorítmicas, [ 8 ] ​ [ 9 ] ​ pero desde entonces los académicos legales han argumentado que la existencia de tal derecho no está muy clara sin una prueba judicial y, en el mejor de los casos, es limitada. [ 10 ] ​ [ 11 ] ​ 
+ 
+Para poder demostrar el cumplimiento con el RGPD, el controlador de datos debe implementar medidas que cumplan con los principios de protección de datos por diseño y protección de datos por defecto. Privacidad por diseño y por defecto (Artículo 25) requieren que las medidas de protección de datos estén diseñadas para el desarrollo de procesos comerciales para productos y servicios. Tales medidas incluyen datos personales Seudonimizamiento , por parte del controlador, tan pronto como sea posible (considerando 78). 
+ 
+Es responsabilidad del controlador de datos implementar medidas efectivas y ser capaz de demostrar el cumplimiento de las actividades de tratamiento, incluso si el tratamiento se lleva a cabo por un procesador de datos en nombre del controlador. (Considerando 74). 
+ 
+Las evaluaciones de impacto de protección de datos (artículo 35) deben llevarse a cabo cuando se producen riesgos específicos a los derechos y libertades de los interesados. Se requiere la evaluación y mitigación de riesgos y se requiere la aprobación previa de las Autoridades de Protección de Datos (DPA) para los riesgos más altos. Los delegados de protección de datos (artículos 37-39) deben garantizar el cumplimiento dentro de las organizaciones. 
+ 
+Deben ser designados: 
+ 
+    Para todas las autoridades públicas, a excepción de los tribunales que actúan en su capacidad judicial 
+    Si las actividades centrales del controlador o del procesador consisten en 
+        Tratamiento de "operaciones" que, en virtud de su naturaleza, su alcance y / o sus propósitos, requieren un control regular y sistemático de los interesados ​​a gran escala 
+        Tratamiento en una "escala" grande de categorías especiales de datos de conformidad con el artículo 9 y datos personales relacionados con condenas penales y delitos a que se refiere el artículo 10 [ 12 ] ​ 
+ 
+Base legal para tratamiento [ editar ] 
+ 
+Los datos solo se pueden tratar si existe al menos una base legal para hacerlo. [ 13 ] ​ Las bases legales para tratar datos son: 
+ 
+    El interesado ha dado su consentimiento para el tratamiento de sus datos personales con uno o más propósitos específicos. 
+    El tratamiento es necesario para la ejecución de un contrato del que el interesado es parte o para tomar medidas a petición del interesado antes de celebrar un contrato. 
+    El tratamiento es necesario para cumplir con una obligación legal a la cual el controlador está sujeto. 
+    El tratamiento es necesario para proteger los intereses vitales del interesado o de otra persona física. 
+    El tratamiento es necesario para la realización de una tarea llevada a cabo en interés público o en el ejercicio de la autoridad oficial conferida al controlador. 
+    El tratamiento es necesario para los fines de los intereses legítimos perseguidos por el responsable o por un tercero, salvo cuando dichos intereses sean anulados por los intereses o los derechos y libertades fundamentales del interesado que requieren protección de datos personales, en particular cuando el interesado es un niño. 
+ 
+Consentimiento [ editar ] 
+ 
+Cuando el consentimiento se utiliza como la base legal para el tratamiento, el consentimiento debe ser explícito para los datos recopilados y los fines para los que se utilizan los datos (Artículo 7, definido en el Artículo 4). Consentimiento para niños [ 14 ] ​ debe ser otorgado por el padre o tutor del niño, y verificable (Artículo 8). Los controladores de datos deben poder probar el "consentimiento" (opt-in) y el consentimiento puede ser retirado. [ 15 ] ​ 
+ 
+La cuestión del consentimiento de RGPD tiene una serie de implicaciones para las empresas que graban llamadas en la práctica. Los típicos avisos del tipo "esta llamada está siendo grabada por motivos de seguridad" ya no serán suficientes para obtener el consentimiento asumido para grabar llamadas. Además, cuando la grabación haya comenzado, si la persona que es grabada retira su consentimiento, entonces el agente que recibe la llamada debe ser capaz de detener una grabación previamente iniciada y asegurarse de que la grabación no se guarde. [ 16 ] ​ 
+Delegado de protección de datos [ editar ] 
+ 
+Cuando el tratamiento lo lleve a cabo una autoridad pública, a excepción de los tribunales o autoridades judiciales independientes cuando actúan en su capacidad judicial, o cuando, en el sector privado, el tratamiento lo lleva a cabo un controlador cuyas actividades centrales consisten en operaciones de tratamiento que requieren regular y la supervisión sistemática de los interesados, una persona con conocimiento experto de la legislación y prácticas de protección de datos debería ayudar al controlador o procesador a supervisar el cumplimiento interno de este Reglamento. 
+ 
+El DPO es similar pero no es lo mismo que un Oficial de Cumplimiento, ya que también se espera que sea competente en la gestión de procesos de TI, seguridad de datos (incluido el tratamiento de ciberataques) y otros problemas críticos de continuidad empresarial en la retención y tratamiento de datos personales y confidenciales datos. El conjunto de habilidades requeridas se extiende más allá de comprender el cumplimiento legal con las leyes y regulaciones de protección de datos. 
+ 
+El nombramiento de un DPO dentro de una gran organización será un desafío para la Junta, así como para el individuo en cuestión. Hay una miríada de problemas de gobernanza y factores humanos que las organizaciones y compañías deberán abordar dado el alcance y la naturaleza de la designación. Además, el titular del puesto tendrá que crear su propio equipo de soporte y también será responsable de su propio desarrollo profesional continuo, ya que deben ser independientes de la organización que los emplea, efectivamente como un "mini-regulador". 
+ 
+El 13 de diciembre de 2016 (revisado el 5 de abril de 2017) se proporcionaron más detalles sobre la función y la función del delegado de protección de datos con un documento de orientación. [ 17 ] ​ 
+Seudonimización [ editar ] 
+ 
+El RGPD de la Unión Europea se refiere al cifrado, o encriptación, de los datos como la fórmula más segura para su protección. De hecho, señala en sus artículos 33 y 34 que, si se tiene cifrada la información, aunque se produzca una fuga no es necesaria la notificación a los afectados, ni a la autoridad administrativa correspondiente, en el caso de España la Agencia Española de Protección de Datos. 
+ 
+También señala la seudonimización como algo demandado para cualquier almacenaje de datos personales sobre personas dentro del UE como alternativa a la otra opción de anonimización de datos . [ 18 ] ​ 
+Violaciones de datos [ editar ] 
+ 
+Bajo el RGPD, el Controlador de Datos estará bajo la obligación legal de notificar a la Autoridad de Supervisión sin demora indebida. La notificación de una filtración de datos no está sujeta a ninguna norma de minimis y debe notificarse a la Autoridad de Supervisión dentro de las 72 horas posteriores a haber tenido conocimiento de la violación de datos (Artículo 33). Las personas deben ser notificadas si se determina un impacto adverso (Artículo 34). Además, el procesador de datos deberá notificar al controlador sin demora después de conocer una violación de datos personales (Artículo 33). 
+ 
+Sin embargo, la notificación a los interesados ​​no es necesaria si el responsable del tratamiento ha implementado medidas de protección técnicas y organizativas apropiadas que hacen que los datos personales sean ininteligibles para cualquier persona que no esté autorizada para acceder, como el cifrado (Artículo 34). 
+Sanciones [ editar ] 
+ 
+Las siguientes sanciones pueden ser impuestas: 
+ 
+    Una advertencia por escrito en los casos de incumplimiento previo e intencional, 
+    Auditorías periódicas de protección de datos, 
+    Una multa de hasta 10 000 000 de euros o hasta el 2 % del volumen de negocios mundial anual del ejercicio anterior en el caso de una empresa, cualquiera que sea mayor, cuando haya habido una infracción de las siguientes disposiciones (Artículo 83, Párrafo 4) [ 19 ] ​): 
+        Las obligaciones del controlador y del procesador de conformidad con los artículos 8, 11, 25 a 39, 42 y 43, 
+        Las obligaciones del organismo de certificación de conformidad con los artículos 42 y 43, 
+        Las obligaciones del organismo de supervisión de conformidad con el artículo 41 (4). 
+    Una multa de hasta 20 000 000 de euros o hasta el 4 % del volumen de negocios anual del año financiero anterior en el caso de una empresa, cualquiera que sea mayor, cuando se haya infringido las siguientes disposiciones: (Artículo 83, párrafos 5 y 6 [ 19 ] ​). 
+        Los principios básicos para el tratamiento, incluidas las condiciones para el consentimiento, de conformidad con los artículos 5, 6, 7 y 9, 
+        the data subjects' rights pursuant to Articles 12 to 22, 
+        Las transferencias de datos personales a un destinatario en un tercer país o una organización internacional de conformidad con los artículos 44 a 49, 
+        Cualquier obligación conforme a la ley de los Estados miembros adoptada en virtud del Capítulo IX, 
+        El incumplimiento de una orden o una limitación temporal o definitiva del tratamiento o la suspensión de los flujos de datos por parte de la autoridad supervisora ​​de conformidad con el artículo 58 (2) o la falta de acceso en violación del artículo 58 (1). 
+ 
+Cronología [ editar ] 
+ 
+La propuesta [ 7 ] ​ para RGPD se lanzó el 25 de enero de 2012. 
+ 
+    21 de octubre de 2013: Comisión de Libertades Civiles, Justicia y Asuntos de Interior del Parlamento Europeo (LIBE) tenía su voto de orientación. 
+ 
+    15 de diciembre de 2015: Negociaciones entre Parlamento Europeo , Consejo y Comisión ( tripartito ) resultó en una propuesta conjunta. 
+ 
+    17 de diciembre de 2015: La comisión LIBE del Parlamento Europeo votó positivamente sobre el resultado de las negociaciones entre las tres partes. 
+ 
+    8 de abril de 2016: Adopción por el Consejo de la Unión Europea. [ 20 ] ​ El único estado miembro que votó en contra fue Austria, argumentando que el nivel de protección de datos en algunos aspectos es bajo en comparación con la directiva de 1995. [ 21 ] ​ [ 22 ] ​ 
+ 
+    14 de abril de 2016: Adopción por el Parlamento Europeo. [ 23 ] ​ 
+ 
+    El reglamento entró en vigor 20 días después de su publicación en el Diario oficial de la Unión Europea el 4 de mayo de 2016. [ 24 ] ​ Sus disposiciones serán directamente aplicables en todos los estados miembros dos años después de esta fecha. 
+ 
+    Es aplicable desde el 25 de mayo de 2018. [ 24 ] ​ 
+ 
+El mercado único digital de la UE y la facilitación de los servicios públicos a través de las fronteras. 
+Mercado único digital de la UE [ editar ] 
+ 
+La estrategia de mercado único digital de la UE tiene como objetivo abrir oportunidades digitales para las personas y las empresas y mejorar la posición de Europa como líder mundial en la economía digital. [ 25 ] ​ 
+ 
+Como parte de esta estrategia, el RGPD y la Directiva sobre seguridad de redes y sistemas de información (Directiva NIS) es aplicable desde el 25 de mayo de 2018. El "[propuesto]" Reglamento de privacidad también es aplicable a partir del 25 de mayo de 2018. El el Reglamento eIDAS también es parte de la estrategia. 
+Control Ciudadano de Datos Personales [ editar ] 
+ 
+Bajo el RGPD, se alienta a las organizaciones a devolver el control de los datos personales al individuo o ciudadano. Haciéndoles más fácil el acceso a las organizaciones de datos que tienen y para que puedan cambiar los permisos que otorgan para que se utilicen (ver Bases legales para el tratamiento) o compartido. 
+ 
+Gestión de información personal ayuda a las organizaciones a devolver este control, y hay una serie de herramientas y soluciones para ayudar con esto. 
+Referencias [ editar ] 
+ 
+    ↑ «Aprobada la Ley Orgánica de Protección de Datos y Garantía de los Derechos Digitales» . Agencia Española de Protección de Datos . 23 de noviembre de 2018.   
+    ↑ «https://via.hypothes.is/http://mlawgroup.de/news/publications/detail.php#annotations:oExZ4PVtEeefHEPs4cEz6w» . via.hypothes.is (en alemán) . Consultado el 18 de enero de 2018 .   
+    ↑ "Inofficial [ sic ] consolidated version GDPR" Archivado el 31 de diciembre de 2013 en la Wayback Machine .. Rapporteur Jan Philipp Albrecht . Retrieved 9 December 2013. 
+    ↑ Proposal for the EU General Data Protection Regulation . Comisión Europea. 25 de enero de 2012. Consultado el 3 de enero de 2013. 
+    ↑ European Commission’s press release announcing the proposed comprehensive reform of data protection rules . 25 de enero de 2012. Consultado el 3 de enero de 2013. 
+    ↑ El Reglamento de Protección de Datos General de la UE propuesto. Una guía para abogados internos, Hunton & Williams LLP, June 2015, p. 14 
+    ↑ Saltar a: a b "Propuesta GDPR " 
+    ↑ editor, Ian Sample Science (27 de enero de 2017). «El perro guardián de la IA necesita regular la toma de decisiones automatizada, dicen los expertos» . The Guardian (en inglés británico) . ISSN   0261-3077 . Consultado el 15 de julio de 2017 .   
+    ↑ «EU's Right to Explanation: A Harmful Restriction on Artificial Intelligence» . www.techzone360.com (en inglés) . Consultado el 15 de julio de 2017 .   
+    ↑ Wachter, Sandra; Mittelstadt, Brent; Floridi, Luciano (28 de diciembre de 2016). Por qué no existe un derecho a la explicación de la toma de decisiones automatizada en el Reglamento general de protección de datos – via SSRN.   
+    ↑ Edwards, Lilian; Veale, Michael (2017). «Esclavo del algoritmo? Por qué el "derecho a una explicación" probablemente no sea el remedio que está buscando» . Duke Law and Technology Review . SSRN   2972855 . doi : 10.2139/ssrn.2972855 .   El material ha sido copiado de esta fuente. Se autoriza la reutilización de los datos EUR-Lex con fines comerciales o no comerciales siempre que se indique la fuente. 
+    ↑ «EUR-Lex – Art. 37» . eur-lex.europa.eu (en inglés) . Consultado el 23 de enero de 2017 .   El material ha sido copiado de esta fuente. La reutilización de los datos EUR-Lex para fines comerciales o no comerciales está autorizada siempre que se mencione la fuente. 
+    ↑ «EUR-Lex - 32016R0679 - EN - EUR-Lex» . eur-lex.europa.eu (en inglés) . Consultado el 7 de noviembre de 2017 .   El material ha sido copiado de esta fuente. Se autoriza la reutilización de los datos EUR-Lex con fines comerciales o no comerciales siempre que se indique la fuente. 
+    ↑ Artículo 8 (1): "A los efectos del presente Reglamento, en relación con la oferta de servicios de la sociedad de la información directamente a un niño, el tratamiento de los datos personales de un niño menor de 13 años deberá solo será legal si y en la medida en que el padre o el tutor del niño brinde o autorice el consentimiento ". 
+    ↑ "How the Proposed EU Data Protection Regulation Is Creating a Ripple Effect Worldwide" . Judy Schmitt, Florian Stahl. 11 de octubre de 2012. Consultado el 3 de enero de 2013. 
+    ↑ «How Smart Businesses Can Avoid GDPR Penalties When Recording Calls» . www.xewave.io (en inglés británico) . Consultado el 13 de abril de 2018 .   
+    ↑ «Directrices sobre oficiales de protección de datos» . Consultado el 27 de agosto de 2017 .   
+    ↑ Data science under GDPR with pseudonymization in the data pipeline Publicado por Dativa, 17 de abril de 2018 (en inglés) 
+    ↑ Saltar a: a b Article 83, GDPR 
+    ↑ Reforma de la protección de datos: el Consejo adopta posición en primera lectura 
+    ↑ Aprobación de la posición del Consejo en primera lectura , Votewatch.eu 
+    ↑ Procedimiento escrito , 8 de abril de 2016, Consejo de la Unión Europea 
+    ↑ Data Reforma de la protección - El Parlamento aprueba nuevas reglas adecuadas para la era digital 
+    ↑ Saltar a: a b EU Official Journal issue L 119 
+    ↑ The Digital Single Market on europa.eu 
+ 
+Enlaces externos [ editar ] 
+ 
+    Agencia Española de Protección de Datos - RGPD 
+    Reglamento general de protección de datos  
+ 
+Control de autoridades 	 
+ 
+    Proyectos Wikimedia 
+    Wd Datos: Q1172506 
+    Commonscat Multimedia: General Data Protection Regulation  
+ 
+    Identificadores 
+    WorldCat 
+    VIAF : 24146824948007631105 
+    GND : 1105568555 
+    LCCN : no2017007011 
+    Microsoft Academic : 3090818  
+ 
+Obtenido de «» 
+Categorías : 
+ 
+    Derecho de la Unión Europea 
+    Leyes de datos  
+ 
+Categorías ocultas: 
+Menú de navegación 
+ 
+    No has accedido 
+    Discusión 
+    Contribuciones 
+    Crear una cuenta 
+    Acceder  
+ 
+    Artículo 
+    Discusión  
+ 
+    Leer 
+    Editar 
+    Ver historial  
+ 
+Buscar 
+ 
+    Portada 
+    Portal de la comunidad 
+    Actualidad 
+    Cambios recientes 
+    Páginas nuevas 
+    Página aleatoria 
+    Ayuda 
+    Donaciones 
+    Notificar un error  
+ 
+Herramientas 
+ 
+    Lo que enlaza aquí 
+    Cambios en enlazadas 
+    Subir archivo 
+    Páginas especiales 
+    Enlace permanente 
+    Información de la página 
+    Citar esta página 
+    Elemento de Wikidata  
+ 
+Imprimir/exportar 
+ 
+    Crear un libro 
+    Descargar como PDF 
+    Versión para imprimir  
+ 
+En otros proyectos 
+ 
+    Wikimedia Commons  
+ 
+En otros idiomas 
+ 
+    العربية 
+    English 
+    हिन्दी 
+    Bahasa Indonesia 
+    Bahasa Melayu 
+    Português 
+    Русский 
+    اردو 
+    中文 
+    36 más  
+ 
+Editar enlaces 
+ 
+    Esta página se editó por última vez el 28 feb 2021 a las 13:26. 
+    El texto está disponible bajo la Licencia Creative Commons Atribución Compartir Igual 3.0 ; pueden aplicarse cláusulas adicionales. Al usar este sitio, usted acepta nuestros términos de uso y nuestra política de privacidad . 
+    Wikipedia® es una marca registrada de la Fundación Wikimedia, Inc. , una organización sin ánimo de lucro. 
+ 
+    Política de privacidad 
+    Acerca de Wikipedia 
+    Limitación de responsabilidad 
+    Versión para móviles 
+    Desarrolladores 
+    Estadísticas 
+    Declaración de cookies 
+ 
+    Wikimedia Foundation 
+    Powered by MediaWiki 
+ 
