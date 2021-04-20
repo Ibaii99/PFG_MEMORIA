@@ -62,8 +62,24 @@
 \usepackage{ragged2e}
 %PAQUETEB utilizado para alinear, justificar o centrar el texto de la memoria.
 \usepackage{setspace}
- %PAQUETEB para delimitar el interlineado del texto.
-\usepackage{cite}
+%PAQUETEB para delimitar el interlineado del texto.
+%\usepackage{cite}
+
+\usepackage[%
+  bibstyle=ieee,
+  citestyle=numeric,
+  isbn=true,
+  doi=false,
+  sorting=none,
+  url=true,
+  defernumbers=true,
+  bibencoding=utf8,
+  backend=biber
+]{biblatex} 
+
+\addbibresource{Bib/MiBiblioteca.bib}
+
+
 %PAQUETEB para citar y referencia a lo largo del texto.
 \usepackage{enumerate} 
 %PAQUETEB para formar listas organizadas y darles formato. 
@@ -99,7 +115,7 @@
 
 %Paquetes para algoritmos matemáticos
 \usepackage{amsmath}
-\usepackage{algorithm}% http://ctan.org/pkg/algorithms
+\usepackage{algorithm}% http://ctan.org/pkg/Algoritmos
 \usepackage[noend]{algpseudocode}
 \makeatletter
 % Reinsert missing \algbackskip
@@ -123,12 +139,14 @@
 %Nuevamente se utiliza esta función para cambiar distancias del documento. Concretamente, en este caso se utiliza para cambiar la distancia de las sangrías al comenzar nuevo párrafo. Al marcar el valor en 0, se eliminan las sangrías del documento. Siempre se puede en momentos posteriores forzar la inclusión de alguna sangría o reescribir de nuevo el valor para indicar que a partir de ahí, comiencen las sangrías de nuevo.
 
 \includeonly{
-                Chapters/0.Resumen, 
-                Chapters/0.Abstract, 
-                Chapters/1.Intro, 
-                Chapters/3.Objetivos_y_Alcance, 
-                Chapters/Funciones,
-                Algorithms/ConsensoMath
+                Capitulos/0.Resumen, 
+                Capitulos/0.Abstract, 
+                Capitulos/1.Intro, 
+                Capitulos/3.Objetivos_y_Alcance, 
+                Capitulos/5.Metodologia, 
+                Capitulos/Funciones,
+                Algoritmos/ConsensoMath,
+                Anexos/1.AnexoProteccionDatos
 }
 %Esta función es de gran importancia. Como se puede observar a la izquierda, hay una carpeta que se ha creado con diferentes capítulos. Estos capítulos son los diferentes apartados de la memoria en los que se va a ir escribiendo. Por ejemplo, el capítulo de la introducción, el capítulo de objetivos, el capítulo de la memoria técnica, o el capítulo del plan de trabajo. Bien, de cara a poder incluirlos a posteriori en esto documento principal (MAIN.tex) es necesario indicarle a LATEX que los cargue y eso se realiza con esta función. Así, habrá que incluir tantos parámetros como capítulos se deseen cargar. Los parámetros son simplemente la dirección de la carpeta en la que se encuentran, y su nombre.
 
@@ -196,7 +214,7 @@
 \setcounter{page}{3}
 %Esta función permite comenzar el contador de las páginas para la numeración en el número 3, es importante puesto que los primeros números van dedicados a portada y contraportada y no se numeran. Así, la primera página numerada será la 3. 
 
-%\include{Chapters/0.Resumen}
+%\include{Capitulos/0.Resumen}
 
 \newpage
 %Función para incluir un salto a una nueva página.
@@ -204,7 +222,7 @@
 %Función para que dicha página no tenga ningún formato (ni número, ni encabezado).
 
 %Así con estas dos funciones de forma consecutiva se crea una página en blanco.
-%\include{Chapters/0.Abstract}
+%\include{Capitulos/0.Abstract}
 
 \newpage
 \thispagestyle{empty}
@@ -217,18 +235,28 @@
 \tableofcontents
 %Esta función permite introducir el índice de capítulos (hasta el subíndice que se haya indicado previamente).
 
+\newpage
+\thispagestyle{empty}
+
 \cleardoublepage
 %Esta función permite que aunque acabe en página impar, el siguiente apartado, comience en página impar. Con este comando te aseguras que se hace bien y que además se mantiene la numeración correspondiente en números romanos. Es decir, la página que se quedaría en blanco no está en blanco sino que mantiene la numeración. En caso de no querer numeración hay que utilizar los comando ("\newpage" y "\thispagestyle{empty}).
 
+\newpage
+\thispagestyle{empty}
+
 \listoffigures
 % Es la función que introduce el índice de figuras. Funciona exactamente igual que el de capítulos.
+\newpage
+\thispagestyle{empty}
+
 \cleardoublepage
 
 \listoftables
 %Por ultimo, se introduce el índice de tablas en caso de que las hubiera en vuestro documento. 
 
-\includepdf{PDF/Blanco}
-%Esta función permite introducir un pdf entre medias del documento o en cualquier momento que sea necesario. Así, el pdf utilizado en este caso es una página en blanco pero como se habrá observado puede servir para incluir la portada del proyecto, algún manual de instrucciones o cualquier archivo pdf que se desee. El argumento obligatorio debe contener el nombre del archivo y su dirección (en caso de que esté en el interior de alguna carpeta).
+\newpage
+\thispagestyle{empty}
+%Página en blanco
 
 \mainmatter
 %Esta función se utiliza para indicar que a partir de ahora la numeración pasa a ser con números estándar y no con romanos como se había venido utilizando hasta ahora.
@@ -260,17 +288,33 @@
 \renewcommand{\headrulewidth}{0pt} 
 
 
-%\include{Chapters/1.Intro}
-\include{Chapters/3.Objetivos_y_Alcance}
+%\include{Capitulos/1.Intro}
+\include{Capitulos/3.Objetivos_y_Alcance}
 %Funciones para incluir los otros documentos que se han desarrollado. Dichos documentos son los distintos capítulos de la memoria. Toda la escritura de los mismos se realizará en los documentos de forma específica y no en este archivo “MAIN.tex”. Así que vamos a ellos.
 
+\cleardoublepage
 
-\include{Algorithms/ConsensoMath}
+\include{Capitulos/5.Metodologia}
 
-\bibliographystyle{unsrt}
-%Función que indica el estilo de bibliografía a utilizar.
-\bibliography{References.bib}
-%Función que incluye la biblografía en el documento.
+
+\cleardoublepage
+
+%\include{Algoritmos/ConsensoMath}
+
+
+\newpage
+\thispagestyle{empty}
+
+\cleardoublepage
+
+\printbibliography
+
+%Nueva página en blanco total 
+%\newpage
+%\thispagestyle{empty}
+%Evitamos crear doble pagina y obligamos a empezar en página impar
+\cleardoublepage
+%\include{Anexos/1.AnexoProteccionDatos}
 
 \end{document}
 %Función de final de documento.

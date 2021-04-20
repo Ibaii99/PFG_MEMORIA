@@ -1,0 +1,495 @@
+
+NVIDIA NVIDIA logo Menu Menu icon .n24-icon-menu-bg{opacity:0}.n24-icon-menu-stroke{fill:none;stroke:#666;stroke-miterlimit:10;stroke-width:1.5px} Menu Menu icon .n32-icon-menu-cls-1,.n32-icon-menu-cls-3,.n32-icon-menu-cls-4{fill:none}.n32-icon-menu-cls-1,.n32-icon-menu-cls-4{stroke:#666;stroke-width:2px}.n32-icon-menu-cls-1{stroke-miterlimit:10}.n32-icon-menu-cls-2{opacity:0} Close Close icon .n24-icon-close-small-cls-1{opacity:0}.n24-icon-close-small-cls-2{fill:none;stroke:#666;stroke-miterlimit:10;stroke-width:1.5px} Close Close icon .n24-icon-close-cls-1{opacity:0}.n24-icon-close-cls-2{fill:none;stroke:#666;stroke-miterlimit:10;stroke-width:1.5px} Close Close icon .close-icon{fill:#666;fill-rule:evenodd} Caret down icon Accordion is closed, click to open. .n24-icon-caret-down-cls-1{opacity:0}.n24-icon-caret-down-cls-2{fill:none;stroke:#666;stroke-miterlimit:10;stroke-width:1.5px} Caret down icon Accordion is closed, click to open. Caret up icon Accordion is open, click to close. Caret right icon Click to expand .n24-icon-caret-right-small-cls-1{fill:none;stroke:#666;stroke-miterlimit:10;stroke-width:1.5px}.n24-icon-caret-right-small-cls-2{opacity:0} Caret right icon Click to expand .n24-icon-caret-right-bg{opacity:0}.n24-icon-caret-right-stroke{fill:none;stroke:#666;stroke-miterlimit:10;stroke-width:1.5px} Caret right icon Click to expand menu. Caret left icon Click to collapse menu. .n24-caret-left-small-cls-1{fill:none;stroke:#666;stroke-miterlimit:10;stroke-width:1.5px}.n24-caret-left-small-cls-2{opacity:0} Caret left icon Click to collapse menu. .n24-icon-caret-left-bg{opacity:0}.n24-icon-caret-left-stroke{fill:none;stroke:#666;stroke-miterlimit:10;stroke-width:1.5px} Caret left icon Click to collapse menu. Shopping Cart Click to see cart items .n24-icon-cart-bg{opacity:0}.n24-icon-cart-stroke{fill:none;stroke:#666;stroke-miterlimit:10;stroke-width:1.5px} Search icon Click to search .n24-icon-search-bg{opacity:0}.n24-icon-search-fill{fill:#666}.n24-icon-search-stroke{fill:none;stroke:#666;stroke-miterlimit:10;stroke-width:1.5px} .n24-user-circle-cls-1{fill:none;stroke:#666;stroke-miterlimit:10;stroke-width:1.5px}.n24-bounds{fill:none}
+Main Menu
+
+    Products
+        Hardware
+        Software
+        Gaming and Entertainment
+            GeForce Graphics Cards
+            Gaming Laptops
+            G-SYNC Monitors
+            SHIELD
+        Laptops and Workstations
+            Gaming Laptops
+            NVIDIA RTX Desktop Workstations
+            Quadro RTX Professional Laptops
+            DGX Station
+            NVIDIA RTX Data Science Workstation
+            Studio Laptops
+        Cloud and Data Center
+            DGX Systems
+            EGX Platform
+            HGX Platform
+            DRIVE Constellation
+            See All Servers >
+        Networking
+            DPU
+            Ethernet
+            InfiniBand
+        GPUs
+            GeForce
+            NVIDIA RTX / Quadro
+            Data Center
+            Titan RTX
+        Embedded Systems
+            Jetson
+            DRIVE AGX
+            Clara AGX
+        Application Frameworks
+            3D Collaboration - Omniverse
+            Automotive - DRIVE
+            Cloud-AI Video Streaming - Maxine
+            Conversational AI - Jarvis
+            Data Analytics - RAPIDS
+            Healthcare - Clara
+            High-Performance Computing
+            Intelligent Video Analytics - Metropolis
+            Recommender Systems - Merlin
+            Robotics - Isaac
+            Telecommunications - Aerial
+        Apps and Tools
+            NGC Software Catalog
+            Collaboration - Omniverse
+            Data Center
+            GPU Monitoring
+            NVIDIA Quadro Experience
+            NVIDIA RTX Desktop Manager
+            RTX Accelerated Creative Apps
+        Gaming and Entertainment
+            GeForce NOW
+            GeForce Experience
+            NVIDIA Broadcast
+            (Omniverse) Machinima
+        Infrastructure
+            Cloud Native Support
+            Cluster Management
+            Edge Deployment Management
+            Inference Serving
+            IO Acceleration
+            Networking
+            Virtual GPU
+    Solutions
+        AI and Data Science
+            Data Analytics
+            Machine Learning
+            Deep Learning Training
+            Deep Learning Inference
+            Conversational AI
+        Data Center and Cloud Computing
+            Data Center (On-Premises)
+            Edge Computing
+            Cloud Computing
+            Networking
+            Virtualization
+        Design and Visualization
+            Augmented and Virtual Reality
+            Multi-Display
+            Rendering
+            Collaboration
+            Graphics Virtualization
+            Engineering Simulation
+            Broadcast
+        Edge Computing
+            Intelligent Video Analytics
+            Self-Driving Cars
+            Industrial
+            Robotics
+            Edge Deployment Management
+            Edge Solutions
+        High-Performance Computing
+            Overview
+    Industries
+        Overview
+        Architecture, Engineering, Construction
+        Consumer Internet
+        Energy
+        Financial Services
+        Healthcare and Life Sciences
+        Higher Education
+        Game Development
+        Manufacturing
+        Media and Entertainment
+        Public Sector
+        Retail
+        Robotics
+        Smart Cities
+        Supercomputing
+        Telecommunications
+        Transportation
+    For You
+        Creatives/Designers
+        Data Scientists
+        Developers
+        Gamers
+        IT Professionals
+        Researchers
+        Roboticists
+        Startups
+        NVIDIA Studio
+            Overview
+            Accelerated Apps
+            Products
+            Compare
+        Industries
+            Media and Entertainment
+            Manufacturing
+            Architecture, Engineering, and Construction
+            All Industries >
+        Solutions
+            Data Center/Cloud
+            Laptops/Desktops
+            Augmented and Virtual Reality
+            Multi-Display
+            Rendering
+            Collaboration
+            Graphics Virtualization
+            Engineering Simulation
+        Industries
+            Financial Services
+            Consumer Internet
+            Healthcare
+            Higher Education
+            Retail
+            Public Sector
+            All Industries >
+        Solutions
+            Data Analytics
+            Machine Learning
+            Deep Learning Training
+            Deep Learning Inference
+            Conversational AI
+        Software
+            NGC Software Catalog
+            Data Analytics - RAPIDS
+            Spark
+            Inference Serving
+            Recommender Systems - Merlin
+            Open Source Portal
+        Products
+            PC
+            Laptops & Workstations
+            Data Center
+            Cloud
+        Resources
+            Technical Training
+            Startups
+            Content Library
+            NVIDIA Research
+            Developer Blog
+        Developer Resources
+            Join the Developer Program
+            NGC Software Catalog
+            Technical Training
+            News
+            Blog
+            Forums
+            Open Source Portal
+            GPU Technology Conference (GTC)
+            Startups
+            Developer Home >
+        Application Frameworks
+            3D Collaboration - Omniverse
+            Automotive - DRIVE
+            Cloud-AI Video Streaming - Maxine
+            Conversational AI - Jarvis
+            Data Analytics - RAPIDS
+            Healthcare - Clara
+            High-Performance Computing
+            Intelligent Video Analytics - Metropolis
+            Recommender Systems - Merlin
+            Robotics - Isaac
+            Telecommunications - Aerial
+        Top SDKs and Libraries
+            Parallel Programming - CUDA Toolkit
+            Edge AI applications - Jetpack
+            BlueField data processing - DOCA
+            Accelerated Libraries - CUDA-X Libraries
+            Deep Learning Inference - TensorRT
+            Deep Learning Training - cuDNN
+            Deep Learning Frameworks
+            Conversational AI - NeMo
+            Intelligent Video Analytics - DeepStream
+            NVIDIA Unreal Engine 4
+            Ray Tracing - RTX
+            Video Decode/Encode
+        GeForce
+            GeForce Graphics Cards
+            Gaming Laptops
+            G-SYNC Monitors
+            RTX Games
+            GeForce Experience
+            GeForce Drivers
+            Forums
+            Support
+            Shop
+        GeForce NOW
+            Overview
+            Download
+            Games
+            Pricing
+            FAQs
+            Forums
+            Support
+        SHIELD
+            Overview
+            Compare
+            Shop
+            FAQs
+            Knowledge Base
+        Solutions
+            Data Center (On-Premises)
+            Edge Computing
+            Cloud Computing
+            Networking
+            Virtualization
+        Software
+            Cloud Native Support
+            Cluster Management
+            Edge Deployment Management
+            Inference Serving
+            IO Acceleration
+            Networking
+            Virtual GPU
+        Apps and Tools
+            Data Center
+            GPU Monitoring
+            NVIDIA Quadro Experience
+            NVIDIA RTX Desktop Manager
+        Resources
+            Data Center & IT Resources
+            Technical Training
+            Enterprise Support
+            Drivers
+            Security
+            Product Documentation
+            Forums
+            NVIDIA Research Home
+            Research Areas
+            AI Playground
+            Video Highlights
+            COVID-19
+            NGC Software Catalog
+            Technical Training
+            Startups
+            News
+            Developer Blog
+            Open Source Portal
+        Products
+            AI Training - DGX
+            Edge Computing - EGX
+            Embedded Computing - Jetson
+        Software
+            Robotics - Isaac SDK
+            Simulation - Isaac Sim
+            Transfer Learning Toolkit
+            Vision AI - Deepstream SDK
+            Edge Deployment Management
+        Use Cases
+            Healthcare and Life Sciences
+            Manufacturing
+            Public Sector
+            Retail
+            Robotics
+            More >
+        Resources
+            NVIDIA Blog
+            Robotics Research
+            Developer News
+            Developer Blog
+            Technical Training
+            Startups
+
+    Drivers
+    Support
+
+    0
+
+Autonomous Machines
+Jetson Store
+
+    Jetson Nano
+    Jetson Xavier NX
+    Jetson AGX Xavier
+    Jetson TX2
+    Global Partners
+
+.cls-1{fill:#79b600}.cls-2{fill:#fff} Back to top
+This site requires Javascript in order to view all its content. Please enable Javascript in order to access all the functionality of this web site. Here are the instructions how to enable JavaScript in your web browser.
+Jetson Store
+Shop All Jetson Nano Products
+
+    DEVELOPER KIT
+    Module
+
+    Overview
+    Specs
+
+NVIDIA ® Jetson Nano ™ Developer Kit is a small, powerful computer that lets you run multiple neural networks in parallel for applications like image classification, object detection, segmentation, and speech processing. All in an easy-to-use platform that runs in as little as 5 watts.
+
+For detailed information on all NVIDIA Jetson Nano products,  please click here .
+Learn More
+
+Buy From Partners
+Arrow
+CRG ELECTRONICS
+
+Jetson developer kits are for software development and system prototyping. Learn more here .
+Jetson Nano Developer Kit
+Shop All Jetson Xavier NX Products
+
+    DEVELOPER KIT
+    Module
+
+    Overview
+    Specs
+
+The NVIDIA ® Jetson Xavier NX ™ Developer Kit brings supercomputer performance to the edge. It includes a Jetson Xavier NX module for developing multi-modal AI applications with the NVIDIA software stack in as little as 10 W. You can also now take advantage of cloud-native support to more easily develop and deploy AI software to edge devices.
+
+The developer kit is supported by the entire NVIDIA software stack, including accelerated SDKs and the latest NVIDIA tools for application development and optimization. A Jetson Xavier NX module and reference carrier board are included, along with AC power supply.
+
+Buy From Partners
+Arrow Buy Now
+C.R.G Electronics
+
+Jetson developer kits are for software development and system prototyping. Learn more here .
+Jetson Xavier NX Developer Kit
+Shop All Jetson AGX Xavier Products
+
+    Developer Kit
+    JETSON AGX XAVIER 8GB MODULE
+    JETSON AGX XAVIER MODULE
+
+    Overview
+    Specs
+
+With the NVIDIA Jetson AGX Xavier developer kit, you can easily create and deploy end-to-end AI robotics applications for manufacturing, delivery, retail, smart cities, and more. Supported by NVIDIA JetPack and DeepStream SDKs, as well as CUDA ® , cuDNN, and TensorRT software libraries, the kit provides all the tools you need to get started right away. And because it’s powered by the new NVIDIA Xavier processor, you now have more than 20X the performance and 10X the energy efficiency of its predecessor, the NVIDIA Jetson TX2. Get started today with the Jetson AGX Xavier Developer Kit.
+
+For detailed information on all Jetson Xavier products, please  click here
+Learn More
+
+Buy From Partners
+Arrow
+CRG ELECTRONICS
+
+Jetson developer kits are for software development and system prototyping. Learn more here .
+Jetson AGX Xavier Developer Kit
+Shop All Jetson TX2 Products
+
+    Developer Kit
+    TX2 4GB MODULE
+    TX2 MODULE
+    TX2 i MODULE
+
+    Overview
+    Specs
+
+The NVIDIA Jetson TX2 Developer Kit gives you a fast, easy way to develop hardware and software for the Jetson TX2 AI supercomputer on a module. It exposes the hardware capabilities and interfaces of the module and is supported by NVIDIA Jetpack—a complete SDK that includes the BSP, libraries for deep learning, computer vision, GPU computing, multimedia processing, and much more.
+Learn More
+
+Buy From Partners
+C.R.G Electronics
+
+Jetson developer kits are for software development and system prototyping. Learn more here .
+Jetson TX2 Developer Kit
+Buy From Global Partners
+
+The Americas
+
+United States
+
+Canada
+
+Europe
+
+Austria
+
+Belgium
+
+Czech Republic
+
+Denmark
+
+Finland
+
+France
+
+Germany
+
+Italy
+
+Netherlands
+
+ 
+
+Norway
+
+Poland
+
+Portugal
+
+Spain
+
+Sweden
+
+UK
+
+Israel
+
+Turkey
+
+Russia
+
+ 
+
+ 
+
+ASIA-PACIFIC
+
+China
+
+Japan
+
+South Korea
+
+Taiwan
+
+India
+
+Australia
+
+Singapore
+
+ 
+Products
+
+    Jetson AGX Xavier
+    Jetson TX2
+    Jetson Nano
+
+Resources
+
+    Jetson Download Centre
+    Jetson FAQ
+    Tutorials
+    Success Stories
+
+Community
+
+    Embedded Developer Program
+    Jetson Forum
+    Jetson Wiki
+    Preferred Partners
+    Jetson Ecosystem
+    Blog
+
+Follow NVIDIA Embedded
+Facebook Twitter
+NVIDIA
+Israel
+
+    Privacy Policy
+    Legal Info
+    Contact Us
+
+Copyright © 2021 NVIDIA Corporation
