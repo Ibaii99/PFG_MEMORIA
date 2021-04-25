@@ -145,6 +145,8 @@
                 Capitulos/3.Objetivos_y_Alcance, 
                 Capitulos/5.Metodologia, 
                 Capitulos/Funciones,
+                Capitulos/6.Conceptualizacion,
+                Capitulos/7.Desarrollo,
                 Algoritmos/ConsensoMath,
                 Anexos/1.AnexoProteccionDatos
 }
@@ -232,7 +234,7 @@
 }
 %Se define mediante esta función el formato plain, que no tiene nada, ni encabezados ni pies de página. Realmente esta función podría ir a comienzo del documento o en cualquier lugar, es decir, se puede mover.
 
-\tableofcontents
+%\tableofcontents
 %Esta función permite introducir el índice de capítulos (hasta el subíndice que se haya indicado previamente).
 
 \newpage
@@ -244,14 +246,14 @@
 \newpage
 \thispagestyle{empty}
 
-\listoffigures
+%\listoffigures
 % Es la función que introduce el índice de figuras. Funciona exactamente igual que el de capítulos.
 \newpage
 \thispagestyle{empty}
 
 \cleardoublepage
 
-\listoftables
+%\listoftables
 %Por ultimo, se introduce el índice de tablas en caso de que las hubiera en vuestro documento. 
 
 \newpage
@@ -289,22 +291,23 @@
 
 
 %\include{Capitulos/1.Intro}
-\include{Capitulos/3.Objetivos_y_Alcance}
-%Funciones para incluir los otros documentos que se han desarrollado. Dichos documentos son los distintos capítulos de la memoria. Toda la escritura de los mismos se realizará en los documentos de forma específica y no en este archivo “MAIN.tex”. Así que vamos a ellos.
-\fancyhead[LE]{}
-\newpage
-\thispagestyle{plain}
-\cleardoublepage
+%\include{Capitulos/3.Objetivos_y_Alcance}
+% \fancyhead[LE]{}
+% \newpage
+% \thispagestyle{plain}
+% \cleardoublepage
 
-\include{Capitulos/5.Metodologia}
-\fancyhead[LE]{}
-\newpage
-\thispagestyle{plain}
-\cleardoublepage
+% \include{Capitulos/5.Metodologia}
+% \fancyhead[LE]{}
+% \newpage
+% \thispagestyle{plain}
+% \cleardoublepage
 
 %\include{Algoritmos/ConsensoMath}
+\include{Capitulos/6.Conceptualizacion}
 
 
+\include{Capitulos/7.Desarrollo}
 
 
 %\cleardoublepage

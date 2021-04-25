@@ -1,0 +1,32 @@
+\section{Requisitos del sistema}
+Como bien se ha mencionado previamente, este proyecto trata de adaptar el sistema de recomendación realizado por R.Sánchez \autocite{sanchez-corcueraPersuasionbasedRecommenderSystem2020} a un sistema de recomendación basado en Federated Learning que permita el aprendizaje colaborativo de los participantes. Es por ello que para conocer los requisitos iniciales de diseño del sistema de recomendación se remite al trabajo del autor.
+\\ \\
+En este apartado se presentarán únicamente los requisitos de la adaptación del sistema y se partirá del trabajo realizado por R.Sanchez. Se presentarán dos tipos de requisitos. En primer lugar los requisitos no funcionales de diseño, las condiciones que debe cumplir la especificación del diseño para cumplir los objetivos del proyecto. En segundo lugar, los requisitos funcionales, las condiciones que ha de cumplir el sistema para ser capaz de funcionar sobre el hardware del que se dispone.
+
+\subsection{No Funcionales}
+En cuanto a los requisitos no funcionales se encuentran todos aquellos que se han tenido en cuenta a la hora de plantear el diseño del sistema, es decir, todos los inherentes de la privacidad como patrón de diseño. Por ello el sistema :
+\begin{itemize}
+    \item [\textbf{RNF1}] Mantendrá toda información de los usuarios en sus dispositivos.
+    \item [\textbf{RNF2}] No expondrá la información de los modelos de inteligencia de los usuarios a otros usuarios.
+    \item [\textbf{RNF3}] No discriminará entre los modelos de inteligencia artificial a la hora de tomar decisiones.
+    \item [\textbf{RNF4}] No perjudicará deliberadamente al modelo de un participante.
+    \item [\textbf{RNF5}] No compartirá información que no sea sintética.
+    \item [\textbf{RNF6}] No extraerá información de los modelos de los participantes.
+    \item [\textbf{RNF7}] Combinará los diferentes modelos de los participantes sin acceder a su información.
+\end{itemize}
+\subsection{Funcionales}
+Los requisitos funcionales son básicos en este proyecto para que el sistema sea compatible y ejecutable en el hardware. Por ello, para que el sistema sea compatible con el harware se han definido los siguientes requisitos:
+\begin{itemize}
+    \item [\textbf{RF1}] El sistema ha de ser ejecutable bajo la arquitectura ARMv8.
+    \item [\textbf{RF2}] El sistema ha de ser ejecutable bajo la arquitectura x86 y x64.
+    \item [\textbf{RF3}] El sistema ha de ser ejecutable bajo la arquitectura AArch64.
+    \item [\textbf{RF4}] El sistema ha de ser ejecutable en Linux.
+    \item [\textbf{RF5}] El sistema ha de ser ejecutable en Windows.
+\end{itemize}
+
+Además, al margen de los requisitos de compatibilidad también se encuentran los requisitos de recursos, y es que teniendo un hardware poco potente es imprescindible que el software sea lo más óptimo posible para aprovecharlo al máximo. Es por eso que tambien se definen los siguientes requisitos:
+\begin{itemize}
+    \item [\textbf{RF6}] El sistema ha de ser capaz de entrenar los modelos en un espacio de tiempo razonable, siendo este siempre inferior a los 100 segundos por cada 10 epochs.
+    \item [\textbf{RF7}] El sistema de recomendación no puede colapsar el dispositivo que lo ejecute,
+    \item [\textbf{RF8}] El sistema de recomendación debe permitir que el dispositivo pueda funcionar con normalidad durante su ejecución.
+\end{itemize}

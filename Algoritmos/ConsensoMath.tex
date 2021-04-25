@@ -201,145 +201,145 @@ Consenso por moda de las m predicciones para el modelo i:
 \\ \\ \\
 %%
 
-\begin{algorithm}
-\caption{Entrenamiento del modelo}\label{euclid}
-\begin{algorithmic}[1]
-\Procedure{Experimento}{}
-\State $\textit{// Lista de estrategias a clasificar del 1 a n:}$
-\State $strats \gets \begin{bmatrix} 'v2' & 'v5' & 'v6' & 'v7' & 'v10' & 'v11' & 'v15' & 'v17' & 'v19' & 'v20' \end{bmatrix}$ 
-\\
-\State $i \gets \parbox[t]{8cm}{\raggedright \textit{Cantidad de modelos a crear.}}\nonumber$
-\State $m \gets \parbox[t]{8cm}{\raggedright \textit{Cantidad de epochs sobre cada modelo i.}}\nonumber$
-\\
-\State $\textit{// Lista de listas de NDPMs, de cada predicción de la epoch m, de cada modelo i:}$
-\State \textit{// $[[ndpm_{1}$, $ndpm_{2}$, \ldots, $ndpm_{m}]_{1}$, \ldots, $[ndpm_{1}$, $ndpm_{2}$, \ldots, $ndpm_{m}]_{i}]$ } 
-\State $\textit{ndpms} \gets [[\textit{float}_{m}]_{i}]$
-\\
-\State $\textit{// Lista de NDPMs, de cada predicción consensuada, de cada modelo i:}$
-\State \textit{// $[ndpm_{1}$, $ndpm_{2}$, \ldots, $ndpm_{i}]$} 
-\State $\textit{commonNdpms} \gets [\textit{float}_{i}]$
-\\
-\State \textit{// Lista de los índices de los n strat para el ranking del epoch m}
-\State $\textit{// } 
-\begin{bmatrix} float_{n} \end{bmatrix} 
-=
-\begin{bmatrix} a_{1}  &  a_{2}  &  \cdots   & a_{n} \end{bmatrix}$
-%
-\State \textit{// Lista de los índices de los n strat, de cada epoch m}
-\State $ \textit{// }
-\begin{bmatrix} \begin{bmatrix} float_{n} \end{bmatrix}_{m} \end{bmatrix}
-=
-\begin{bmatrix} 
-    \begin{bmatrix} 
-        $$a_{1}$$ & $$a_{2}$$ & \ldots & $$a_{n}$$ 
-    \end{bmatrix}$$_{1}$$ 
-    & \ldots 
-    & \begin{bmatrix} 
-        $$a_{1}$$ & $$a_{2}$$ & \ldots & $$a_{n}$$ 
-    \end{bmatrix}$$_{m}$$
-\end{bmatrix}  $
-%
-\State \textit{// Lista de los índices de los n strat, de cada epoch m, de cada modelo i}
-\State $\textit{// }
-\begin{bmatrix} \begin{bmatrix} \begin{bmatrix} float_{n} \end{bmatrix}_{m} \end{bmatrix}_{i} \end{bmatrix}
-=
-\begin{bmatrix}
-    \begin{bmatrix}
-        \begin{bmatrix} $$a_{1}$$  &  $$a_{2}$$  &  \cdots   & $$a_{n}$$ \end{bmatrix}_{1} \\ 
-        \vdots \\ 
-        \begin{bmatrix} $$a_{1}$$  &  $$a_{2}$$  &  \cdots   & $$a_{n}$$ \end{bmatrix}_{m}
-    \end{bmatrix}_{1}
-    &
-    \cdots
-    &
-    \begin{bmatrix}
-        \begin{bmatrix} $$a_{1}$$  &  $$a_{2}$$  &  \cdots   & $$a_{n}$$ \end{bmatrix}_{1} \\ 
-        \vdots \\ 
-        \begin{bmatrix} $$a_{1}$$  &  $$a_{2}$$  &  \cdots   & $$a_{n}$$ \end{bmatrix}_{m}
-    \end{bmatrix}_{i}
-\end{bmatrix}$
-\\
-\State $\textit{predictions} \gets \begin{bmatrix} \begin{bmatrix} \begin{bmatrix} float_{n} \end{bmatrix}_{m} \end{bmatrix}_{i} \end{bmatrix}$
-\BState \emph{loop}:
-\For {$\textit{int}(j) \gets 0$ \textbf{to} $\textit{range}(i)$}
-    \State $userFeatures, itemFeatures \gets features()$ $\parbox[t]{4cm}{//\raggedright \textit{Obtiene todas las características de los usuarios y de los items}}\nonumber$
-    \\
-    \State $trainInteractions \gets \parbox[t]{8cm}{\raggedright \textit{Interacciones para entrenar el modelo. }}\nonumber$
-    \State $testInteractions \gets \parbox[t]{8cm}{\raggedright \textit{Interacciones para probar el modelo. }}\nonumber$
-    \\
-    \State $trainWeights \gets \parbox[t]{8cm}{\raggedright \textit{Peso de las interacciones de entrenamiento. }}\nonumber$
-    \\
-    \State $trainUerid \gets \parbox[t]{8cm}{\raggedright \textit{IDs de los usuarios que se utilizan para entrenar. }}\nonumber$
-    \State $testUserid \gets \parbox[t]{8cm}{\raggedright \textit{IDs de los usuarios que se utilizan para probar. }}\nonumber$
-    \BState \emph{loop}:
-    \For {$\textit{int}(k) \gets 0$ \textbf{to} $\textit{range}(m)$}
-        \State $modelo \gets LightFM()$ $\parbox[t]{8cm}{//\raggedright \textit{Se crea el modelo LightFM }}\nonumber$
-        \\
-        \State$\textit{//Ajustar modelo a la información extraida:}$
-        \State $modelo.fit(trainInteractions,userFeatures ,trainWeights)$ 
-        \\
-        \State$\textit{//Predicción del modelo para las interacciones de prueba:}$
-        \State $predictRank \gets modelo.predict(testInteractions, userFeatures)$
-        \\
-        \State $ndpms[i].append(ndpm(ranks_test))$ $\parbox[t]{8cm}{//\raggedright \textit{Añadir el valor NDPM del ranking creado por el modelo i, en la epoch m, a la lista de NDPMs del modelo i}}\nonumber$
+% \begin{algorithm}
+% \caption{Entrenamiento del modelo}\label{euclid}
+% \begin{algorithmic}[1]
+% \Procedure{Experimento}{}
+% \State $\textit{// Lista de estrategias a clasificar del 1 a n:}$
+% \State $strats \gets \begin{bmatrix} 'v2' & 'v5' & 'v6' & 'v7' & 'v10' & 'v11' & 'v15' & 'v17' & 'v19' & 'v20' \end{bmatrix}$ 
+% \\
+% \State $i \gets \parbox[t]{8cm}{\raggedright \textit{Cantidad de modelos a crear.}}\nonumber$
+% \State $m \gets \parbox[t]{8cm}{\raggedright \textit{Cantidad de epochs sobre cada modelo i.}}\nonumber$
+% \\
+% \State $\textit{// Lista de listas de NDPMs, de cada predicción de la epoch m, de cada modelo i:}$
+% \State \textit{// $[[ndpm_{1}$, $ndpm_{2}$, \ldots, $ndpm_{m}]_{1}$, \ldots, $[ndpm_{1}$, $ndpm_{2}$, \ldots, $ndpm_{m}]_{i}]$ } 
+% \State $\textit{ndpms} \gets [[\textit{float}_{m}]_{i}]$
+% \\
+% \State $\textit{// Lista de NDPMs, de cada predicción consensuada, de cada modelo i:}$
+% \State \textit{// $[ndpm_{1}$, $ndpm_{2}$, \ldots, $ndpm_{i}]$} 
+% \State $\textit{commonNdpms} \gets [\textit{float}_{i}]$
+% \\
+% \State \textit{// Lista de los índices de los n strat para el ranking del epoch m}
+% \State $\textit{// } 
+% \begin{bmatrix} float_{n} \end{bmatrix} 
+% =
+% \begin{bmatrix} a_{1}  &  a_{2}  &  \cdots   & a_{n} \end{bmatrix}$
+% %
+% \State \textit{// Lista de los índices de los n strat, de cada epoch m}
+% \State $ \textit{// }
+% \begin{bmatrix} \begin{bmatrix} float_{n} \end{bmatrix}_{m} \end{bmatrix}
+% =
+% \begin{bmatrix} 
+%     \begin{bmatrix} 
+%         $$a_{1}$$ & $$a_{2}$$ & \ldots & $$a_{n}$$ 
+%     \end{bmatrix}$$_{1}$$ 
+%     & \ldots 
+%     & \begin{bmatrix} 
+%         $$a_{1}$$ & $$a_{2}$$ & \ldots & $$a_{n}$$ 
+%     \end{bmatrix}$$_{m}$$
+% \end{bmatrix}  $
+% %
+% \State \textit{// Lista de los índices de los n strat, de cada epoch m, de cada modelo i}
+% \State $\textit{// }
+% \begin{bmatrix} \begin{bmatrix} \begin{bmatrix} float_{n} \end{bmatrix}_{m} \end{bmatrix}_{i} \end{bmatrix}
+% =
+% \begin{bmatrix}
+%     \begin{bmatrix}
+%         \begin{bmatrix} $$a_{1}$$  &  $$a_{2}$$  &  \cdots   & $$a_{n}$$ \end{bmatrix}_{1} \\ 
+%         \vdots \\ 
+%         \begin{bmatrix} $$a_{1}$$  &  $$a_{2}$$  &  \cdots   & $$a_{n}$$ \end{bmatrix}_{m}
+%     \end{bmatrix}_{1}
+%     &
+%     \cdots
+%     &
+%     \begin{bmatrix}
+%         \begin{bmatrix} $$a_{1}$$  &  $$a_{2}$$  &  \cdots   & $$a_{n}$$ \end{bmatrix}_{1} \\ 
+%         \vdots \\ 
+%         \begin{bmatrix} $$a_{1}$$  &  $$a_{2}$$  &  \cdots   & $$a_{n}$$ \end{bmatrix}_{m}
+%     \end{bmatrix}_{i}
+% \end{bmatrix}$
+% \\
+% \State $\textit{predictions} \gets \begin{bmatrix} \begin{bmatrix} \begin{bmatrix} float_{n} \end{bmatrix}_{m} \end{bmatrix}_{i} \end{bmatrix}$
+% \BState \emph{loop}:
+% \For {$\textit{int}(j) \gets 0$ \textbf{to} $\textit{range}(i)$}
+%     \State $userFeatures, itemFeatures \gets features()$ $\parbox[t]{4cm}{//\raggedright \textit{Obtiene todas las características de los usuarios y de los items}}\nonumber$
+%     \\
+%     \State $trainInteractions \gets \parbox[t]{8cm}{\raggedright \textit{Interacciones para entrenar el modelo. }}\nonumber$
+%     \State $testInteractions \gets \parbox[t]{8cm}{\raggedright \textit{Interacciones para probar el modelo. }}\nonumber$
+%     \\
+%     \State $trainWeights \gets \parbox[t]{8cm}{\raggedright \textit{Peso de las interacciones de entrenamiento. }}\nonumber$
+%     \\
+%     \State $trainUerid \gets \parbox[t]{8cm}{\raggedright \textit{IDs de los usuarios que se utilizan para entrenar. }}\nonumber$
+%     \State $testUserid \gets \parbox[t]{8cm}{\raggedright \textit{IDs de los usuarios que se utilizan para probar. }}\nonumber$
+%     \BState \emph{loop}:
+%     \For {$\textit{int}(k) \gets 0$ \textbf{to} $\textit{range}(m)$}
+%         \State $modelo \gets LightFM()$ $\parbox[t]{8cm}{//\raggedright \textit{Se crea el modelo LightFM }}\nonumber$
+%         \\
+%         \State$\textit{//Ajustar modelo a la información extraida:}$
+%         \State $modelo.fit(trainInteractions,userFeatures ,trainWeights)$ 
+%         \\
+%         \State$\textit{//Predicción del modelo para las interacciones de prueba:}$
+%         \State $predictRank \gets modelo.predict(testInteractions, userFeatures)$
+%         \\
+%         \State $ndpms[i].append(ndpm(ranks_test))$ $\parbox[t]{8cm}{//\raggedright \textit{Añadir el valor NDPM del ranking creado por el modelo i, en la epoch m, a la lista de NDPMs del modelo i}}\nonumber$
 
-        %predictions[i].append(ranks_test.data)
+%         %predictions[i].append(ranks_test.data)
 
-        \State \textbf{close};
-    \EndFor
+%         \State \textbf{close};
+%     \EndFor
     
-    \State $i \gets i-1$.
-    \State \textbf{goto} \emph{loop}.
-    \State \textbf{close};
-\EndFor
-%%
-%%
-\EndProcedure
-\algstore{Experimento}
-\end{algorithmic}
-\end{algorithm}
-%%
-\begin{algorithm}
-\begin{algorithmic}[1]
-\algrestore{Experimento}
-\BState \emph{top}:
-\If {$i > \textit{stringlen}$} \Return false
-\EndIf
-\State $j \gets \textit{patlen}$
-\BState \emph{loop}:
-\If {$\textit{string}(i) = \textit{path}(j)$}
-\State $j \gets j-1$.
-\State $i \gets i-1$.
-\State \textbf{goto} \emph{loop}.
-\State \textbf{close};
-\EndIf
-\State $i \gets i+\max(\textit{delta}_1(\textit{string}(i)),\textit{delta}_2(j))$.
-\State \textbf{goto} \emph{top}.
-\end{algorithmic}
-\end{algorithm}
-%%
-\begin{algorithm}
-\caption{Algoritmo de consenso}\label{euclid}
-\begin{algorithmic}[1]
-\Procedure{Consensuar}{matriz}
-\State a
+%     \State $i \gets i-1$.
+%     \State \textbf{goto} \emph{loop}.
+%     \State \textbf{close};
+% \EndFor
+% %%
+% %%
+% \EndProcedure
+% \algstore{Experimento}
+% \end{algorithmic}
+% \end{algorithm}
+% %%
+% \begin{algorithm}
+% \begin{algorithmic}[1]
+% \algrestore{Experimento}
+% \BState \emph{top}:
+% \If {$i > \textit{stringlen}$} \Return false
+% \EndIf
+% \State $j \gets \textit{patlen}$
+% \BState \emph{loop}:
+% \If {$\textit{string}(i) = \textit{path}(j)$}
+% \State $j \gets j-1$.
+% \State $i \gets i-1$.
+% \State \textbf{goto} \emph{loop}.
+% \State \textbf{close};
+% \EndIf
+% \State $i \gets i+\max(\textit{delta}_1(\textit{string}(i)),\textit{delta}_2(j))$.
+% \State \textbf{goto} \emph{top}.
+% \end{algorithmic}
+% \end{algorithm}
+% %%
+% \begin{algorithm}
+% \caption{Algoritmo de consenso}\label{euclid}
+% \begin{algorithmic}[1]
+% \Procedure{Consensuar}{matriz}
+% \State a
 
-\State $\textit{stringlen} \gets \text{length of }\textit{string}$
-\State $i \gets \textit{patlen}$
+% \State $\textit{stringlen} \gets \text{length of }\textit{string}$
+% \State $i \gets \textit{patlen}$
 
-\BState \emph{top}:
-\If {$i > \textit{stringlen}$} \Return false
-\EndIf
-\State $j \gets \textit{patlen}$
-\BState \emph{loop}:
-\If {$\textit{string}(i) = \textit{path}(j)$}
-\State $j \gets j-1$.
-\State $i \gets i-1$.
-\State \textbf{goto} \emph{loop}.
-\State \textbf{close};
-\EndIf
-\State $i \gets i+\max(\textit{delta}_1(\textit{string}(i)),\textit{delta}_2(j))$.
-\State \textbf{goto} \emph{top}.
-\EndProcedure
-\end{algorithmic}
-\end{algorithm}
+% \BState \emph{top}:
+% \If {$i > \textit{stringlen}$} \Return false
+% \EndIf
+% \State $j \gets \textit{patlen}$
+% \BState \emph{loop}:
+% \If {$\textit{string}(i) = \textit{path}(j)$}
+% \State $j \gets j-1$.
+% \State $i \gets i-1$.
+% \State \textbf{goto} \emph{loop}.
+% \State \textbf{close};
+% \EndIf
+% \State $i \gets i+\max(\textit{delta}_1(\textit{string}(i)),\textit{delta}_2(j))$.
+% \State \textbf{goto} \emph{top}.
+% \EndProcedure
+% \end{algorithmic}
+% \end{algorithm}
