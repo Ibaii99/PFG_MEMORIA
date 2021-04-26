@@ -1,0 +1,71 @@
+\chapter{Bases para el desarrollo}
+\thispagestyle{fancy}
+\fancyhead[LE]{\thechapter.Bases para el desarrollo} 
+En el siguiente capítulo se introducirán y explicarán los conceptos importantes sobre los que parte el proyecto. Es de gran importancia comprender y conocer lo que son los sistemas de recomendación y el Federated Learning para entender tanto el desarrollo, como la resolución de los problemas y retos que supone su implementación. 
+
+\section{Sistemas de recomendación}
+Los sistemas de recomendación son sistemas de filtrado de información, que se basan en una gran cantidad de datos, tanto del usuario como de los elementos a recomendar, para predecir cuál será el elemento más apropiado para este. Estos sistemas están estrechamente relacionados con el marketing, ya que el objetivo es conseguir recomendar un elemento que sea del agrado e interés del usuario con los datos que se tienen de él, lo que en la mayoría de los casos va ligado al consumo de bienes o servicios. 
+\\ \\
+Hoy en día se usan en multitud de ámbitos, desde las redes sociales hasta las distribuidoras de contenido como Netflix, pasando por compañías de comercio electrónico como Amazon. 
+\\ \\
+A la hora de realizar la recomendación se realizan filtrados de diferente tipo, estos no son más que la forma en la que el sistema busca correlacionar los usuarios con los elementos que estos consumen, compran o ven. Entre los métodos más comunes para relacionar esta información y obtener resultados eficientes se encuentran:
+\begin{itemize}
+    \item Filtros demográficos, que recomiendan en función del sexo, edad, país, oficio, … 
+    \item Filtros basados en contenidos, como Youtube, que recomiendan contenidos similares a los valorados por los usuarios. 
+    \item Filtrado colaborativo, que consiste en recomendar al usuario elementos valorados positivamente por usuarios similares a él. 
+\end{itemize}
+
+Sin embargo, existen sistemas híbridos que utilizan varias de las estrategias de filtrado anteriores combinadas. Un ejemplo de ello es el mencionado Amazon, que tiene uno de los algoritmos de recomendación más potentes y eficientes actualmente. 
+\\ \\
+Sin embargo, existen sistemas híbridos que utilizan varias de las estrategias de filtrado anteriores combinadas. Un ejemplo de ello es el mencionado Amazon, que tiene uno de los algoritmos de recomendación más potentes y eficientes actualmente. 
+\\ \\
+Esto se debe a dos cosas, en primer lugar que cuenta con una gran cantidad de información de los usuarios, tanto su edad, género, país, dirección, rutinas (si tienen Alexa), … como los artículos que miran, compran, añaden a la lista, etc. Con todo esto el algoritmo es capaz de ofrecer recomendaciones muy precisas a los usuarios, lo que le da una gran calidad de servicio a la empresa gracias a esto.
+\\ \\
+De hecho, en Amazon, si queremos revisar las recomendaciones tenemos un apartado propio para ellas al que se puede acceder fácilmente (Fig\ref{fig:AmazonRecomendaciones}).
+\begin{figure}[thbp]
+    \centering
+    \fbox{\includegraphics[width=0.45\textwidth]{Figuras/Amazon_acceder_mis_recomendaciones.png}}
+    \fbox{\includegraphics[width=0.45\textwidth]{Figuras/Amazon_recomendaciones.png}}
+    \caption{Recomendaciones de Amazon (Fuente: Amazon\autocite{AmazonEsCompra})} 
+    \label{fig:AmazonRecomendaciones}
+\end{figure}
+
+\section{Federated Learning}
+
+\subsection{Información general}
+El aprendizaje federado, es una técnica de aprendizaje automático que entrena un algoritmo a través de diversos dispositivos descentralizados, manteniendo siempre la información en cada uno de ellos (Fig\ref{fig:FedLearArquitectura}). El algoritmo que se busca entrenar en los dispositivos puede ser de cualquier tipo dentro del campo del aprendizaje automático, redes neuronales artificiales, aprendizaje profundo, árbol de decisión, etc. Por lo cual, se puede decir que el aprendizaje federado es una tecnología habilitadora para el entrenamiento de modelos de aprendizaje automático en redes de dispositivos.
+\\ \\
+Al contrario del aprendizaje automático convencional que reúne toda la información en un mismo computador, el aprendizaje federado busca entrenar un algoritmo en cada uno de los dispositivos que participen en la red, para luego combinarlos y conseguir un modelo de aprendizaje robusto. Los dispositivos que forman parte de esta red son denominados participantes y todos ellos forman la denominada como red de aprendizaje colaborativo. En esta red, todos aprenden de todos sin necesidad de compartir su información, consiguiendo mejorar la precisión y eficacia del algoritmo. 
+\begin{figure}[thbp]
+    \centering
+    \fbox{\includegraphics[width=0.45\textwidth]{Figuras/FedLeaConcept.png}}
+    \caption{Diagrama de una red de Federated Learning} 
+    \label{fig:FedLearArquitectura}
+\end{figure}
+\\ \\
+Esta red permite repartir la carga de trabajo entre todos los participantes, puesto que cada uno se encarga de entrenar su propio modelo. Esto es posible gracias a que cada vez los dispositivos móviles tienen procesadores más rápidos y más potentes, lo que permite que sean capaces de realizar tareas más complejas y pesadas. De esta forma, se consigue que cada dispositivo sea propietario exclusivo de su información y no tenga que compartirla con ningún otro. Además, hoy en día los costes de comunicación son superiores a los de computación, por lo que cuanto más acciones se puedan computar en los dispositivos de los participantes menor será el consumo del entrenamiento del algoritmo. 
+\\ \\
+Sin embargo, debido a estas características propias del aprendizaje federado también sufre de grandes inconvenientes. El hecho de que la red está formada por diferentes participantes la hace heterogénea, con diferentes capacidades de cómputo y diferentes velocidades de conexión entre los distintos participantes, lo que puede incurrir en desconexiones o pérdidas de paquetes durante el proceso de aprendizaje.
+\subsection{Fundamentos y Protocolo}
+En general existen dos tipos de entidades en los sistemas de Federated learning, los propietarios de la información (participantes de la red) y el propietario del modelo (servidor de federated learning). Los propietarios de la información entrenan localmente el modelo con la información de la que disponen, mientras que el propietario del modelo agrega los diferentes modelos recibidos de los participantes para mejorar el algoritmo. 
+\\ \\
+La comunicación puede ser llevada a cabo de diferentes maneras, de hecho, hay diseños de protocolos de aprendizaje federado como el desarrollado por los autores del trabajo \autocite{bonawitzFederatedLearningScale2019}, que lo dividen en 3 fases:
+
+\begin{itemize}
+    \item Selección de los participantes: El servidor elige un grupo de dispositivos conectados para participar en la red.
+    \item Configuración: El servidor se configura en base al mecanismo de agregación definido y envía a los participantes el modelo global.
+    \item Reporte: El servidor recibe la actualización de cada modelo de su respectivo participante. Más tarde los agrega usando el algoritmo elegido.
+\end{itemize}
+
+Además, estos autores definen un parámetro de población con el objetivo de limitar el acceso en caso de que haya muchos participantes, evitando que se conecten a la vez y saturen la red.
+
+\subsection{Problemas presentes}
+Como se ha mencionado antes, implementar el aprendizaje federado implica problemas y costes que hay que asumir y tratar con el objetivo de crear un sistema eficiente y estable. 
+\\ \\
+Cada actualización del modelo conlleva millones de parámetros, además se llevan tantas actualizaciones a cabo como precisión se quiera en el modelo. La gran dimensión de las actualizaciones puede incurrir en un aumento de los costes de conexión y generar un cuello de botella que puede verse agravado por los participantes, ya sea por la asimetría en las velocidades de internet o por la asimetría en la capacidad de cómputo. Es por eso, que para mejorar el rendimiento y reducir el coste de comunicación se deben considerar varias cosas.
+\begin{itemize}
+    \item En primer lugar, todos los dispositivos deben contar con una conexión estable, preferiblemente conexión por cable, o en su defecto conexión inalámbrica por Wi-Fi, descartando por completo todas aquellas conexiones por telefonía móvil.
+    \item En segundo lugar, para minimizar el número de rondas de comunicación se puede realizar computación adicional en los dispositivos para que la agregación global se realice antes.
+    \item También se puede reducir el tamaño de las comunicaciones, ya sea por compresión del modelo, compresión de los datos, o por el uso de una pequeña muestra representativa de estos en vez de enviarlos por completo.
+    \item Por último, se pueden minimizar las actualizaciones de los modelos en base a la importancia de estas. Evitando enviar el modelo global hasta que este no suponga una clara mejora para los participantes.
+\end{itemize}
