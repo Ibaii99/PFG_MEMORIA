@@ -3,10 +3,9 @@
 \fancyhead[LE]{\thechapter.Antecedentes y justificación}
 
 \section{Antecedentes}
-
-
-\subsection{Sistemas de recomendación}
-Los sistemas de recomendación fueron mencionados por primera vez en los años 90 y han ido evolucionando hasta estar implantados en gran parte de las empresas actuales. Estos sistemas son sistemas de filtrado de información, que se basan en una gran cantidad de datos, tanto del usuario como de los elementos a recomendar, para predecir cuál será el elemento más apropiado para este. Estos sistemas están estrechamente relacionados con el marketing, ya que el objetivo es conseguir recomendar un elemento que sea del agrado e interés del usuario con los datos que se tienen de él, lo que en la mayoría de los casos va ligado al consumo de bienes o servicios. 
+Este proyecto parte del proyecto de R.Sánchez\autocite{sanchez-corcueraPersuasionbasedRecommenderSystem2020} donde se desarrolló un sistema de recomendación de estrategias de persuasión basado en aprendizaje activo. Para comprender los antecedentes que han incurrido en el desarrollo de este proyecto primeró hay que conocer y comprender qué son los sistemas de recomendación y después entender los problemas de seguridad y privacidad que van ligados a estos. 
+\\ \\
+Los sistemas de recomendación fueron mencionados por primera vez en los años 90 y han ido evolucionando hasta estar implantados en gran parte de las empresas actuales. Estos sistemas son sistemas de filtrado de información, que partiendo de una gran cantidad de datos, tanto del usuario como de los elementos a recomendar, pueden predecir cuál será el elemento más apropiado para el usuario. Estos sistemas están estrechamente relacionados con el marketing, ya que el objetivo es conseguir recomendar un elemento que sea del agrado e interés de los usuarios suele ir ligado a fines económicos.
 \\ \\
 Hoy en día se usan en multitud de ámbitos, desde las redes sociales hasta las distribuidoras de contenido como Netflix, pasando por compañías de comercio electrónico como Amazon. 
 \\ \\
@@ -31,3 +30,27 @@ De hecho, en Amazon, si queremos revisar las recomendaciones tenemos un apartado
     \caption{Recomendaciones de Amazon (Fuente: Amazon\autocite{AmazonEsCompra})} 
     \label{fig:AmazonRecomendaciones}
 \end{figure}
+\\
+Queda claro que un sistema de recomendación depende plenamente de la información de la que dispone, de forma que, de cuanta más información disponga de los usuarios, más precisión tendrá en sus predicciones. Para obtener esta información muchos anunciantes se han valido de diversas herramientas y utilidades, pero si se ha de destacar alguna son las cookies de terceros. Estas, son definidas por Google\autocite{ComoBorrarHabilitar} cómo:
+\\
+\begin{minipage}[t]{0.2\linewidth}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.9\linewidth}
+  \textit{"... son archivos que crean los sitios web que visitas para guardar información de la navegación y facilitar tu experiencia en línea. Gracias a las cookies, los sitios pueden mantener abierta tu sesión, recordar tus preferencias del sitio y proporcionarte contenido relevante en función del lugar donde te encuentres. Hay dos tipos de cookies:
+  \begin{itemize}
+      \item Las cookies de origen, que las crea el sitio que visitas. El sitio se muestra en la barra de direcciones.
+      \item Las cookies de terceros, que las crean otros sitios. Parte del contenido que ves en la página web que visitas, como anuncios o imágenes, pertenece a estos sitios."
+  \end{itemize}}
+\end{minipage}
+\\ \\ \\
+A simple vista estas cookies parecen inofensivas, pero el problema radica en su utilización. Aunque suelen ser usadas con fines analíticos por compañías de marketing online, estas se usan para registrar el comportamiento de un usuario y crear un perfil para generar publicidad personalizada. Mediante estas se puede registrar el comportamiento de un usuario en internet, saber sus movimientos, hábitos, páginas que visita, edad, sexo, etc. 
+\\ \\
+En España y en la Unión Europea existe una legislación sobre la privacidad y la protección de datos que restringe y limita los datos que estas empresas pueden recibir de nuestra navegación, el Reglamento General De Protección de Datos (RGPD). En el documento adjunto Anexo \ref{appendix:ProteccionDatos}, sección \ref{appendix:ProteccionDatos_Legislacion} se puede consultar un breve resumen de la legislación en vigor. En lo referente a las cookies este reglamento presenta varios elementos importantes. En primer lugar, debe haber un consentimiento explicito por el usuario en el consentimiento de la política de cookies. En segundo lugar, la aceptación de las cookies de terceros no ha de ser un impedimento para el uso del servicio. En último lugar, todas las cookies y rastreadores que operen en la web del propietario deberán ser mostradas al usuario en un lenguaje sencillo.
+\\ \\
+De todos modos esta legislación no impide que se realice un perfilado del usuario, que se haga un seguimiento de este por la red o que tiempo pasa el usuario en la página. Pero con la maduración de la tecnología cada vez más gente se preocupa por el uso que le dan estas empresas a los datos y son más críticos con estas prácticas. Esto ha llegado incluso a la política, donde España esta desarrollando una carta pionera de derechos digitales, donde, entre otras cosas, recoge el derecho de los usuarios a no ser perfilados (Anexo \ref{appendix:ProteccionDatos}, sección \ref{appendix:ProteccionDatos_Derechos}).
+
+Hay navegadores que permiten deshabilitarlas
+Google las eliminará
+Cambio de paradigma del marketing online
+Respuesta de que se puede usar la msima tecnología que google para construir un sistema recomendador sin vulnerar la privacidad de los participantes
