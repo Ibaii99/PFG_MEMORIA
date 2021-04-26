@@ -141,11 +141,12 @@
 \includeonly{
                 Capitulos/0.Resumen, 
                 Capitulos/0.Abstract, 
-                Capitulos/1.Intro, 
+                Capitulos/1.Intro,
+                Capitulos/2.AntecedentesJustificacion, 
                 Capitulos/3.Objetivos_y_Alcance, 
                 Capitulos/5.Metodologia, 
                 Capitulos/Funciones,
-                Capitulos/6.BasesDesarrollo,
+                Capitulos/6.IntroducciónFedLearn,
                 Capitulos/7.Desarrollo,
                 Algoritmos/ConsensoMath,
                 Anexos/1.AnexoProteccionDatos
@@ -224,7 +225,7 @@
 %Función para que dicha página no tenga ningún formato (ni número, ni encabezado).
 
 %Así con estas dos funciones de forma consecutiva se crea una página en blanco.
-\include{Capitulos/0.Abstract}
+%\include{Capitulos/0.Abstract}
 
 \newpage
 \thispagestyle{empty}
@@ -246,14 +247,14 @@
 \newpage
 \thispagestyle{empty}
 
-\listoffigures
+%\listoffigures
 % Es la función que introduce el índice de figuras. Funciona exactamente igual que el de capítulos.
 \newpage
 \thispagestyle{empty}
 
 \cleardoublepage
 
-\listoftables
+%\listoftables
 %Por ultimo, se introduce el índice de tablas en caso de que las hubiera en vuestro documento. 
 
 \newpage
@@ -291,35 +292,45 @@
 
 
 %\include{Capitulos/1.Intro}
-\include{Capitulos/3.Objetivos_y_Alcance}
-\fancyhead[LE]{}
-\newpage
-\thispagestyle{plain}
-\cleardoublepage
+% \include{Capitulos/3.Objetivos_y_Alcance}
+% \fancyhead[LE]{}
+% \newpage
+% \thispagestyle{plain}
+% \cleardoublepage
 
-\include{Capitulos/5.Metodologia}
-\fancyhead[LE]{}
-\newpage
-\thispagestyle{plain}
-\cleardoublepage
+% \include{Capitulos/5.Metodologia}
+% \fancyhead[LE]{}
+% \newpage
+% \thispagestyle{plain}
+% \cleardoublepage
 
 %\include{Algoritmos/ConsensoMath}
-\include{Capitulos/6.BasesDesarrollo}
+\include{Capitulos/2.AntecedentesJustificacion}
+\fancyhead[LE]{}
+\newpage
+\thispagestyle{empty}
+\cleardoublepage
 
+\include{Capitulos/6.IntroducciónFedLearn}
+\fancyhead[LE]{}
+\newpage
+\thispagestyle{empty}
+\cleardoublepage
 
-%\include{Capitulos/7.Desarrollo}
-
-
-%\cleardoublepage
+\include{Capitulos/7.Desarrollo}
+\fancyhead[LE]{}
+\newpage
+\thispagestyle{empty}
+\cleardoublepage
 
 \printbibliography
 
-%Nueva página en blanco total 
-%\newpage
-%\thispagestyle{empty}
-%Evitamos crear doble pagina y obligamos a empezar en página impar
-%\cleardoublepage
-%\include{Anexos/1.AnexoProteccionDatos}
+\include{Anexos/1.AnexoProteccionDatos}
+\fancyhead[LE]{}
+\newpage
+\thispagestyle{empty}
+\cleardoublepage
+
 
 \end{document}
 %Función de final de documento.

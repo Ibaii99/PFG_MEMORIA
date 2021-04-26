@@ -1,11 +1,11 @@
 \section{Tecnologías utilizadas}
 
 \subsection{Sistema de recomendación}
-El sistema de recomendación de R.Sanchez utiliza LightFM\footnote{LightFM es una implementación en python de varios algotitmos populares de recomendación.} para crear los modelos de inteligencia artificial. Para implementar el aprendizaje federado se ha tenido que modificar gran parte del sistema de recomendación previo y se ha tenido que hacer uso de las utilidades que proporciona LightFM que se van a explicar en los siguientes apartados. 
+El sistema de recomendación de R.Sánchez utiliza LightFM\footnote{LightFM es una implementación en python de varios algoritmos populares de recomendación.} para crear los modelos de inteligencia artificial. Para implementar el aprendizaje federado se ha tenido que modificar gran parte del sistema de recomendación previo y se ha tenido que hacer uso de las utilidades que proporciona LightFM que se van a explicar en los siguientes apartados. 
 \subsubsection{Creación del modelo}
 El paso de creación del modelo es un paso complejo puesto que conlleva la correcta gestión de muchos datos e información. Asimismo, estos datos han de estar correctamente estructurados y construidos, puesto que LightFM requiere que la información este convertida a matrices dispersas y no tolera elementos vacíos en ellas. Para ello LightFM proveé de herramientas de creación de datasets que facilitan la creación de las matrices, de forma que sea más fácil incluirlas en el modelo. 
 \\ \\
-Entre estas erramientas se encuentran:
+Entre estas herramientas se encuentran:
 
 \begin{itemize}
     \item \textit{build\_user\_features($\ldots$)} \quad Permite crear la matriz CSR de usuarios y atributos de usuarios.
@@ -102,5 +102,5 @@ model = LightFM()
 
 
 \subsubsection{Evaluación}
-La evaluación de los resultados obtenidos de las predicciones de los modelos es un apartado fundamental que permite analizar la eficacia de estas predicciones. Además, la utilización de métricas y técnicas permitirá poder comparar los resultados entre sí para poder demostrar si la predicción es correcta, aceptable o erronea.
+La evaluación de los resultados obtenidos de las predicciones de los modelos es un apartado fundamental que permite analizar la eficacia de estas predicciones. Además, la utilización de métricas y técnicas permitirá poder comparar los resultados entre sí para poder demostrar si la predicción es correcta, aceptable o errónea.
 \paragraph{Métricas}
