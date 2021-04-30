@@ -35,7 +35,7 @@
 %%%% PRIMERA FUNCIÓN %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%
 
-\documentclass[a4paper,openright,10pt]{book}
+\documentclass[a4paper,openright,12pt]{book}
 
 %Esta es la primera función del archivo y define el tipo de documento sobre le que se está trabajando. Realmente no tengo un conocimiento exhaustivo sobre los diferentes tipos de documentos en los que se puede trabajar pero encontrar información sobre esta función es muy sencillo.  En este caso, el tipo utilizado es "Book". Se ha utilizado este tipo porque es el más adecuado a documentos largos, con capítulos, secciones y demás. Hay otras clases de documentos como por ejemplo "article", "report" o "memoir". Cada uno con sus características propias. 
 
@@ -141,12 +141,17 @@
 \includeonly{
                 Capitulos/0.Resumen, 
                 Capitulos/0.Abstract, 
-                Capitulos/1.Intro, 
+                Capitulos/1.Intro,
+                Capitulos/2.AntecedentesJustificacion, 
                 Capitulos/3.Objetivos_y_Alcance, 
                 Capitulos/5.Metodologia, 
-                Capitulos/Funciones,
+                Capitulos/6.Planificacion,
+                Capitulos/7.IntroduccionFedLearn,
+                Capitulos/8.Desarrollo,
                 Algoritmos/ConsensoMath,
-                Anexos/1.AnexoProteccionDatos
+                Capitulos/Funciones,
+                Anexos/1.AnexoProteccionDatos,
+                Anexos/2.AnexoPlanificacion
 }
 %Esta función es de gran importancia. Como se puede observar a la izquierda, hay una carpeta que se ha creado con diferentes capítulos. Estos capítulos son los diferentes apartados de la memoria en los que se va a ir escribiendo. Por ejemplo, el capítulo de la introducción, el capítulo de objetivos, el capítulo de la memoria técnica, o el capítulo del plan de trabajo. Bien, de cara a poder incluirlos a posteriori en esto documento principal (MAIN.tex) es necesario indicarle a LATEX que los cargue y eso se realiza con esta función. Así, habrá que incluir tantos parámetros como capítulos se deseen cargar. Los parámetros son simplemente la dirección de la carpeta en la que se encuentran, y su nombre.
 
@@ -289,11 +294,24 @@
 
 
 %\include{Capitulos/1.Intro}
-\include{Capitulos/3.Objetivos_y_Alcance}
-%Funciones para incluir los otros documentos que se han desarrollado. Dichos documentos son los distintos capítulos de la memoria. Toda la escritura de los mismos se realizará en los documentos de forma específica y no en este archivo “MAIN.tex”. Así que vamos a ellos.
+% \include{Capitulos/3.Objetivos_y_Alcance}
+% \fancyhead[LE]{}
+% \newpage
+% \thispagestyle{plain}
+% \cleardoublepage
+
+% \include{Algoritmos/ConsensoMath}
+
+\include{Capitulos/2.AntecedentesJustificacion}
 \fancyhead[LE]{}
 \newpage
-\thispagestyle{plain}
+\thispagestyle{empty}
+\cleardoublepage
+
+\include{Capitulos/3.Objetivos_y_Alcance}
+\fancyhead[LE]{}
+\newpage
+\thispagestyle{empty}
 \cleardoublepage
 
 \include{Capitulos/5.Metodologia}
@@ -302,21 +320,39 @@
 \thispagestyle{plain}
 \cleardoublepage
 
-%\include{Algoritmos/ConsensoMath}
+\include{Capitulos/6.Planificacion}
+\fancyhead[LE]{}
+\newpage
+\thispagestyle{empty}
+\cleardoublepage
 
+\include{Capitulos/7.IntroduccionFedLearn}
+\fancyhead[LE]{}
+\newpage
+\thispagestyle{empty}
+\cleardoublepage
 
-
-
-%\cleardoublepage
+\include{Capitulos/8.Desarrollo}
+\fancyhead[LE]{}
+\newpage
+\thispagestyle{empty}
+\cleardoublepage
 
 \printbibliography
+\appendix
 
-%Nueva página en blanco total 
-%\newpage
-%\thispagestyle{empty}
-%Evitamos crear doble pagina y obligamos a empezar en página impar
-%\cleardoublepage
-%\include{Anexos/1.AnexoProteccionDatos}
+\include{Anexos/1.AnexoProteccionDatos}
+\fancyhead[LE]{}
+\newpage
+\thispagestyle{empty}
+\cleardoublepage
+
+\include{Anexos/2.AnexoPlanificacion}
+% \fancyhead[LE]{}
+% \newpage
+% \thispagestyle{empty}
+% \cleardoublepage
+
 
 \end{document}
 %Función de final de documento.
