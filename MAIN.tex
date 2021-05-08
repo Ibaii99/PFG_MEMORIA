@@ -122,6 +122,8 @@
 \def\algbackskip{\hskip-\ALG@thistlm}
 \makeatother
 
+\usepackage{multicol}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% PROPIEDADES DEL DOCUMENTO (Funciones específicas) %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -147,7 +149,7 @@
                 Capitulos/5.Metodologia, 
                 Capitulos/6.Planificacion,
                 Capitulos/7.IntroduccionFedLearn,
-                Capitulos/8.Desarrollo,
+                Capitulos/8.0.Desarrollo,
                 Algoritmos/ConsensoMath,
                 Capitulos/Funciones,
                 Anexos/1.AnexoProteccionDatos,
@@ -294,11 +296,6 @@
 
 
 %\include{Capitulos/1.Intro}
-% \include{Capitulos/3.Objetivos_y_Alcance}
-% \fancyhead[LE]{}
-% \newpage
-% \thispagestyle{plain}
-% \cleardoublepage
 
 % \include{Algoritmos/ConsensoMath}
 
@@ -332,13 +329,14 @@
 \thispagestyle{empty}
 \cleardoublepage
 
-\include{Capitulos/8.Desarrollo}
+\include{Capitulos/8.0.Desarrollo}
 \fancyhead[LE]{}
 \newpage
 \thispagestyle{empty}
 \cleardoublepage
 
 \printbibliography
+
 \appendix
 
 \include{Anexos/1.AnexoProteccionDatos}
@@ -348,10 +346,10 @@
 \cleardoublepage
 
 \include{Anexos/2.AnexoPlanificacion}
-% \fancyhead[LE]{}
-% \newpage
-% \thispagestyle{empty}
-% \cleardoublepage
+\fancyhead[LE]{}
+\newpage
+\thispagestyle{empty}
+\cleardoublepage
 
 
 \end{document}

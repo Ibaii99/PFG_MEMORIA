@@ -1,0 +1,168 @@
+\subsection{Datos involucrados}
+Este proyecto al tratarse de una modificación del sistema de recomendación de R.Sánchez se heredarán todos los datos. Cabe mencionar que R.Sánchez utilizó información proporcionada por el proyecto Green Soul\autocite{EcoawarePersuasiveNetworked} para crear su sistema de recomendación. El proyecto Green Soul trataba de persuadir a los usuarios para que aumentase su conciencia energética y cambiasen sus hábitos de consumo, para ello, se realizaron una serie de encuestas donde se les preguntaba a los usuarios por sus datos personales y se les pedía que ordenasen en función de su critério que estrategias de persuasión les parecían más efectivas.
+\\ \\
+Por tanto, las estrategias de persuasión que se recomiendan pertenecen al ámbito de la concienciación del consumo energético, aunque podrían ser extrapolables a otros casos. De todas formas, se eludirán los detalles sobre estas estrategias ya que no son el caso de estudio y no entran en el alcance de este proyecto.
+\\ \\
+Teniendo en cuenta todo lo anterior, este capítulo se ha redactado para entender la gestión de los datos en este proyecto, ya que algunos son de carácter personal y es de suma importancia preservar su privacidad. Estos datos se pueden dividir en tres categorías:
+\begin{itemize}
+    \item \textbf{No sensibles}, la información de los elementos a recomendar, que no son ni personales ni suministrados por ninguna persona.
+    \item  \textbf{Sensibles}, datos que hacen referencia a información personal o que son proporcionados por las personas involucradas en el cuestionario.
+    \item \textbf{Sintéticos}, datos de usuarios generados aleatoriamente para paliar la necesidad de datos personales del modelo de consenso (sección \ref{Consenso}).
+\end{itemize} 
+
+\subsubsection{No sensibles}
+Como se ha mencionado antes, en la categoría de datos no sensibles se encuentran los datos que no son personales ni hacen referencia a ningún usuario. En esta categoría unicamente aparecen aquellos datos que hacen referencia a los elementos que se van a recomendar en el sistema y sus atributos.
+\\ \\
+Cada estrategia de persuasión que pueda recomendar el sistema contará con hasta dos atributos para que de esta forma el sistema pueda conocer mejor las estrategias y realizar recomendaciones más precisas en base a esta información. En la tabla \ref{tab:EstrategiasPersuasion} se muestran las estrategias de persuasión involucradas en el sistema de recomendación y sus atributos.
+\begin{table}[H]
+    %Con esta función se inicia el entorno tabla, que se puede posicionar con respecto al texto al igual que una imagen.
+    
+    \begin{center}
+    %Se centra la tabla.
+        \begin{tabular}{|c|p{0.45\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
+            % -------------
+            \hline
+            \rowcolor{Cyan} 
+            % -------------
+            \textbf{ID} & \textbf{Descripción} & \textbf{Atributo 1} & \textbf{Atributo 2} \\ 
+            % -------------
+            \hline
+            \textbf{V2} &  Reconocimiento público/social de mi contribuciónal ahorro de energía. & Reconocimiento social & -\\
+            % -------------
+            \hline
+            \rowcolor{GrisTabla}
+            \textbf{V5} & Recibir información relacionada con la energía de una forma simple y estéticamente atractiva. & Atractivo físico & -\\
+            % -------------
+            \hline
+            \textbf{V6} &  Recibir beneficios como recompensa por mejorar mi rendimiento energético(horarios de trabajo flexibles, saltarse ciertas tareas, etc.). & Condicionamiento & -\\
+            % -------------
+            \hline
+            \rowcolor{GrisTabla} 
+            \textbf{V7} & Recibir un reconocimiento por lograr ahorros de energía de manera colectiva yo y mi equipo. & Reciprocidad & Reconocimiento social\\
+            % -------------
+            \hline
+            \textbf{V10} & Mis altos gerentes están comprometidos con el ahorro de energía. & Autoridad & Demostración social \\
+            % -------------
+            \hline
+            \rowcolor{GrisTabla} 
+            \textbf{V11} & Poder monitorear mi propio desempeño energético en tiempo real. & Monitorización propia. & - \\ 
+            % -------------
+            \hline
+            \textbf{V15} &  Información sobre el efecto que mis acciones pueden tener sobre el consumo de energía. & Causa efecto & -\\
+            % -------------
+            \hline
+            \rowcolor{GrisTabla} 
+            \textbf{V17} & Evacuación comparativa de mi desempeño en el ahorro de energía respecto a usuarios parecidos a mí. & - & -\\
+            % -------------
+            \hline
+            \textbf{V19} &  Consejos y sugerencias sobre el ahorro de energía al día o a la semana.  & Sugerencia & -\\
+            % -------------
+            \hline
+            \rowcolor{GrisTabla} 
+            \textbf{V20} &  Avances y consejos sobre las lecciones aprendidas de usuarios parecidos mí en acciones específicas de ahorro de energía. & Similaridad & -\\
+            \hline
+
+            % \rowcolor{Naranja} 
+            % \textbf{V} & \textbf{elit} \\ \hline
+        \end{tabular}
+        \caption{\centering Estrategias de persuasión del sistema (Fuente: Elaboración propia).}
+        \label{tab:EstrategiasPersuasion}
+    \end{center}    
+\end{table}
+
+
+\subsubsection{Sensibles}
+En cuanto a los datos sensibles hay que mencionar dos grupos, los datos personales de los usuarios y los rankings de los usuarios. Este primer grupo esta formado por los datos personales de los usuarios participantes. Estos intervienen en dos puntos clave: en el entrenamiento de los modelos de inteligencia artificial y a la hora de agregar estos modelos. El grupo de los datos de los rankings está formado por las preferencias de los anteriores usuarios a la hora de ordenar las estrategias de persuasión, es decir, el ranking de estrategias para cada usuario.
+\\ \\
+Tanto los datos personales de los usuarios como los datos de los rankings de estos son necesarios para entrenar un modelo de inteligencia artificial. Los atributos de los usuarios, al igual que los atributos de las estrategias de persuasión, sirven para correlacionar los distintos usuarios con los diferentes rankings y de esta forma poder realizar recomendaciones en base al tipo de usuario.
+
+\paragraph{Datos de usuarios\\}
+Los datos personales de los usuarios que intervienen en este proyecto son los presentes en la tabla \ref{tab:AtributosUsuarios}. Estos datos han sido transformados a objetos json para su posterior utilización, formando una lista de objetos en los que cada uno representa los datos personales de un usuario.
+\begin{table}[H]
+    %Con esta función se inicia el entorno tabla, que se puede posicionar con respecto al texto al igual que una imagen.
+    
+    \begin{center}
+    %Se centra la tabla.
+        \begin{tabular}{|c|c|p{0.7\linewidth}|}
+            % -------------
+            \hline
+            \rowcolor{Cyan} 
+            % -------------
+            \textbf{ID} & \textbf{Nombre} & \textbf{Descripción}\\ 
+            % -------------
+            \hline
+            \textbf{0} &  Edad & Rango de edad\\
+            % -------------
+            \hline
+            \rowcolor{GrisTabla}
+            \textbf{1} & Género & Género\\
+            % -------------
+            \hline
+            \textbf{2} & Educación & Nivel educativo\\
+            % -------------
+            \hline
+            \rowcolor{GrisTabla} 
+            \textbf{3} & País & País de residencia\\
+            % -------------
+            \hline
+            \textbf{4} & Cultura de trabajo & Cultura de trabajo\\
+            % -------------
+            \hline
+            \rowcolor{GrisTabla} 
+            \textbf{5} & PST & Tipo de perfil de usuario en base a los propuestos por Dan Lockton\autocite{locktonModelsUserDesigners2012} : \textit{"Pinball, Shortcut, Thought-ful"}\\ 
+            % -------------
+            \hline
+            \textbf{6} & Barreras  & Barreras ante el cambio\\
+            % -------------
+            \hline
+            \rowcolor{GrisTabla} 
+            \textbf{7} & Intenciones & Intenciones ante el cambio3\\
+            % -------------
+            \hline
+            \textbf{8} & Confianza  & Confianza ante el cambio\\
+            % -------------
+            \hline
+
+            % \rowcolor{Naranja} 
+            % \textbf{V} & \textbf{elit} \\ \hline
+        \end{tabular}
+        \caption{\centering Atributos de los usuarios que participan en el sistema (Fuente: Elaboración propia).}
+        \label{tab:AtributosUsuarios}
+    \end{center}    
+\end{table}
+\paragraph{Rankings\\}
+Los usuarios a parte de introducir sus datos personales anteriores también introducen el orden de las estrategias de persuasión en base a la relevancia que consideran que tienen. Este ranking de estrategia es recogido y transformado a formato json formando una lista de objetos json en la que cada objeto representa los datos de la tabla \ref{tab:RankingUsuario}.
+\begin{table}[H]
+    \begin{center}
+    %Se centra la tabla.
+        \begin{tabular}{|c|p{0.7\linewidth}|}
+            % -------------
+            \hline
+            \rowcolor{Cyan} 
+            % -------------
+            \textbf{Nombre} & \textbf{Descripción}\\ 
+            % -------------
+            \hline
+            \textbf{User ID}  & Identificador único del usuario\\
+            % -------------
+            \hline
+            \rowcolor{GrisTabla}
+            \textbf{Item ID}  & Identificador único de la estrategia de persuasión\\
+            % -------------
+            \hline
+            \textbf{Ranking} & Valor en el ranking de la estrategia de persuasión\\
+            % -------------
+            \hline
+            % \rowcolor{Naranja} 
+            % \textbf{V} & \textbf{elit} \\ \hline
+        \end{tabular}
+        \caption{\centering Elementos de la estructura de los datos del ranking  (Fuente: Elaboración propia).}
+        \label{tab:RankingUsuario}
+    \end{center}    
+\end{table}
+
+
+\subsubsection{Sintéticos}
+En cuanto a los datos sintéticos se debe tener en cuenta que los datos sensibles han sido directamente suministrados por los usuarios, por lo cual es técnicamente imposible acceder a ellos desde el servidor de agregación, ya que sería una evidente violación de la privacidad de los usuarios. Esto genera un gran problema debido a que el propio modelo de consenso, explicado en la sección \ref{Consenso}, requiere de datos de usuarios para funcionar.
+\\ \\
+La forma de abordar el problema de la necesidad de datos es mediante la creación de usuarios sintéticos como se explica en la subsección \ref{Consenso:Usuarios_Sinteticos}. Estos usuarios sintéticos tendrán los mismos atributos que los usuarios normales (tabla \ref{tab:AtributosUsuarios}), tendrán que clasificar las mismas estrategias de persuasión (tabla \ref{tab:EstrategiasPersuasion}) y el ranking se gestionará de la misma forma (tabla \ref{tab:RankingUsuario}).
