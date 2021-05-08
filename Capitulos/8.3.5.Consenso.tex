@@ -1,16 +1,16 @@
-\subsection{Agregación de modelos}\label{Consenso}
-A la hora de agregar los diferentes modelos de los participantes se estudiaron las distintas alternativas pres
-
-
-Compartir conocimiento por compartir información
-No compartir datos personales ni rankings
-No acceder a los datos del modelo
+\subsection{Agregación de modelos por consenso}\label{Consenso}
+A la hora de agregar los diferentes modelos de los participantes se estudiaron los distintos algoritmos de los sistemas de aprendizaje federado, pero todos tenían algo en común, accedían a los datos del modelo. Aunque estos datos de los modelos sean meras matrices y números, el objetivo de este proyecto era no acceder en ningún momento a la información presente en los modelos de inteligencia artificial de los participantes, por lo que se buscó otra solución.
+\\ \\
+La solución llegó con la idea de que no hacía falta combinar los distintos modelos para crear uno, sino que más bien, deberían compartir sus formas de operar ante ciertos casos. Esta idea se empezó a explotar mediante la generación de usuarios sintéticos, los cuales cada modelo de cada participante de la red de aprendizaje federado debería predecir su ranking. Cuando cada participante predice el ranking para cada usuario sintético están demostrando como actuarían ante ciertas entradas de datos, por lo que si se compartiese este conocimiento los participantes se verían beneficiados de las formas de operar de otros participantes.
+\\ \\
+El problema es que desde un punto de vista objetivo, puede que algunas formas de operar no sean del todo precisas, por lo que no se debería compartir los rankings predichos por todos los modelos sin ningún filtrado. Para realizar este filtrado y con el objetivo de llegar a un punto intermedio, donde las predicciones que da cada modelo para cada usuario se combinan y todos los modelos lleguen a un acuerdo para el ranking de un usuario, se creó el modelo de consenso. 
+\\ \\
+Este modelo de consenso se explicará en los siguientes apartados, donde se explicará como se generan los datos sintéticos, como se generan los rankings, las explicaciones matemáticas del consenso y el proceso de reentrenado de los modelos.
 
 \subsubsection{Generar datos personales sintéticos}\label{Consenso:Usuarios_Sinteticos}
 Uno de los elementos imprescindibles para poner en práctica el sistema de agregación por consenso es la necesidad de datos de usuarios, que con el objetivo de evitar cualquier violación de privacidad serán creados en el servidor, siendo de ahora en adelante denominados como usuarios sintéticos.
 \\ \\
 Estos usuarios sintéticos tendrán los mismos atributos que cualquier usuario del sistema, es decir, contarán con todos los atributos presentes en la tabla \ref{tab:AtributosUsuarios}. Como ya se ha dicho antes, el proceso de creación de estos datos es crucial para el correcto funcionamiento del sistema, ya que si los usuarios generados fueran de un perfil concreto el aprendizaje no sería favorable para todos los participantes de la red, puesto que lo más seguro es que únicamente el participante con más usuarios de este perfil sea beneficiado mientras que para los demás participantes supondrá una perdida de precisión por el ruido introducido en su modelo. Es por eso que se ha tomado la decisión de generarlos aleatoriamente, evitando así estancarse en perfiles concretos y tratando de favorecer a todos los participantes. 
-\newpage
 \subsubsection{Generar ranking de los usuarios}
 Los datos de los usuarios sintéticos por si solos no son suficientes ni para entrenar ni para mejorar ningún modelo de inteligencia artificial, hace falta saber el ranking que estos usuarios sintéticos darían a las diferentes estrategias de persuasión, tabla \ref{tab:EstrategiasPersuasion}. 
 \\ \\
@@ -243,7 +243,7 @@ Una vez habiendo completado las predicciones con todos los modelos y haber obten
     \end{algorithmic}
 \end{algorithm}
 
-\paragraph{Consensuar predicciones} El proceso de consenso es el proceso clave a la hora de agregar los distintos modelos, ya que es gracias as este proceso que se consiguen los datos para reentrenar los modelos. El proceso parte de la lista \textit{P$_{u}$} formada por \textit{len(U)} predicciones \textit{R$_{u}$}, a las cuales se les aplica una función estadística \textit{func()} sobre los \textit{a$_{j, m}$} elementos de los múltiples rankings para converger en un único valor la diferente lista de valores. Despues de aplicar dicha función sobre todas las columnas \textit{j} de la predicción \textit{R$_{u}$} se consigue unificar cada columna \textit{j} en un único valor representado como \textit{b$_{j}$}, con esto se obtiene una única predicción para el usuario \textit{u}, a la cual denotaremos a partir de ahora como \textit{q$_{u}$}.
+\paragraph{Consensuar predicciones} El proceso de consenso es el proceso clave a la hora de agregar los distintos modelos, ya que es gracias as este proceso que se consiguen los datos para reentrenar los modelos. El proceso parte de la lista \textit{P$_{u}$} formada por \textit{len(U)} predicciones \textit{R$_{u}$}, a las cuales se les aplica una función estadística \textit{func()} sobre los \textit{a$_{j, m}$} elementos de los múltiples rankings para converger en un único valor la diferente lista de valores. Despues de aplicar dicha función sobre todas las columnas \textit{j} de la predicción \textit{R$_{u}$} se consigue unificar cada columna \textit{j} en un único valor representado como \textit{b$_{j}$}, con esto se obtiene una única predicción para el usuario \textit{u}, a la cual denotaremos a partir de ahora como \textit{q$_{u}$}. La lista de todas las predicciones consensuadas para el conjunto de ususarios \textit{U} será denotada como \textit{R$_{q}$}.
 
 \begin{center}
     \[  \textit{R$_{u}$}=
@@ -285,6 +285,26 @@ Una vez habiendo completado las predicciones con todos los modelos y haber obten
             b_{1}  &  b_{2}  &  \cdots   & b_{j} 
         \end{pmatrix}
     \]
+    \\
+    \[ 
+        \textit{R$_{q}$} = 
+        \begin{pmatrix}
+            q_{1}  \\  q_{2}  \\  \vdots \\ q_{u}
+        \end{pmatrix}
+        \equiv
+        \begin{pmatrix}
+            \begin{pmatrix}
+                b_{1}  &  b_{2}  &  \cdots   & b_{j} 
+            \end{pmatrix}_{1}\\
+            \begin{pmatrix}
+                b_{1}  &  b_{2}  &  \cdots   & b_{j} 
+            \end{pmatrix}_{2}\\
+            \vdots\\
+            \begin{pmatrix}
+                b_{1}  &  b_{2}  &  \cdots   & b_{j} 
+            \end{pmatrix}_{u}
+        \end{pmatrix}
+    \]
 \end{center}    
 
 Las funciones para calcular el valor de consenso \textit{b$_{j}$} que se proponen son las métricas estadísticas de la media(\(\bar{x}\)), mediana(\(\tilde{x}\)) y moda (\(\hat{x}\)). En este proyecto se ha descartado la utilización de la media ya que en caso de que los valores \textit{a$_{j, m}$} fueran muy dispares podría distorsionarse bastante el resultado \textit{b} y perder eficiencia. Por ello solo se utilizarán los algoritmos de mediana(\(\tilde{x}\)) y moda (\(\hat{x}\)).
@@ -309,11 +329,50 @@ Las funciones para calcular el valor de consenso \textit{b$_{j}$} que se propone
     \]
     Representación del consenso por mediana
 \end{center}    
-Con el objetivo de crear una función más precisa de consenso se elaboro un método híbrido el cual combina tanto la métrica de la moda como la de la mediana. Este método funciona de la siguiente forma: en primer lugar lee la lista de elementos \textit{a$_{j, m}$} y si existe algún valor duplicado más de \textit{len(m)/2} veces automáticamente asigna ese valor como \textit{b$_{j}$}, de lo contrario calcularía la mediana de la lista y asignaría ese valor como \textit{b$_{j}$}. Se podrían tomar otras decisiones en función de la desviación típica de la lista e incluso desarrollar un algoritmo más complejo para optimizar este proceso, pero dicha tarea se sale del alcance del proyecto.
+Con el objetivo de crear una función más precisa de consenso se elaboro un método híbrido el cual combina tanto la métrica de la moda como la de la mediana, algoritmo \ref{algth:Consensuar}. Este método funciona de la siguiente forma: en primer lugar lee la lista de elementos \textit{a$_{j, m}$} y si existe algún valor duplicado más de \textit{len(m)/2} veces automáticamente asigna ese valor como \textit{b$_{j}$}, de lo contrario calcularía la mediana de la lista y asignaría ese valor como \textit{b$_{j}$}. Se podrían tomar otras decisiones en función de la desviación típica de la lista e incluso desarrollar un algoritmo más complejo para optimizar este proceso, pero dicha tarea se sale del alcance del proyecto.
 \\ \\
 Como elemento adicional se ha considerado la posibilidad de otorgar un peso al modelo \textit{m} de cualquier participante en concreto, de forma que este tenga más repercusión en el resultado del consenso. Este peso solo será otorgado al modelo que sea más afín al usuario sintético, lo que puede ser calculado por una función o seleccionado por algún atributo en concreto (país, puesto de trabajo, género, etc.). En este caso este peso se da en función del atributo país, de forma que el modelo del país correspondiente al usuario sintético creado será el que tenga más trascendencia a la hora de elaborar el ranking consensuado. Este peso será representado como \textit{W$_{c}$} y su valor será un número entero de rango 0 $\leq$ \textit{W$_{c}$} $\leq$ \textit{len(m)/2 +1}. Este rango permite no añadir ninguna importancia extra a ningún modelo \textit{m} o permitir que sea este modelo en exclusiva el que genere el ranking para este usuario \textit{u}, ya que debido a la función de consenso, cuando existen \textit{len(m)/2 +1} veces un valor en una lista de elementos \textit{a$_{j, m}$} este valor es asignado automáticamente por ser moda.
+\\ \\
+Este peso se otorga directamente sobre la predicción \textit{r$_{u}$} del  modelo \textit{m} cuando este genera \textit{R$_{m}$}, al extraerse cada predicción \textit{r$_{u}$} de \textit{R$_{m}$} para formar \textit{R$_{u}$} esta predicción se introducirá \textit{W$_{c}$} veces más en \textit{R$_{u}$} para que a la hora de aplicar \textit{func()} esta predicción \textit{r$_{u}$} de \textit{R$_{m}$} tenga mayor importancia respecto a la del resto. De esta forma, como se ha dicho antes, si \textit{W$_{c}$} fuese cero todos los modelos tendrían la misma importancia a la hora de calcular el consenso y si fuera \textit{len(m)/2 +1} este valor sería la moda y por ello sería su valor directamente asignado a \textit{b$_{j}$}.
 
-
+\begin{algorithm}[H]
+    \caption{Consenso de los datos}\label{algth:Consensuar}
+    \begin{algorithmic}[1]
+        \Procedure{Realización del consenso}{}
+            \BState \emph{Declaración de las variables nececsarias}:
+            \State $P_{u} \gets [ \cdots ]$\Comment{\parbox[t]{0.7\linewidth}{Lista de las predicciones de cada usuario}}
+            \\
+            \State $R_{q} \gets [\cdots]$\Comment{\parbox[t]{0.7\linewidth}{Lista de rankings consensuados}}
+            \\           
+            \BState \emph{Consensuar}:
+            \For {$\textit{int}(usuario) \gets 0$ \textbf{to} $\textit{len}(P_{u})$}
+                \State $R_{u}  \gets P_{u}[usuario]$ \Comment{\parbox[t]{0.44\linewidth}{Lista de predicciones para un mismo usuario}}
+                \\
+                \State $columnas, filas  \gets shape(R_{u})$ \Comment{\parbox[t]{0.44\linewidth}{Obtener la forma de la matriz de predicciones}}
+                \\
+                \State $q_{u} \gets [columnas]$\Comment{\parbox[t]{0.44\linewidth}{Inicializar lista de valores para el ranking consensuado}}
+                \\
+                \For {$\textit{int}(columna) \gets 0$ \textbf{to} $\textit{columnas}$}
+                    \State $ r_{i} \gets R_{u}[:,columna]$ \Comment{\parbox[t]{0.44\linewidth}{Lista de todos los valores de la misma columna}}
+                    \\
+                    \State $ unicos \gets unique(r_{i})$ \Comment{\parbox[t]{0.44\linewidth}{Cantidad de valores diferentes en la columna}}
+                    \\
+                    \If{$unicos > len(m)/2 $}
+                        \State $q_{u}[columna] \gets \textit{mod}(r_{i} )$\Comment{\parbox[t]{0.44\linewidth}{Asignar valor por moda}}
+                    \Else
+                        \State $q_{u}[columna] \gets \textit{med}(r_{i} )$\Comment{\parbox[t]{0.44\linewidth}{Asignar valor por mediana}}
+                    \EndIf
+                    \State end \textbf{if};
+                \EndFor
+                \State end \textbf{for};
+                \State $R_{q}[usuario] \gets q_{u}$\Comment{\parbox[t]{0.44\linewidth}{Guardar valor consensuado en }}
+            \EndFor
+            \State end \textbf{for};
+            \State \textbf{return} $R_{q}$;
+        \EndProcedure
+    \end{algorithmic}
+\end{algorithm}
+\newpage
 \paragraph{Normalización del consenso}
 El problema es que en función de la formula que se aplique el rango de \textit{q$_{u}$} puede que no permanezca dentro del rango de \textit{E}, lo que nos impide afirmar que el valor \textit{b} de cada estrategia entre dentro del intervalo 0$<$
 \textit{a$_{q}$ }$\leq$\textit{ j}. Para solucionar este problema se procesan los valores \textit{a$_{qj}$ } de \textit{q$_{u}$} para que estos permanezcan dentro del rango. Este proceso se realiza intercambiando el valor \textit{a$_{qj}$ } menor por el valor del ranking menor disponible, como se puede ver en el algoritmo \ref{algth:NormalizarConsenso}.
@@ -346,97 +405,5 @@ El problema es que en función de la formula que se aplique el rango de \textit{
     \end{algorithmic}
 \end{algorithm}
 
-
-
-\subsubsection{Exportación de datos}
-
-
 \subsubsection{Reentrenado}
-
-\newpage
-
-% La lista de elementos a ser ordenados por los modelos LightFM son los siguientes:
-% \begin{alignat*}{1}
-% strats = \begin{bmatrix} ''v2'' & ''v5'' & ''v6'' & ''v7'' & ''v10'' & ''v11'' & ''v15'' & ''v17'' & ''v19'' & ''v20'' \end{bmatrix} 
-% & \\
-% \parbox[t]{8cm}{\raggedright Lista de estrategias a clasificar del 1 a n} \nonumber
-% \end{alignat*}
-% En esta lista solo aparecen los elementos más relevantes de las encuestas, ya que (nidea)
-% %%
-
-% \begin{align*}
-% %%
-% i && \parbox[t]{8cm}{\raggedright Número de modelos LightFM} \nonumber 
-% %%
-% && \\
-% %%
-% n && \parbox[t]{8cm}{\raggedright Número de elementos a incluir en el ranking} \nonumber 
-% %%
-% && \\
-% %%
-% m && \parbox[t]{8cm}{\raggedright Número de epochs sobre cada dataset} \nonumber
-% %%
-% && \\
-% %%
-% a_{mn} && \parbox[t]{8cm}{\raggedright Índice del elemento n de la lista de strats en el ranking calculado en la epoch m} \nonumber
-% %%
-% && \\
-% %%
-% matriz_{i[m,n]}= \begin{pmatrix}
-%  a_{11}  &  a_{12}  &  \cdots   & a_{1n} \\ 
-%  a_{21}  &  a_{22}  &  \cdots   & a_{2n}\\ 
-%  \vdots  &  \vdots  &  \ddots & \vdots  \\ 
-%  a_{m1}  &  a_{m2}  &  \cdots   & a_{mn}
-% \end{pmatrix}  && \parbox[t]{8cm}{\raggedright Matriz numpy de los resultados de la predicción del modelo i} \nonumber
-% %%
-% && \\ \\
-% %%
-% prediction_{m[1,n]}= \begin{bmatrix} a_{1}  &  a_{2}  &  \cdots   & a_{n} \end{bmatrix} && \parbox[t]{8cm}{\raggedright Lista de los índices de los n strat para el ranking del epoch m} \nonumber
-% %%
-% \\ \\
-% Predictions_{i[m,n]} = \begin{bmatrix}
-%  \begin{bmatrix} a_{11}  &  a_{12}  &  \cdots   & a_{1n} \end{bmatrix} \\ 
-%  \begin{bmatrix} a_{21}  &  a_{22}  &  \cdots   & a_{2n} \end{bmatrix}\\ 
-%  \vdots \\ 
-%  \begin{bmatrix} a_{m1}  &  a_{m2}  &  \cdots   & a_{mn} \end{bmatrix}
-% \end{bmatrix} && \parbox[t]{8cm}{\raggedright Lista de predicciones del modelo i por cada epoch m} \nonumber
-% %%
-% && \\ \\
-% %%
-% ndpms_{i[1,m]}= \begin{bmatrix} ndpm_{1}  &  ndpm_{2}  &  \cdots   & ndpm_{m} \end{bmatrix} && \parbox[t]{8cm}{\raggedright Lista de NDPMs calculados sobre las predicciones de cada epoch m del  modelo i LightFM} \nonumber
-% \end{align*}
-% \\ \\
-% %%
-% Si se desagrupan las predicciones realizadas por cada epoch m y se agrupan en función de cada strat n tendremos la lista de valores que el modelo i da a cada uno de los elementos n de la lista de los strat. Esto quiere decir que si se agrupan en función del elemento que se ordena en el ranking en vez de en por predicción se obtendrá la lista de todas las predicciones de posición para cada uno de los elementos a ordenar.
-% \begin{alignat*}{1}
-% \parbox[t]{8cm}{\raggedright }\nonumber & \\
-% Predictions_{i[m,n]}= \begin{bmatrix}
-% \begin{bmatrix} a_{11} \\ a_{21} \\ \vdots \\ a_{m1} \end{bmatrix} 
-% & \begin{bmatrix} a_{12} \\ a_{22} \\ \vdots \\ a_{m2} \end{bmatrix} 
-% & \cdots
-% & \begin{bmatrix} a_{1n} \\ a_{2n} \\ \vdots \\ a_{mn} \end{bmatrix} 
-% \end{bmatrix}
-% \end{alignat*}
-% Una vez teniendo la lista de los valores para cada elemento se pueden aplicar métodos estadísticos como la media(\(\bar{x}\)), mediana(\(\tilde{x}\)) o moda (\(\hat{x}\)) para crear una única predicción consensuada para el modelo i al que pertenecen estas predicciones. Esta predicción consensuada permitirá combinar los rankings generados durante cada epoch para poder obtener la máxima precisión posible y la mínima desviación típica.
-% \begin{alignat*}{2}
-% \bar{x}   &  \parbox[t]{8cm}{\raggedright Media} \nonumber \\
-% \tilde{x} & \parbox[t]{8cm}{\raggedright Mediana} \nonumber \\
-% \hat{x}   & \parbox[t]{8cm}{\raggedright Moda} \nonumber
-% \end{alignat*}
-% Consenso por media de las m predicciones para el modelo i:
-% \begin{alignat*}{1}
-% \overline{consensous_{i[1,m]}}= \begin{bmatrix} \overline{a_{11}} &  \overline{a_{21}}  &  \cdots   & \overline{a_{m1}} \end{bmatrix} 
-% \end{alignat*}
-% \\
-% Consenso por mediana de las m predicciones para el modelo i:
-% \begin{alignat*}{1}
-% \widetilde{consensous_{i[1,m]}}= \begin{bmatrix} \widetilde{a_{11}} &  \widetilde{a_{21}}  &  \cdots   & \widetilde{a_{m1}} \end{bmatrix} 
-% \end{alignat*}
-% \\
-% Consenso por moda de las m predicciones para el modelo i:
-% \begin{alignat*}{1}
-% \widehat{consensous_{i[1,m]}}= \begin{bmatrix} \widehat{a_{11}} &  \widehat{a_{21}}  &  \cdots   & \widehat{a_{m1}} \end{bmatrix} 
-% \end{alignat*}
-%%
-% \\ \\ \\
-
+Como parte final solo queda reentrenar los modelos de los participantes con los usuarios sintéticos y sus rankings consensuados. Para ello se utilizarán los usuarios y sus atributos generados aleatoriamente antes y los rankings \textit{R$_{u}$} donde cada predicción \textit{r$_{u}$} será el verdadero ranking del usuario.
