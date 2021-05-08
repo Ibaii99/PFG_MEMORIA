@@ -1,14 +1,442 @@
 \subsection{Agregación de modelos}\label{Consenso}
 A la hora de agregar los diferentes modelos de los participantes se estudiaron las distintas alternativas pres
-\subsubsection{Generar usuarios sintéticos}\label{Consenso:Usuarios_Sinteticos}
 
 
-\subsubsection{Predecir ranking de los usuarios}
+Compartir conocimiento por compartir información
+No compartir datos personales ni rankings
+No acceder a los datos del modelo
 
-\subsubsection{Consensuar predicciones}
+\subsubsection{Generar datos personales sintéticos}\label{Consenso:Usuarios_Sinteticos}
+Uno de los elementos imprescindibles para poner en práctica el sistema de agregación por consenso es la necesidad de datos de usuarios, que con el objetivo de evitar cualquier violación de privacidad serán creados en el servidor, siendo de ahora en adelante denominados como usuarios sintéticos.
+\\ \\
+Estos usuarios sintéticos tendrán los mismos atributos que cualquier usuario del sistema, es decir, contarán con todos los atributos presentes en la tabla \ref{tab:AtributosUsuarios}. Como ya se ha dicho antes, el proceso de creación de estos datos es crucial para el correcto funcionamiento del sistema, ya que si los usuarios generados fueran de un perfil concreto el aprendizaje no sería favorable para todos los participantes de la red, puesto que lo más seguro es que únicamente el participante con más usuarios de este perfil sea beneficiado mientras que para los demás participantes supondrá una perdida de precisión por el ruido introducido en su modelo. Es por eso que se ha tomado la decisión de generarlos aleatoriamente, evitando así estancarse en perfiles concretos y tratando de favorecer a todos los participantes. 
+\newpage
+\subsubsection{Generar ranking de los usuarios}
+Los datos de los usuarios sintéticos por si solos no son suficientes ni para entrenar ni para mejorar ningún modelo de inteligencia artificial, hace falta saber el ranking que estos usuarios sintéticos darían a las diferentes estrategias de persuasión, tabla \ref{tab:EstrategiasPersuasion}. 
+\\ \\
+Esta cuestión no puede ser abordada aleatoriamente como la anterior, ya que cada usuario ordena en base a su opinión y sus preferencias las estrategias de persuasión, por lo cual, de hacerlo aleatoriamente se distorsionaría la realidad y no sería representativo. Además, si este ranking se generase aleatoriamente y se compartiese con los participantes de la red, distorsionaría por completo sus modelos, lo que llevaría a una perdida inmensa de precisión. 
+\\ \\
+Es debido a esta problemática que se ha creado el método de consenso. Este método trata de representar la \textit{``opinión''} de cada participante de la red mediante la estimación del ranking para cada usuario sintético, todas estas \textit{``opiniones''} serán puestas en común mediante el algorítmo de consenso, lo que dará como resultado un ranking por usuario sintético que represente a todos los usuarios de la red.
+\newpage
+\subsubsection{Consenso}
+El proceso de consenso comienza con la ya mencionada creación usuarios sintéticos aleatoriamente, pero la generación del ranking de estos se lleva a cabo de la siguiente manera.
 
-\subsubsection{Generar rankings sintéticos}
+\paragraph{Estructuras básicas} En primer lugar hay que definir la lista de las estrategias \textit{E} a ser ordenadas por los modelos \textit{m} de los participantes, que en este caso serán las mismas que las de la tabla \ref{tab:EstrategiasPersuasion}. Estas estrategias serán representadas como \textit{e$_{j}$}, siendo \textit{j} la cantidad de estrategias de la lista \textit{E} y \textit{e$_{j}$} la estrategia final de esta lista. 
+\begin{center}
+    \textit{E} = $\begin{bmatrix} \textit{e$_{1}$} & \textit{e$_{2}$} & \textit{e$_{3}$} & \textit{e$_{4}$} & \cdots & \textit{e$_{j}$} \end{bmatrix}$ 
+\end{center}
+A la hora de crear una predicción de ranking, denotada \textit{r}, para las estrategias \textit{e} de \textit{E} se representará cada estrategia con un valor \textit{a}, siendo \textit{a} el puesto de la estrategia de persuasión en el ranking. Por lo cual, \textit{a} ha de ser siempre menor o igual que el número total de estrategias y mayor que cero, para así mantenerse dentro del rango de \textit{E} (0$<$
+\textit{a }$\leq$\textit{ j}), puesto que cada predicción \textit{r} no es más que una mera valoración de un usuario de las \textit{j} estrategias de la lista \textit{E}.
+\begin{center}
+    \textit{r} = $\begin{bmatrix} \textit{a$_{1}$} & \textit{a$_{2}$} & \textit{a$_{3}$} & \textit{a$_{4}$} & \cdots & \textit{a$_{j}$} \end{bmatrix}$ 
+\end{center}
+De esta forma se puede afirmar que el primer elemento del ranking tendrá el valor 1 y el último el valor \textit{j}, quedándose las demás estrategias con el resto de puestos en ese rango. Lo que en un conjunto de 10 estrategias se traduce en que la mejor estrategia obtendría el valor 1 y la peor el valor 10.
+\\ \\
+Sin embargo, Cuando se trata de realizar varias predicciones se simboliza como una matriz \textit{R} donde cada predicción es representada  por \textit{r$_{i}$}, en el que \textit{r} denota la predicción del ranking  e \textit{i} denota la cantidad de predicciones \textit{r} realizadas.
+\begin{center}
+    \[  \textit{R} = 
+        \begin{pmatrix}
+            \textit{r$_{1}$}  \\ 
+            \textit{r$_{2}$}  \\ 
+            \vdots  \\ 
+            \textit{r$_{i}$}
+        \end{pmatrix} 
+        =
+        \begin{pmatrix}
+            a_{11}  &  a_{12}  &  \cdots   & a_{1j} \\ 
+            a_{21}  &  a_{22}  &  \cdots   & a_{2j}\\ 
+            \vdots  &  \vdots  &  \ddots & \vdots  \\ 
+            a_{i1}  &  a_{i2}  &  \cdots   & a_{ij}
+        \end{pmatrix}
+    \]
+\end{center}
+\newpage
+\paragraph{Predicción} Una vez entendidas las estructuras básicas que se utilizarán en el método de consenso este apartado presentará su aplicación, ya que en este apartado se crearán las predicciones que serán consensuadas a posteriori para generar los datos de reentrenamiento.
+\\ \\
+Se debe tener en cuenta que las operaciones anteriores cambian por completo cuando se realizan predicciones para un conjunto \textit{U} de usuarios, y si además estas predicciones se hacen con los diferentes modelos \textit{m} de los participantes las operaciones se complican bastante. 
+\\ \\
+En primer lugar se ha especificar que el conjunto de usuarios \textit{U} estará formado por los \textit{k} identificadores de los usuarios, representados como \textit{u$_{k}$}. Este conjunto de identificadores se crea cuando se generan los datos personales sintéticos y recoge todos los identificadores de todos los usuarios generados aleatoriamente.
+\begin{center}
+    \textit{U} = $\begin{bmatrix} \textit{u$_{1}$} & \textit{u$_{2}$} & \textit{u$_{3}$} & \textit{u$_{4}$} & \cdots & \textit{u$_{k}$} \end{bmatrix}$ 
+\end{center}
+Para realizar las distintas predicciones con el modelo \textit{m} de cada participante de la red de aprendizaje federado hay que tener en cuenta que las predicciones \textit{R} pertenecerán al modelo \textit{m}, por lo que  se denotarán a partir de ahora como \textit{R$_{m}$}. Además, esta matriz de predicciones \textit{R$_{m}$} estará formada por las distintas predicciones para los distintos usuarios \textit{u}, lo que será representado como \textit{r$_{u}$}.
+\begin{center}
+    \[  \textit{R$_{m}$} = 
+        \begin{pmatrix}
+            \textit{r$_{1}$}  \\ 
+            \textit{r$_{2}$}  \\ 
+            \vdots  \\ 
+            \textit{r$_{u}$}
+        \end{pmatrix} 
+        =
+        \begin{pmatrix}
+            a_{11}  &  a_{12}  &  \cdots   & a_{1j} \\ 
+            a_{21}  &  a_{22}  &  \cdots   & a_{2j}\\ 
+            \vdots  &  \vdots  &  \ddots & \vdots  \\ 
+            a_{u1}  &  a_{u2}  &  \cdots   & a_{uj}
+        \end{pmatrix}
+    \]
+\end{center}
+\newpage
+\paragraph{Redistribución de las predicciones}
+Las predicciones realizadas con cada modelo \textit{m} sobre el conjunto de usuarios \textit{U} puede ser interpretada de diferente forma, en un principio se entiende que cada modelo \textit{m} genera una predicción \textit{R} para cada uno de los \textit{u} usuarios generados, pero, del mismo modo, se puede entender que cada usuario \textit{u} obtiene una predicción \textit{r} por cada modelo \textit{m}, y que con la unión de todas las predicciones \textit{r} de todos los modelos \textit{m} para este mismo usuario \textit{u} se puede construir una matriz \textit{R}. 
+\\ \\
+Para entender lo anterior con más facilidad se ha de comprender que ya no solo se cuenta con una matriz de predicciones \textit{R}, sino que se cuenta con una matriz \textit{P} con \textit{m} matrices de predicciones \textit{R}, denotada como \textit{P$_{m}$}. Esta matriz representa todas las predicciones \textit{R} realizadas por cada modelo \textit{m} participante en la red de aprendizaje federado para un mismo conjunto de usuarios \textit{U}.
+\begin{center}
+    \[  \textit{P$_{m}$}=
+        \begin{pmatrix}
+            \begin{pmatrix}
+                a_{11}  &  a_{12}  &  \cdots   & a_{1j} \\ 
+                a_{21}  &  a_{22}  &  \cdots   & a_{2j}\\ 
+                \vdots  &  \vdots  &  \ddots & \vdots  \\ 
+                a_{u1}  &  a_{u2}  &  \cdots   & a_{uj}
+            \end{pmatrix}_{\textit{1}}
+            & 
+            \cdots 
+            &
+            \begin{pmatrix}
+                a_{11}  &  a_{12}  &  \cdots   & a_{1j} \\ 
+                a_{21}  &  a_{22}  &  \cdots   & a_{2j}\\ 
+                \vdots  &  \vdots  &  \ddots & \vdots  \\ 
+                a_{u1}  &  a_{u2}  &  \cdots   & a_{uj}
+            \end{pmatrix}_{\textit{m}}
+        \end{pmatrix}
+    \]
+\end{center}
+Teniendo en cuenta esta estructura de datos, la separación de los usuarios ha de hacerse tomando cada predicción \textit{r$_{u}$} de cada participante de forma separada, uniendo las que corresponden al mismo usuario \textit{u} en una nueva matriz de predicciones \textit{R}, que al pertenecer al usuario \textit{u} será denotada como \textit{R$_{u}$}. Cada predicción \textit{r} de \textit{R$_{u}$} es extraída de la predicción \textit{r$_{u}$} de cada matriz de predicciones de cada modelo \textit{R$_{m}$}. Además, todas las matrices de predicción \textit{R} de todos los usuarios \textit{u} serán agrupadas bajo el termino \textit{P$_{u}$}. De esta forma puede afirmarse que \textit{P$_{u}$} esta formada por las distintas predicciones \textit{R$_{u}$}, las cuales a su vez están formadas por las distintas predicciones \textit{r$_{u}$} extraídas de \textit{R$_{m}$}.
+\begin{center}
+    \[  \textit{R$_{m}$} = 
+        \begin{pmatrix}
+            a_{11}  &  a_{12}  &  \cdots   & a_{1j} \\ 
+            a_{21}  &  a_{22}  &  \cdots   & a_{2j}\\ 
+            \vdots  &  \vdots  &  \ddots & \vdots  \\ 
+            a_{u1}  &  a_{u2}  &  \cdots   & a_{uj}
+        \end{pmatrix}
+        \equiv
+        \begin{pmatrix}
+            \begin{pmatrix} a_{1}  &  a_{2}  &  \cdots   & a_{j} \end{pmatrix}_{1} \\ 
+            \begin{pmatrix} a_{1}  &  a_{2}  &  \cdots   & a_{j} \end{pmatrix}_{2} \\ 
+            \vdots \\ 
+            \begin{pmatrix} a_{1}  &  a_{2}  &  \cdots   & a_{j} \end{pmatrix}_{u}
+        \end{pmatrix}
+    \]
+    Predicciones del modelo \textit{m} para \textit{u} usuarios.
+    \\
+    \[  \textit{P$_{m}$}=
+        \begin{pmatrix}
+            \textit{R$_{1}$} & \textit{R$_{2}$} & \cdots & \textit{R$_{m}$}
+        \end{pmatrix}
+        \equiv
+        \begin{pmatrix}
+            \begin{pmatrix}
+                \begin{pmatrix} a_{1}  &  a_{2}  &  \cdots   & a_{j} \end{pmatrix}_{1} \\ 
+                \begin{pmatrix} a_{1}  &  a_{2}  &  \cdots   & a_{j} \end{pmatrix}_{2} \\ 
+                \vdots \\ 
+                \begin{pmatrix} a_{1}  &  a_{2}  &  \cdots   & a_{j} \end{pmatrix}_{u}
+            \end{pmatrix}_{\textit{1}}
+            & 
+            \cdots 
+            &
+            \begin{pmatrix}
+                \begin{pmatrix} a_{1}  &  a_{2}  &  \cdots   & a_{j} \end{pmatrix}_{1} \\ 
+                \begin{pmatrix} a_{1}  &  a_{2}  &  \cdots   & a_{j} \end{pmatrix}_{2} \\ 
+                \vdots \\ 
+                \begin{pmatrix} a_{1}  &  a_{2}  &  \cdots   & a_{j} \end{pmatrix}_{u}
+            \end{pmatrix}_{\textit{m}}
+        \end{pmatrix}
+    \] 
+    Lista de las predicciones de cada modelo \textit{m} para \textit{u} usuarios.
+    \\
+    \[  \textit{R$_{u}$} =
+            \begin{pmatrix}
+                a_{11}  &  a_{12}  &  \cdots   & a_{1j} \\ 
+                a_{21}  &  a_{22}  &  \cdots   & a_{2j}\\ 
+                \vdots  &  \vdots  &  \ddots & \vdots  \\ 
+                a_{m1}  &  a_{m2}  &  \cdots   & a_{mj}
+            \end{pmatrix}
+            \equiv
+            \begin{pmatrix}
+                \begin{pmatrix} a_{1}  &  a_{2}  &  \cdots   & a_{j} \end{pmatrix}_{1} \\ 
+                \begin{pmatrix} a_{1}  &  a_{2}  &  \cdots   & a_{j} \end{pmatrix}_{2} \\ 
+                \vdots \\ 
+                \begin{pmatrix} a_{1}  &  a_{2}  &  \cdots   & a_{j} \end{pmatrix}_{m}
+            \end{pmatrix}
+    \]
+    Predicciones para el usuario \textit{u} realizadas por los \textit{m} modelos.
+    \\
+    \[  
+        \textit{P$_{u}$}=
+        \begin{pmatrix}
+            \textit{R$_{1}$} & \textit{R$_{2}$} & \cdots & \textit{R$_{u}$}
+        \end{pmatrix}
+        \equiv
+        \begin{pmatrix}
+            \begin{pmatrix}
+                \begin{pmatrix} a_{1}  &  a_{2}  &  \cdots   & a_{j} \end{pmatrix}_{1} \\ 
+                \begin{pmatrix} a_{1}  &  a_{2}  &  \cdots   & a_{j} \end{pmatrix}_{2} \\ 
+                \vdots \\ 
+                \begin{pmatrix} a_{1}  &  a_{2}  &  \cdots   & a_{j} \end{pmatrix}_{m}
+            \end{pmatrix}_{\textit{1}}
+            & 
+            \cdots 
+            &
+            \begin{pmatrix}
+                \begin{pmatrix} a_{1}  &  a_{2}  &  \cdots   & a_{j} \end{pmatrix}_{1} \\ 
+                \begin{pmatrix} a_{1}  &  a_{2}  &  \cdots   & a_{j} \end{pmatrix}_{2} \\ 
+                \vdots \\ 
+                \begin{pmatrix} a_{1}  &  a_{2}  &  \cdots   & a_{j} \end{pmatrix}_{m}
+            \end{pmatrix}_{\textit{u}}
+        \end{pmatrix}
+    \] 
+    Lista de las predicciones para cada usuario \textit{u} realizadas por los \textit{m} modelos.
+    \\
+\end{center}
+
+Para concluir con lo anteriormente explicado, este proceso puede definirse como una transformación de las predicciones que da cada modelo para un grupo de usuarios en las predicciones de cada usuario según cada modelo, \textit{P$_{m}$}$\Longrightarrow $\textit{P$_{u}$}. Además, hay que tener en cuenta que el tamaño de las predicciones de cada usuario depende de la cantidad de modelos que participen en la red de aprendizaje federado, de forma que cuantos más modelos participen más predicciones tendrá cada usuario. 
+\\ \\
+El proceso de transformación de \textit{P$_{m}$} en \textit{P$_{u}$} explicado previamente y representado mediante las matrices es un proceso que se lleva a cabo en tres partes, primero el de definición de las variables necesarias, segundo el de predecir de los rankings para los \textit{U} usuarios con los \textit{m} modelos y el tercero en el que estas predicciones de los modelos son reordenadas para agruparlas por usuario y no por modelo. El proceso está representado mediante el algorítmo \ref{algth:PreparacionConsenso}.
+\\ \\
+En este algorítmo la declaración de variables se produce entre las líneas 3 y 9, donde se respeta la nomenclatura utilizada hasta el momento, de forma que, si no se entiende alguna variable se puede acudir a las explicaciones previas para comprender su función. 
+\\ \\
+Después de esto, se realizan las predicciones de los rankings para todos los usuarios generados sinteticamente, donde \textit{P$_{m}$} esta formada por \textit{len(m)} matrices, donde cada matriz \textit{R$_{m}$} representa los valores de ranking \textit{r$_{m}$} que da el modelo \textit{m} para cada usuario \textit{u}.
+\\ \\
+Una vez habiendo completado las predicciones con todos los modelos y haber obtenido la lista de matrices \textit{P$_{m}$}, es el momento de agrupar los datos por usuarios \textit{u} en vez de por modelos \textit{m}, \textit{P$_{m}$}$\Longrightarrow $\textit{P$_{u}$}. Para este proceso se recorre la lista de usuarios sintéticos \textit{U} y las predicciones \textit{r$_{u}$} que cada modelo da para cada uno de ellos. De esta forma se consigue que \textit{P$_{u}$} este formada por \textit{len(U)} matrices, donde cada matriz \textit{R$_{u}$} representa los valores de ranking \textit{r$_{u}$} que ha dado cada modelo \textit{m} para el usuario \textit{u}. 
+\begin{algorithm}[H]
+    \caption{Redistribución de las predicciones}\label{algth:PreparacionConsenso}
+    \begin{algorithmic}[1]
+        \Procedure{Obetener rankings para los usuarios}{}
+            \BState \emph{Declaración de las variables nececsarias}:
+            \State $E \gets [ \dots ]$\Comment{\parbox[t]{0.7\linewidth}{Lista de las estrategias a ordenar}}
+            \\
+            \State $U \gets [ \dots ]$\Comment{\parbox[t]{0.7\linewidth}{Lista de los identificadores de los usuarios sintéticos}}
+            \\
+            \State $P_{u} \gets [ len(U) ]$\Comment{\parbox[t]{0.7\linewidth}{Lista de las predicciones de cada usuario}}
+            \\
+            \State $M \gets [ \dots ]$ \Comment{\parbox[t]{0.7\linewidth}{Lista de los modelos de los participantes}}
+            \\
+            \State $P_{m} \gets [ len(M) ]$ \Comment{\parbox[t]{0.7\linewidth}{Lista de las predicciones de cada modelo}}
+            \\                
+            \BState \emph{Predicciones de los modelos}:
+            \For {$\textit{int}(participante) \gets 0$ \textbf{to} $\textit{range}(len(M))$}
+                \State $R_{m} \gets M[participante].predict(U)$ \Comment{\parbox[t]{0.44\linewidth}{Predecir con el modelo del participante el ranking para los usuarios}}
+                \\
+                \State $P_{m}[participante] \gets R_{m}$ \Comment{\parbox[t]{0.44\linewidth}{Añadir las predicciones del modelo a la lista de todos los participantes}}
+            \EndFor
+            \State end \textbf{for};
+            \\
+            \BState \emph{Redistribución de las predicciones en base a usuarios}:
+            \For {$\textit{int}(usuario) \gets 0$ \textbf{to} $\textit{range}(len(U))$}
+                \State $R_{u} \gets [\dots]$\Comment{\parbox[t]{0.7\linewidth}{Lista de las predicciones para el ususario}}
+                \\
+                \For {$\textit{int}(participante) \gets 0$ \textbf{to} $\textit{range}(len(M))$}
+                    \State $r_{u} \gets P_{m}[participante][usuario]$ \Comment{\parbox[t]{0.4\linewidth}{Predicción del usuario}}
+                    \\
+                    \State $R_{u}[participante] \gets r_{u}$ \Comment{\parbox[t]{0.4\linewidth}{Añadir la predicción a la lista de predicciones del usuario}}
+                \EndFor
+                \State end \textbf{for};
+                \\
+                \State $P_{u}[usuario] \gets R_{u}$ \Comment{\parbox[t]{0.6\linewidth}{Añadir la lista de predicciones del usuario a la lista de predicciones de todos los usuarios}}
+            \EndFor
+            \State end \textbf{for};
+
+        \EndProcedure
+    \end{algorithmic}
+\end{algorithm}
+
+\paragraph{Consensuar predicciones} El proceso de consenso es el proceso clave a la hora de agregar los distintos modelos, ya que es gracias as este proceso que se consiguen los datos para reentrenar los modelos. El proceso parte de la lista \textit{P$_{u}$} formada por \textit{len(U)} predicciones \textit{R$_{u}$}, a las cuales se les aplica una función estadística \textit{func()} sobre los \textit{a$_{j, m}$} elementos de los múltiples rankings para converger en un único valor la diferente lista de valores. Despues de aplicar dicha función sobre todas las columnas \textit{j} de la predicción \textit{R$_{u}$} se consigue unificar cada columna \textit{j} en un único valor representado como \textit{b$_{j}$}, con esto se obtiene una única predicción para el usuario \textit{u}, a la cual denotaremos a partir de ahora como \textit{q$_{u}$}.
+
+\begin{center}
+    \[  \textit{R$_{u}$}=
+        \begin{pmatrix}
+            \begin{pmatrix} a_{1}  &  a_{2}  &  \cdots   & a_{j} \end{pmatrix}_{1} \\ 
+            \begin{pmatrix} a_{1}  &  a_{2}  &  \cdots   & a_{j} \end{pmatrix}_{2} \\ 
+            \vdots \\ 
+            \begin{pmatrix} a_{1}  &  a_{2}  &  \cdots   & a_{j} \end{pmatrix}_{m}
+        \end{pmatrix}
+        \implies
+        \begin{pmatrix}
+            \begin{pmatrix} a_{1}  \\  a_{2}  \\  \vdots   \\ a_{m} \end{pmatrix}_{1} & 
+            \begin{pmatrix} a_{1}  \\  a_{2}  \\  \vdots   \\ a_{m} \end{pmatrix}_{2} & 
+            \cdots &
+            \begin{pmatrix} a_{1}  \\  a_{2}  \\  \vdots   \\ a_{m} \end{pmatrix}_{j}
+        \end{pmatrix}    
+    \]
+    \\
+    \[  \textit{q$_{u}$} = 
+        \begin{pmatrix}
+            \textit{func}\begin{pmatrix} a_{1}  \\  a_{2}  \\  \vdots   \\ a_{m} \end{pmatrix}_{1} & 
+            \textit{func}\begin{pmatrix} a_{1}  \\  a_{2}  \\  \vdots   \\ a_{m} \end{pmatrix}_{2} & 
+            \cdots &
+            \textit{func}\begin{pmatrix} a_{1}  \\  a_{2}  \\  \vdots   \\ a_{m} \end{pmatrix}_{j}
+        \end{pmatrix}   
+    \]
+    \\
+    \[  \textit{q$_{u}$} = 
+        \begin{pmatrix}
+            \textit{func}\begin{pmatrix} a_{1}  &  a_{2}  &  \cdots   & a_{m} \end{pmatrix}_{1} & 
+            \textit{func}\begin{pmatrix} a_{1}  &  a_{2}  &  \cdots   & a_{m} \end{pmatrix}_{2} & 
+            \cdots & 
+            \textit{func}\begin{pmatrix} a_{1}  &  a_{2}  &  \cdots   & a_{m} \end{pmatrix}_{j}
+        \end{pmatrix}
+    \]
+    \\
+    \[  \textit{q$_{u}$} = 
+        \begin{pmatrix}
+            b_{1}  &  b_{2}  &  \cdots   & b_{j} 
+        \end{pmatrix}
+    \]
+\end{center}    
+
+Las funciones para calcular el valor de consenso \textit{b$_{j}$} que se proponen son las métricas estadísticas de la media(\(\bar{x}\)), mediana(\(\tilde{x}\)) y moda (\(\hat{x}\)). En este proyecto se ha descartado la utilización de la media ya que en caso de que los valores \textit{a$_{j, m}$} fueran muy dispares podría distorsionarse bastante el resultado \textit{b} y perder eficiencia. Por ello solo se utilizarán los algoritmos de mediana(\(\tilde{x}\)) y moda (\(\hat{x}\)).
+\begin{center}
+    \[  \textit{q$_{u}$} = 
+        \begin{pmatrix}
+            \widehat{ \begin{pmatrix} a_{1}  &  a_{2}  &  \cdots   & a_{m} \end{pmatrix}_{1}} & 
+            \widehat{ \begin{pmatrix} a_{1}  &  a_{2}  &  \cdots   & a_{m} \end{pmatrix}_{2}}& 
+            \cdots & 
+            \widehat{ \begin{pmatrix} a_{1}  &  a_{2}  &  \cdots   & a_{m} \end{pmatrix}_{j}}
+        \end{pmatrix}
+    \]
+    Representación del consenso por moda
+    \\
+    \[  \textit{q$_{u}$} = 
+        \begin{pmatrix}
+            \widetilde{ \begin{pmatrix} a_{1}  &  a_{2}  &  \cdots   & a_{m} \end{pmatrix}_{1}} & 
+            \widetilde{ \begin{pmatrix} a_{1}  &  a_{2}  &  \cdots   & a_{m} \end{pmatrix}_{2}}& 
+            \cdots & 
+            \widetilde{ \begin{pmatrix} a_{1}  &  a_{2}  &  \cdots   & a_{m} \end{pmatrix}_{j}}
+        \end{pmatrix}
+    \]
+    Representación del consenso por mediana
+\end{center}    
+Con el objetivo de crear una función más precisa de consenso se elaboro un método híbrido el cual combina tanto la métrica de la moda como la de la mediana. Este método funciona de la siguiente forma: en primer lugar lee la lista de elementos \textit{a$_{j, m}$} y si existe algún valor duplicado más de \textit{len(m)/2} veces automáticamente asigna ese valor como \textit{b$_{j}$}, de lo contrario calcularía la mediana de la lista y asignaría ese valor como \textit{b$_{j}$}. Se podrían tomar otras decisiones en función de la desviación típica de la lista e incluso desarrollar un algoritmo más complejo para optimizar este proceso, pero dicha tarea se sale del alcance del proyecto.
+\\ \\
+Como elemento adicional se ha considerado la posibilidad de otorgar un peso al modelo \textit{m} de cualquier participante en concreto, de forma que este tenga más repercusión en el resultado del consenso. Este peso solo será otorgado al modelo que sea más afín al usuario sintético, lo que puede ser calculado por una función o seleccionado por algún atributo en concreto (país, puesto de trabajo, género, etc.). En este caso este peso se da en función del atributo país, de forma que el modelo del país correspondiente al usuario sintético creado será el que tenga más trascendencia a la hora de elaborar el ranking consensuado. Este peso será representado como \textit{W$_{c}$} y su valor será un número entero de rango 0 $\leq$ \textit{W$_{c}$} $\leq$ \textit{len(m)/2 +1}. Este rango permite no añadir ninguna importancia extra a ningún modelo \textit{m} o permitir que sea este modelo en exclusiva el que genere el ranking para este usuario \textit{u}, ya que debido a la función de consenso, cuando existen \textit{len(m)/2 +1} veces un valor en una lista de elementos \textit{a$_{j, m}$} este valor es asignado automáticamente por ser moda.
+
+
+\paragraph{Normalización del consenso}
+El problema es que en función de la formula que se aplique el rango de \textit{q$_{u}$} puede que no permanezca dentro del rango de \textit{E}, lo que nos impide afirmar que el valor \textit{b} de cada estrategia entre dentro del intervalo 0$<$
+\textit{a$_{q}$ }$\leq$\textit{ j}. Para solucionar este problema se procesan los valores \textit{a$_{qj}$ } de \textit{q$_{u}$} para que estos permanezcan dentro del rango. Este proceso se realiza intercambiando el valor \textit{a$_{qj}$ } menor por el valor del ranking menor disponible, como se puede ver en el algoritmo \ref{algth:NormalizarConsenso}.
+
+\begin{algorithm}[H]
+    \caption{Normalización de los datos del consenso}\label{algth:NormalizarConsenso}
+    \begin{algorithmic}[1]
+        \Procedure{Normalizacion del consenso}{}
+            \BState \emph{Declaración de las variables nececsarias}:
+            \State $Indice \gets 1$\Comment{\parbox[t]{0.75\linewidth}{Se inicializa el elemento más importante del ranking como 1}}
+            \\
+            \State $q_{u} \gets [\cdots]$\Comment{\parbox[t]{0.75\linewidth}{Valores del ranking consensuado}}
+            \State $aux \gets q_{u}$\Comment{\parbox[t]{0.75\linewidth}{Varaible auxiliar}}
+            \\                
+            \BState \emph{Normalización del consenso}:
+            \For {$\textit{int}(i) \gets 0$ \textbf{to} $\textit{len}(aux)$}
+                \State $posicion \gets whereIsMin(aux)$ \Comment{\parbox[t]{0.44\linewidth}{Posición de la lista donde está el menor elemento}}
+                \\
+                \State $q_{u}[posicion] \gets Indice$ \Comment{\parbox[t]{0.5\linewidth}{Se normaliza el valor del ranking}}
+                \\
+                \State $\textit{drop}(aux[posicion])$ \Comment{\parbox[t]{0.5\linewidth}{Se elimina el elemento asignado de la lista de los siguientes a normalizar.}}
+                \\
+                \State $Indice \gets Indice + 1$ \Comment{\parbox[t]{0.5\linewidth}{Se incrementa el índice para asignar la siguiente posición del ranking}}
+            \EndFor
+            \State end \textbf{for};
+
+            \State \textbf{return} $q_{u}$;
+
+        \EndProcedure
+    \end{algorithmic}
+\end{algorithm}
+
+
 
 \subsubsection{Exportación de datos}
 
+
 \subsubsection{Reentrenado}
+
+\newpage
+
+% La lista de elementos a ser ordenados por los modelos LightFM son los siguientes:
+% \begin{alignat*}{1}
+% strats = \begin{bmatrix} ''v2'' & ''v5'' & ''v6'' & ''v7'' & ''v10'' & ''v11'' & ''v15'' & ''v17'' & ''v19'' & ''v20'' \end{bmatrix} 
+% & \\
+% \parbox[t]{8cm}{\raggedright Lista de estrategias a clasificar del 1 a n} \nonumber
+% \end{alignat*}
+% En esta lista solo aparecen los elementos más relevantes de las encuestas, ya que (nidea)
+% %%
+
+% \begin{align*}
+% %%
+% i && \parbox[t]{8cm}{\raggedright Número de modelos LightFM} \nonumber 
+% %%
+% && \\
+% %%
+% n && \parbox[t]{8cm}{\raggedright Número de elementos a incluir en el ranking} \nonumber 
+% %%
+% && \\
+% %%
+% m && \parbox[t]{8cm}{\raggedright Número de epochs sobre cada dataset} \nonumber
+% %%
+% && \\
+% %%
+% a_{mn} && \parbox[t]{8cm}{\raggedright Índice del elemento n de la lista de strats en el ranking calculado en la epoch m} \nonumber
+% %%
+% && \\
+% %%
+% matriz_{i[m,n]}= \begin{pmatrix}
+%  a_{11}  &  a_{12}  &  \cdots   & a_{1n} \\ 
+%  a_{21}  &  a_{22}  &  \cdots   & a_{2n}\\ 
+%  \vdots  &  \vdots  &  \ddots & \vdots  \\ 
+%  a_{m1}  &  a_{m2}  &  \cdots   & a_{mn}
+% \end{pmatrix}  && \parbox[t]{8cm}{\raggedright Matriz numpy de los resultados de la predicción del modelo i} \nonumber
+% %%
+% && \\ \\
+% %%
+% prediction_{m[1,n]}= \begin{bmatrix} a_{1}  &  a_{2}  &  \cdots   & a_{n} \end{bmatrix} && \parbox[t]{8cm}{\raggedright Lista de los índices de los n strat para el ranking del epoch m} \nonumber
+% %%
+% \\ \\
+% Predictions_{i[m,n]} = \begin{bmatrix}
+%  \begin{bmatrix} a_{11}  &  a_{12}  &  \cdots   & a_{1n} \end{bmatrix} \\ 
+%  \begin{bmatrix} a_{21}  &  a_{22}  &  \cdots   & a_{2n} \end{bmatrix}\\ 
+%  \vdots \\ 
+%  \begin{bmatrix} a_{m1}  &  a_{m2}  &  \cdots   & a_{mn} \end{bmatrix}
+% \end{bmatrix} && \parbox[t]{8cm}{\raggedright Lista de predicciones del modelo i por cada epoch m} \nonumber
+% %%
+% && \\ \\
+% %%
+% ndpms_{i[1,m]}= \begin{bmatrix} ndpm_{1}  &  ndpm_{2}  &  \cdots   & ndpm_{m} \end{bmatrix} && \parbox[t]{8cm}{\raggedright Lista de NDPMs calculados sobre las predicciones de cada epoch m del  modelo i LightFM} \nonumber
+% \end{align*}
+% \\ \\
+% %%
+% Si se desagrupan las predicciones realizadas por cada epoch m y se agrupan en función de cada strat n tendremos la lista de valores que el modelo i da a cada uno de los elementos n de la lista de los strat. Esto quiere decir que si se agrupan en función del elemento que se ordena en el ranking en vez de en por predicción se obtendrá la lista de todas las predicciones de posición para cada uno de los elementos a ordenar.
+% \begin{alignat*}{1}
+% \parbox[t]{8cm}{\raggedright }\nonumber & \\
+% Predictions_{i[m,n]}= \begin{bmatrix}
+% \begin{bmatrix} a_{11} \\ a_{21} \\ \vdots \\ a_{m1} \end{bmatrix} 
+% & \begin{bmatrix} a_{12} \\ a_{22} \\ \vdots \\ a_{m2} \end{bmatrix} 
+% & \cdots
+% & \begin{bmatrix} a_{1n} \\ a_{2n} \\ \vdots \\ a_{mn} \end{bmatrix} 
+% \end{bmatrix}
+% \end{alignat*}
+% Una vez teniendo la lista de los valores para cada elemento se pueden aplicar métodos estadísticos como la media(\(\bar{x}\)), mediana(\(\tilde{x}\)) o moda (\(\hat{x}\)) para crear una única predicción consensuada para el modelo i al que pertenecen estas predicciones. Esta predicción consensuada permitirá combinar los rankings generados durante cada epoch para poder obtener la máxima precisión posible y la mínima desviación típica.
+% \begin{alignat*}{2}
+% \bar{x}   &  \parbox[t]{8cm}{\raggedright Media} \nonumber \\
+% \tilde{x} & \parbox[t]{8cm}{\raggedright Mediana} \nonumber \\
+% \hat{x}   & \parbox[t]{8cm}{\raggedright Moda} \nonumber
+% \end{alignat*}
+% Consenso por media de las m predicciones para el modelo i:
+% \begin{alignat*}{1}
+% \overline{consensous_{i[1,m]}}= \begin{bmatrix} \overline{a_{11}} &  \overline{a_{21}}  &  \cdots   & \overline{a_{m1}} \end{bmatrix} 
+% \end{alignat*}
+% \\
+% Consenso por mediana de las m predicciones para el modelo i:
+% \begin{alignat*}{1}
+% \widetilde{consensous_{i[1,m]}}= \begin{bmatrix} \widetilde{a_{11}} &  \widetilde{a_{21}}  &  \cdots   & \widetilde{a_{m1}} \end{bmatrix} 
+% \end{alignat*}
+% \\
+% Consenso por moda de las m predicciones para el modelo i:
+% \begin{alignat*}{1}
+% \widehat{consensous_{i[1,m]}}= \begin{bmatrix} \widehat{a_{11}} &  \widehat{a_{21}}  &  \cdots   & \widehat{a_{m1}} \end{bmatrix} 
+% \end{alignat*}
+%%
+% \\ \\ \\
+
