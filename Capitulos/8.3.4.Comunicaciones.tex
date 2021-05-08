@@ -1,5 +1,5 @@
 \subsection{Securización de las comunicaciones} \label{SegCom}
-Para preservar la seguridad y privacidad en el protocolo de aprendizaje federado propuesto es imprescindible securizar las comunicaciones. Para securizarlas se han llevado a cabo dos acciones clave, la primera en lo que concierne al protocolo de comunicación y la segunda en cuanto al cifrado de la comunicación.
+Para preservar la seguridad y privacidad en el protocolo de aprendizaje federado propuesto es imprescindible securizar las comunicaciones. Para securizar las comunicaciones se han llevado a cabo dos acciones clave, la primera en lo que concierne al protocolo de comunicación y la segunda en cuanto al cifrado de la comunicación.
 
 \subsubsection{Protocolo de comunicación}
 En cuanto al protocolo de comunicación se ha optado por la utilización del protocolo SCP (Secure Copy Protocol), conocido en español como protocolo de copia segura. Este protocolo requiere del protocolo SSH (Secure Shell), conocido en español como terminal seguro.
@@ -23,19 +23,19 @@ El cifrado asimétrico es aquel sistema de cifrado que consta de dos claves crip
 \\ \\
 Este sistema cuenta con tres grandes desventajas que impiden su uso en exclusivo o su uso con grandes volúmenes de información a cifrar. 
 \begin{itemize}
-    \item Se necesita más procesado de computo para generar la clave.
+    \item Se necesita más procesado de cómputo para generar la clave.
     \item Las claves asimétricas son mucho más grandes que las simétricas.
     \item El mensaje cifrado ocupa más espacio que el original.
 \end{itemize}
 
-Debido a que los dispositivos con los que se cuenta no tienen una gran capacidad de computo no se podría establecer un tamaño de clave lo suficientemente grande como para poder cifrar el modelo de inteligencia artificial completo. Este modelo pesa al rededor de los 7Kb y para cifrarlo con este sistema habría que generar una clave del mismo tamaño mayor.
+Debido a que los dispositivos con los que se cuenta no tienen una gran capacidad de cómputo no se podría establecer un tamaño de clave lo suficientemente grande como para poder cifrar el modelo de inteligencia artificial completo. Este modelo pesa alrededor de los 7Kb y para cifrarlo con este sistema habría que generar una clave del mismo tamaño mayor.
 \\ \\
 Sin embargo, este sistema al constar de dos claves independientes es más sencillo salvaguardar la privacidad y seguridad de los integrantes.
 
 \paragraph{Cifrado híbrido}
 Teniendo en cuenta los anteriores dos tipos de cifrado se decidió utilizar el sistema híbrido para obtener los resultados más óptimos, protegiendo la privacidad y pudiendo realizar las tareas de cifrado desde dispositivos con menor capacidad computacional.
 \\ \\ 
-El proceso de cifrado se ha realizado de acorde al diagrama de flujo representado en la figura \ref{fig:Flow_Encryption}. En este diagrama se pueden observar los pasos que se han realizado para la encriptación de la información, en primer lugar el modelo de LightFM se convertió a bytes y se comprimió para reducir el volumen de datos a enviar por la red, pudiendo agilizar así las comunicaciones. Después se cifró simétricamente, generando una clave y un mensaje cifrado. Por un lado este mensaje cifrado sería comprimido y se guardaría en un fichero para su posterior envío. Por otro lado, la clave de cifrado simétrica se encriptó asimetricamente con la clave pública del receptor del mensaje, dando como resultado una clave de cifrado simétrico cifrada asimetricamente. Esta clave sería guardada en un fichero para ser enviada al igual que el mensaje.
+El proceso de cifrado se ha realizado de acuerdo al diagrama de flujo representado en la figura \ref{fig:Flow_Encryption}. En este diagrama se pueden observar los pasos que se han realizado para la encriptación de la información, en primer lugar el modelo de LightFM se convirtió a bytes y se comprimió para reducir el volumen de datos a enviar por la red, pudiendo agilizar así las comunicaciones. Después se cifró simétricamente, generando una clave y un mensaje cifrado. Por un lado este mensaje cifrado sería comprimido y se guardaría en un fichero para su posterior envío. Por otro lado, la clave de cifrado simétrica se encriptó asimétricamente con la clave pública del receptor del mensaje, dando como resultado una clave de cifrado simétrico cifrada asimétricamente. Esta clave sería guardada en un fichero para ser enviada al igual que el mensaje.
 \begin{figure}[H]
     \centering
     \includegraphics[height=0.6\textheight]{Figuras/flowchart_encryption.png}    
@@ -45,7 +45,7 @@ El proceso de cifrado se ha realizado de acorde al diagrama de flujo representad
 
 
 \subsubsection{Descifrado del mensaje}
-El descifrado del mensaje es el proceso inverso al cifrado de la figura \ref{fig:Flow_Encryption}. Para ello, en un primer momento se reciben tanto el modelo cifrado simétricamente como la clave del modelo cifrada asimétricamente. En primer lugar, la clave que se ha recibido se descifra asimétricamente con la clave privada propia, ya que esta solo es descifrable por el receptor. Una vez descifrada la clave, se descomprime el modelo y se descifra con esta. Por último, el resultado es descomprimido y convertido a objeto LightFM para su posterior utilización. 
+El descifrado del mensaje es el proceso inverso al cifrado de la figura \ref{fig:Flow_Encryption}. Para ello, en un primer momento se reciben tanto el modelo cifrado simétricamente como la clave del modelo cifrada asimétricamente. En primer lugar, la clave que se ha recibido se descifra asimétricamente con la clave privada propia, ya que esta sólo es descifrable por el receptor. Una vez descifrada la clave, se descomprime el modelo y se descifra con esta. Por último, el resultado es descomprimido y convertido a objeto LightFM para su posterior utilización. 
 \begin{figure}[H]
     \centering
     \includegraphics[height=0.6\textheight]{Figuras/flowchart_decryption.png}    
