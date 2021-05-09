@@ -32,6 +32,7 @@ La comunicación puede ser llevada a cabo de diferentes maneras, de hecho, hay d
 Además, estos autores definen un parámetro de población con el objetivo de limitar el acceso en caso de que haya muchos participantes, evitando que se conecten a la vez y saturen la red.
 
 \section{Problemas presentes}
+\subsection{Técnicos}
 Como se ha mencionado antes, implementar el aprendizaje federado implica problemas y costes que hay que asumir y tratar con el objetivo de crear un sistema eficiente y estable. 
 \\ \\
 Cada actualización del modelo conlleva millones de parámetros, además se llevan tantas actualizaciones a cabo como precisión se quiera en el modelo. La gran dimensión de las actualizaciones puede incurrir en un aumento de los costes de conexión y generar un cuello de botella que puede verse agravado por los participantes, ya sea por la asimetría en las velocidades de internet o por la asimetría en la capacidad de cómputo. Es por eso, que para mejorar el rendimiento y reducir el coste de comunicación se deben considerar varias cosas.
@@ -41,3 +42,23 @@ Cada actualización del modelo conlleva millones de parámetros, además se llev
     \item También se puede reducir el tamaño de las comunicaciones, ya sea por compresión del modelo, compresión de los datos, o por el uso de una pequeña muestra representativa de estos en vez de enviarlos por completo.
     \item Por último, se pueden minimizar las actualizaciones de los modelos en base a la importancia de estas. Evitando enviar el modelo global hasta que este no suponga una clara mejora para los participantes.
 \end{itemize}
+
+\subsection{Privacidad}
+Uno de los objetivos principales del Federated Learning es la protección de la privacidad de los usuarios. Los usuarios solo necesitan compartir los parámetros del modelo de ML, en lugar de compartir los datos reales. No obstante, varios estudios han demostrado que estos modelos aún pueden ser susceptibles a ataques informáticos que puedan extraer datos reales.
+\\ \\
+Véase un ejemplo de vulnerabilidad con FaceScrub, un dataset con más de cien mil imágenes de caras de 530 personas. Mientras se desarrollaba el modelo ML, los desarrolladores se percataron de que, tan solo con inspeccionar el modelo ML, los atacantes podían extraer el 90\% de la información real.
+\\ \\
+Por mucho que se haya avanzado en el desarrollo de modelos que protejan a los usuarios contra posibles ataques informáticos, esta susceptibilidad a exploits aun sigue patente. Con tan solo acceder al modelo ML de un sistema de reconocimiento por voz, es posible lograr extraer datos como la etnia o género de los usuarios \autocite{melis2018exploiting}. 
+\\ \\
+En un artículo publicado por expertos en ciberseguridad, se especifica otro caso en el que, mediante ataques relativamente sencillos contra plataformas de la talla de Amazon Machine Learning, es posible extraer modelos basados en árboles de decisión o en regresión logística \autocite{tramèr2016stealing}.
+
+\subsection{Seguridad}
+Los modelos de datos de Federated Learning son también susceptibles a ataques de envenenamiento de datos. Un participante puede ir entrenando datos y enviándolos al servidor para su posterior procesamiento y análisis. Sin embargo, otro participante puede crear una serie de datos corruptos y enviarlos al servidor con el fin de generar falsos parámetros. Este tipo de ataques, con la desclasificación de los procesos Deep Learning como principal objetivo, tienen una posibilidad de éxito del 90\% si se ejecutan bien \autocite{armknechtGuideFullyHomomorphic2015}.
+\\ \\
+A diferencia de los ataques de envenenamiento de datos, cuyo objetivo es la generación de datos corruptos para alterar el resultado del modelo generado, los ataques de envenenamiento por modelo buscan alterar el modelo generado en su totalidad. Cuando el modelo de datos generado a través de Federated Learning es muy grande y cuenta con una gran cantidad de participantes, este tipo de ataque tiende a ser más exitoso \autocite{bhagoji2019analyzing}.
+\\ \\
+El motivo del éxito de este método es que la alteración y generación de datos corruptos para el ataque mencionado anteriormente depende directamente de la cantidad de datos que se encuentre en el servidor. Al contrario, en el caso de este tipo de ataques, el modelo generado es envenenado en su totalidad, independientemente de la cantidad de datos que este albergue.
+\\ \\
+Existen maneras de prevenir este ataque, como por ejemplo, analizando si el modelo generado por un participante puede ayudar a mejorar el modelo global de datos. Si se da el caso de que no, este modelo será marcado como potencialmente peligroso, y se analizarán los cambios realizados en el modelo de manera exhaustiva para comprobar si se trata de un atacante. 
+\\ \\ 
+Otra solución parecida consiste en recorrer el servidor y ver si un modelo es muy diferente del resto de modelos. Si es muy diferente, se realiza un análisis de este para comprobar de primera mano si se trata de un atacante.
