@@ -1,0 +1,24 @@
+
+Cryptology ePrint Archive: Report 2015/1192
+
+A Guide to Fully Homomorphic Encryption
+
+Frederik Armknecht and Colin Boyd and Christopher Carr and Kristian Gjøsteen and Angela Jäschke and Christian A. Reuter and Martin Strand
+
+Abstract: Fully homomorphic encryption (FHE) has been dubbed the holy grail of cryptography, an elusive goal which could solve the IT world's problems of security and trust. Research in the area exploded after 2009 when Craig Gentry showed that FHE can be realised in principle. Since that time considerable progress has been made in finding more practical and more efficient solutions. Whilst research quickly developed, terminology and concepts became diverse and confusing so that today it can be difficult to understand what the achievements of different works actually are. The purpose of this paper is to address three fundamental questions: What is FHE? What can FHE be used for? What is the state of FHE today? As well as surveying the field, we clarify different terminology in use and prove connections between different FHE notions.
+
+Category / Keywords: public-key cryptography / Fully Homomorphic Encryption, Applications of (Fully) Homomorphic Encryption, Definitions of (Fully) Homomorphic Encryption, Survey of (Fully) Homomorphic Encryption Schemes
+
+Date: received 14 Dec 2015, last revised 14 Sep 2016
+
+Contact author: reuter at uni-mannheim de
+
+Available format(s): PDF | BibTeX Citation
+
+Note: Updated the acknowledgements.
+
+Version: 20160914:161519 ( All versions of this report )
+
+Short URL: ia.cr/2015/1192
+
+[ Cryptology ePrint archive ] 
