@@ -1,1 +1,292 @@
 \section{Estudio de resultados}
+
+\newtoggle{inTableHeader}% Track if still in header of table
+\toggletrue{inTableHeader}% Set initial value
+\newcommand*{\StartTableHeader}{\global\toggletrue{inTableHeader}}%
+\newcommand*{\EndTableHeader}{\global\togglefalse{inTableHeader}}%
+
+\begin{table}[H]
+    \begin{center}
+    %Se centra la tabla.
+        \begin{tabular}{|c|c|}
+            % -------------
+            \hline
+            \rowcolor{Cyan} 
+            % -------------
+            \textbf{Participantes} & \textbf{NDPMs} \\ 
+            % -------------
+            \hline
+            % -------------
+            \textbf{1} & 0.134249 \\
+            \hline
+            % -------------
+            \rowcolor{GrisTabla}
+            \textbf{2} & 0.175 \\
+            \hline
+            % -------------
+            \textbf{3} & 0.128981 \\
+            \hline
+            % -------------
+            \rowcolor{GrisTabla}
+            \textbf{4} & 0.182858 \\
+            \hline
+            % -------------
+        \end{tabular}
+        \caption{\centering Valores NDPM para el modelo de cada participante.}\label{tab:NDPM_PARTICIPANTES}
+    \end{center}    
+\end{table}
+
+{
+    % Redefine tabular to initialize \StartTableHeader at start and end
+    \let\OldTabular\tabular%
+    \let\OldEndTabular\endtabular%
+    \renewenvironment{tabular}{\StartTableHeader\OldTabular}{\OldEndTabular\StartTableHeader}%
+
+    %The min, mid and max values
+    \newcommand*{\MinNumber}{0.085}%
+    \newcommand*{\MidNumber}{0.135} %
+    \newcommand*{\MaxNumber}{0.185}%
+
+    %Apply the gradient macro
+    \newcommand{\ApplyGradient}[1]{%
+    \iftoggle{inTableHeader}{#1}{
+        \ifdim #1 pt > \MidNumber pt
+            \pgfmathsetmacro{\PercentColor}{max(min(100.0*(#1 - \MidNumber)/(\MaxNumber-\MidNumber),100.0),0.00)} %
+            \hspace{-0.33em}\colorbox{red!\PercentColor!yellow}{#1}
+        \else
+            \pgfmathsetmacro{\PercentColor}{max(min(100.0*(\MidNumber - #1)/(\MidNumber-\MinNumber),100.0),0.00)} %
+            \hspace{-0.33em}\colorbox{green!\PercentColor!yellow}{#1}
+        \fi
+    }}
+
+    \newcolumntype{R}{>{\collectcell\ApplyGradient}c<{\endcollectcell}}
+    \renewcommand{\arraystretch}{0}
+    \setlength{\fboxsep}{3mm} % box size
+    \setlength{\tabcolsep}{0pt}
+
+    \begin{table}[H]
+        \begin{center}
+        %Se centra la tabla.
+            \begin{tabular}{|c|*{1}{R}|*{1}{R}|*{1}{R}|*{1}{R}|}
+                % -------------
+                \hline
+                \rowcolor{Cyan} 
+                % -------------
+                \backslashbox{\textbf{Cantidad de} \\\strut \textbf{usuarios sintéticos}}{\textbf{Weight$_c$}} & \textbf{0} &\textbf{1} & \textbf{2} & \textbf{3} \EndTableHeader\\ 
+                % -------------
+                \hline
+                % -------------
+                \textbf{10} & 0.150648 & 0.150990 & 0.141120 & 0.145527 \\
+                \hline
+                % -------------
+                \rowcolor{GrisTabla}
+                \textbf{25} & 0.156796 & 0.152361 & 0.150703 & 0.142870 \\
+                \hline
+                % -------------
+                \textbf{50} & 0.151046 & 0.150361 & 0.164583 & 0.165685 \\
+                \hline
+                % -------------
+                \rowcolor{GrisTabla}
+                \textbf{75} & 0.147787 & 0.142851 & 0.155629 & 0.157259 \\
+                \hline
+                % -------------
+                \textbf{100} & 0.148185 & 0.141055 & 0.147675 & 0.153000 \\
+                \hline
+                % -------------
+            \end{tabular}
+            \caption{\centering Valores NDPM para el modelo del participante 1 reentrenado.}\label{tab:NDPM_PARTICIPANTE_1}
+        \end{center}    
+    \end{table}
+}
+
+
+{
+    % Redefine tabular to initialize \StartTableHeader at start and end
+    \let\OldTabular\tabular%
+    \let\OldEndTabular\endtabular%
+    \renewenvironment{tabular}{\StartTableHeader\OldTabular}{\OldEndTabular\StartTableHeader}%
+
+    %The min, mid and max values
+    \newcommand*{\MinNumber}{0.125}%
+    \newcommand*{\MidNumber}{0.175} %
+    \newcommand*{\MaxNumber}{0.225}%
+
+    %Apply the gradient macro
+    \newcommand{\ApplyGradient}[1]{%
+    \iftoggle{inTableHeader}{#1}{
+        \ifdim #1 pt > \MidNumber pt
+            \pgfmathsetmacro{\PercentColor}{max(min(100.0*(#1 - \MidNumber)/(\MaxNumber-\MidNumber),100.0),0.00)} %
+            \hspace{-0.33em}\colorbox{red!\PercentColor!yellow}{#1}
+        \else
+            \pgfmathsetmacro{\PercentColor}{max(min(100.0*(\MidNumber - #1)/(\MidNumber-\MinNumber),100.0),0.00)} %
+            \hspace{-0.33em}\colorbox{green!\PercentColor!yellow}{#1}
+        \fi
+    }}
+
+    \newcolumntype{R}{>{\collectcell\ApplyGradient}c<{\endcollectcell}}
+    \renewcommand{\arraystretch}{0}
+    \setlength{\fboxsep}{3mm} % box size
+    \setlength{\tabcolsep}{0pt}
+
+    \begin{table}[H]
+        \begin{center}
+        %Se centra la tabla.
+            \begin{tabular}{|c|*{1}{R}|*{1}{R}|*{1}{R}|*{1}{R}|}
+                % -------------
+                \hline
+                \rowcolor{Cyan} 
+                % -------------
+                \backslashbox{\textbf{Cantidad de} \\\strut \textbf{usuarios sintéticos}}{\textbf{Weight$_c$}} & \textbf{0} &\textbf{1} & \textbf{2} & \textbf{3} \EndTableHeader\\ 
+                % -------------
+                \hline
+                % -------------
+                \textbf{10} & 0.161518 & 0.184962 & 0.153629 & 0.157370 \\
+                \hline
+                % -------------
+                \rowcolor{GrisTabla}
+                \textbf{25} & 0.140925 & 0.182296 & 0.162222 & 0.176592 \\
+                \hline
+                % -------------
+                \textbf{50} & 0.137148 & 0.139962 & 0.189740 & 0.198000 \\
+                \hline
+                % -------------
+                \rowcolor{GrisTabla}
+                \textbf{75} & 0.143148 & 0.146111 & 0.158185 & 0.193777 \\
+                \hline
+                % -------------
+                \textbf{100} & 0.143148 & 0.146111 & 0.140666 & 0.190000 \\
+                \hline
+                % -------------
+            \end{tabular}
+            \caption{\centering Valores NDPM para el modelo del participante 2 reentrenado.}\label{tab:NDPM_PARTICIPANTE_2}
+        \end{center}    
+    \end{table}
+}
+
+
+{
+    % Redefine tabular to initialize \StartTableHeader at start and end
+    \let\OldTabular\tabular%
+    \let\OldEndTabular\endtabular%
+    \renewenvironment{tabular}{\StartTableHeader\OldTabular}{\OldEndTabular\StartTableHeader}%
+
+    %The min, mid and max values
+    \newcommand*{\MinNumber}{0.079}%
+    \newcommand*{\MidNumber}{0.129} %
+    \newcommand*{\MaxNumber}{0.179}%
+
+    %Apply the gradient macro
+    \newcommand{\ApplyGradient}[1]{%
+    \iftoggle{inTableHeader}{#1}{
+        \ifdim #1 pt > \MidNumber pt
+            \pgfmathsetmacro{\PercentColor}{max(min(100.0*(#1 - \MidNumber)/(\MaxNumber-\MidNumber),100.0),0.00)} %
+            \hspace{-0.33em}\colorbox{red!\PercentColor!yellow}{#1}
+        \else
+            \pgfmathsetmacro{\PercentColor}{max(min(100.0*(\MidNumber - #1)/(\MidNumber-\MinNumber),100.0),0.00)} %
+            \hspace{-0.33em}\colorbox{green!\PercentColor!yellow}{#1}
+        \fi
+    }}
+
+    \newcolumntype{R}{>{\collectcell\ApplyGradient}c<{\endcollectcell}}
+    \renewcommand{\arraystretch}{0}
+    \setlength{\fboxsep}{3mm} % box size
+    \setlength{\tabcolsep}{0pt}
+
+    \begin{table}[H]
+        \begin{center}
+        %Se centra la tabla.
+            \begin{tabular}{|c|*{1}{R}|*{1}{R}|*{1}{R}|*{1}{R}|}
+                % -------------
+                \hline
+                \rowcolor{Cyan} 
+                % -------------
+                \backslashbox{\textbf{Cantidad de} \\\strut \textbf{usuarios sintéticos}}{\textbf{Weight$_c$}} & \textbf{0} &\textbf{1} & \textbf{2} & \textbf{3} \EndTableHeader\\ 
+                % -------------
+                \hline
+                % -------------
+                \textbf{10} & 0.126768 & 0.154416 & 0.162203 & 0.162083 \\
+                \hline
+                % -------------
+                \rowcolor{GrisTabla}
+                \textbf{25} & 0.136388 & 0.131435 & 0.144472 & 0.121000 \\
+                \hline
+                % -------------
+                \textbf{50} & 0.128453 & 0.134694 & 0.172870 & 0.163768 \\
+                \hline
+                % -------------
+                \rowcolor{GrisTabla}
+                \textbf{75} & 0.139620 & 0.138666 & 0.151481 & 0.190740 \\
+                \hline
+                % -------------
+                \textbf{100} & 0.139620 & 0.137333 & 0.152324 & 0.175555 \\
+                \hline
+                % -------------
+            \end{tabular}
+            \caption{\centering Valores NDPM para el modelo del participante 3 reentrenado.}\label{tab:NDPM_PARTICIPANTE_3}
+        \end{center}    
+    \end{table}
+}
+
+
+{
+    % Redefine tabular to initialize \StartTableHeader at start and end
+    \let\OldTabular\tabular%
+    \let\OldEndTabular\endtabular%
+    \renewenvironment{tabular}{\StartTableHeader\OldTabular}{\OldEndTabular\StartTableHeader}%
+
+    %The min, mid and max values
+    \newcommand*{\MinNumber}{0.135}%
+    \newcommand*{\MidNumber}{0.185} %
+    \newcommand*{\MaxNumber}{0.235}%
+
+    %Apply the gradient macro
+    \newcommand{\ApplyGradient}[1]{%
+    \iftoggle{inTableHeader}{#1}{
+        \ifdim #1 pt > \MidNumber pt
+            \pgfmathsetmacro{\PercentColor}{max(min(100.0*(#1 - \MidNumber)/(\MaxNumber-\MidNumber),100.0),0.00)} %
+            \hspace{-0.33em}\colorbox{red!\PercentColor!yellow}{#1}
+        \else
+            \pgfmathsetmacro{\PercentColor}{max(min(100.0*(\MidNumber - #1)/(\MidNumber-\MinNumber),100.0),0.00)} %
+            \hspace{-0.33em}\colorbox{green!\PercentColor!yellow}{#1}
+        \fi
+    }}
+
+    \newcolumntype{R}{>{\collectcell\ApplyGradient}c<{\endcollectcell}}
+    \renewcommand{\arraystretch}{0}
+    \setlength{\fboxsep}{3mm} % box size
+    \setlength{\tabcolsep}{0pt}
+
+    \begin{table}[H]
+        \begin{center}
+        %Se centra la tabla.
+            \begin{tabular}{|c|*{1}{R}|*{1}{R}|*{1}{R}|*{1}{R}|}
+                % -------------
+                \hline
+                \rowcolor{Cyan} 
+                % -------------
+                \backslashbox{\textbf{Cantidad de} \\\strut \textbf{usuarios sintéticos}}{\textbf{Weight$_c$}} & \textbf{0} &\textbf{1} & \textbf{2} & \textbf{3} \EndTableHeader\\ 
+                % -------------
+                \hline
+                % -------------
+                \textbf{10} & 0.170958 & 0.182569 & 0.186999 &  0.183838 \\
+                \hline
+                % -------------
+                \rowcolor{GrisTabla}
+                \textbf{25} & 0.168655 & 0.184816 &  0.183427 & 0.186838 \\
+                \hline
+                % -------------
+                \textbf{50} & 0.165097 & 0.167861 & 0.213086 &  0.197744 \\
+                \hline
+                % -------------
+                \rowcolor{GrisTabla}
+                \textbf{75} & 0.174583 & 0.178786 & 0.194627 & 0.187638 \\
+                \hline
+                % -------------
+                \textbf{100} & 0.179616 & 0.175849 & 0.197661 & 0.194558 \\
+                \hline
+                % -------------
+            \end{tabular}
+            \caption{\centering Valores NDPM para el modelo del participante 4 reentrenado.}\label{tab:NDPM_PARTICIPANTE_4}
+        \end{center}    
+    \end{table}
+}
