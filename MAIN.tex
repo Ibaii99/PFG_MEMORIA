@@ -123,6 +123,13 @@
 \makeatother
 
 \usepackage{multicol}
+\usepackage{eurosym}
+\usepackage{slashbox}
+\usepackage{adjustbox}
+
+\usepackage{tikz}
+\usepackage{collcell}
+\usepackage{etoolbox}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% PROPIEDADES DEL DOCUMENTO (Funciones específicas) %%%%
@@ -146,11 +153,13 @@
                 Capitulos/1.Intro,
                 Capitulos/2.AntecedentesJustificacion, 
                 Capitulos/3.Objetivos_y_Alcance, 
+                Capitulos/4.ConsideracionesEticas, 
                 Capitulos/5.Metodologia, 
                 Capitulos/6.Planificacion,
                 Capitulos/7.IntroduccionFedLearn,
                 Capitulos/8.0.Desarrollo,
-                Algoritmos/ConsensoMath,
+                Capitulos/9.Presupuesto,
+                Capitulos/10.Conclusiones,
                 Capitulos/Funciones,
                 Anexos/1.AnexoProteccionDatos,
                 Anexos/2.AnexoPlanificacion
@@ -295,9 +304,12 @@
 \renewcommand{\headrulewidth}{0pt} 
 
 
-%\include{Capitulos/1.Intro}
 
-% \include{Algoritmos/ConsensoMath}
+\include{Capitulos/1.Intro}
+\fancyhead[LE]{}
+\newpage
+\thispagestyle{empty}
+\cleardoublepage
 
 \include{Capitulos/2.AntecedentesJustificacion}
 \fancyhead[LE]{}
@@ -306,6 +318,12 @@
 \cleardoublepage
 
 \include{Capitulos/3.Objetivos_y_Alcance}
+\fancyhead[LE]{}
+\newpage
+\thispagestyle{empty}
+\cleardoublepage
+
+\include{Capitulos/4.ConsideracionesEticas}
 \fancyhead[LE]{}
 \newpage
 \thispagestyle{empty}
@@ -330,6 +348,18 @@
 \cleardoublepage
 
 \include{Capitulos/8.0.Desarrollo}
+\fancyhead[LE]{}
+\newpage
+\thispagestyle{empty}
+\cleardoublepage
+
+\include{Capitulos/9.Presupuesto}
+\fancyhead[LE]{}
+\newpage
+\thispagestyle{empty}
+\cleardoublepage
+
+\include{Capitulos/10.Conclusiones}
 \fancyhead[LE]{}
 \newpage
 \thispagestyle{empty}

@@ -1,0 +1,232 @@
+Administrar consentimiento
+logo dark logoo light logo
+
+    Nosotros
+        Nuestro equipo
+        Trabaja con nosotros 
+    Diseño web
+        Diseño páginas web
+        Tienda online
+        Desarrollo de Apps
+        E-learning
+        Diseño gráfico
+        Contenidos web 
+    Marketing digital
+        Posicionamiento SEO
+        Analítica y usabilidad web
+        Redes Sociales y Community
+        SEM. Campañas Adwords.
+        Mail Marketing 
+    Asesoría digital
+        Asesores digitales
+        Consultoría, auditoría y estrategia
+        Mantenimiento web
+        Dominios y alojamientos web 
+    Portfolio
+    Blog
+    Contacto
+    Es 
+
+logo dark logoo light logo
+
+    Nosotros
+        Nuestro equipo
+        Trabaja con nosotros 
+    Diseño web
+        Diseño páginas web
+        Tienda online
+        Desarrollo de Apps
+        E-learning
+        Diseño gráfico
+        Contenidos web 
+    Marketing digital
+        Posicionamiento SEO
+        Analítica y usabilidad web
+        Redes Sociales y Community
+        SEM. Campañas Adwords.
+        Mail Marketing 
+    Asesoría digital
+        Asesores digitales
+        Consultoría, auditoría y estrategia
+        Mantenimiento web
+        Dominios y alojamientos web 
+    Portfolio
+    Blog
+    Contacto
+    Es 
+
+Blog
+Diseño web Coruña, Vigo, Lugo y Madrid  /  Actualidad  /  La respuesta definitiva de Google al fin de las cookies de terceros
+respuesta-google-cookies-terceros-01 respuesta-google-cookies-terceros-01
+La respuesta definitiva de Google al fin de las cookies de terceros
+16 marzo, 2021
+Adrián Falque Adrián Falque
+Adrián Falque
+Actualidad
+0 Likes
+
+Todo parece apuntar a que el próximo mes de marzo, la guerra de Google contra las cookies y la protección de datos llegará a su fin. Esta cuestión trae de cabeza a todos los que formamos parte del gremio del marketing digital desde hace aproximadamente un año.
+
+En enero de 2022 se acabaron las cookies de terceros en Chrome. Esta es la sentencia que Google anunció en su momento y que puso patas arriba a muchos profesionales de la publicidad online. Ya que tal y como os hemos contado en este otro post, las cookies de terceros son clave para el funcionamiento del seguimiento y la publicidad personalizada.
+
+Mientras unos tantos nos preguntábamos ¿Cómo vamos a hacer remarketing ahora? La maquinaria de Google se planteaba una pregunta un poquitín diferente ¿Cómo segmentar a los usuarios y mantener las funcionalidades de las cookies mientras respetamos la privacidad de los usuarios?
+
+Hace unos días conocíamos la solución que Google ha encontrado a este problema, las etiquetas FLoC.
+
+Quédate un rato y te contamos todo lo que hemos averiguado sobre cómo van a funcionar.
+
+Pero… ¿Y si antes recordamos cómo hemos llegado hasta aquí?
+
+ 
+
+ 
+El drama de Google con las cookies de terceros
+
+ 
+
+¿Por qué de repente Google ha decidido dar carpetazo a este tipo de herramientas? ¿Dónde está el conflicto con la protección de datos?
+
+Las cookies de terceros (o third party cookies) son aquellas que se envían a otros dominios diferentes de los que estamos visitando para que estos anunciantes puedan recopilar información sobre las páginas que visitamos o de nuestro comportamiento y de esta manera, puedan personalizar la publicidad con la que nos impactan.
+
+Concretamente, permiten que los anunciantes consigan datos sobre las páginas que visitamos, rastreen nuestra ubicación y básicamente construyan un perfil de consumidor basándose en nuestros datos.
+
+¿Crees que ese anuncio de Nike que te ha aparecido en Facebook después de haber estado consultando precios para tus nuevas Air Max hace unos días es tan solo casualidad?
+
+Como es evidente, a muchas personas no les gusta nada eso de que un algoritmo les persiga por internet, recabando información sobre cuál es su marca de ropa favorita o sobre si pasan 3 horas al día viendo vídeos de gatitos en YouTube.
+
+Por esto y por la presión de las leyes de protección de datos personales que los gobiernos han comenzado a aplicar, Google ha decidido zamparse este tipo de cookies para su navegador, Google Chrome, sumándose a la iniciativa que Apple y Mozilla habían tomado hace tiempo.
+
+ 
+
+ 
+Cuando Google dice “bye bye cookies”
+
+ 
+
+Desde el minuto 0, Google se puso manos a la obra para tratar de encontrar un sistema que sustituyese a las cookies de terceros , no olvidemos que al eliminar una herramienta tan poderosa para la publicidad están tirando piedras contra su propio tejado. La publicidad y sobre todo, los datos que genera, son la principal fuente de ingresos de la compañía.
+
+Como alternativa a algo que sabía perfectamente que iba a pasar, en 2019 Google anuncia su Privacy Sandbox , un programa que buscaba implementar una serie de herramientas similares a las cookies, que permitiesen a los anunciantes seguir segmentando sus públicos objetivos sin que ello repercutiese en vulnerar la privacidad de los usuarios.
+
+Estas herramientas, basadas en APis buscaban crear en palabras del propio Google “crear un entorno seguro para la personalización que también protege la privacidad del usuario”.
+
+De esta manera el seguimiento deja de ser individual y pasa a ser colectivo , se selecciona a usuarios con intereses afines y se clasifican en grupos homogéneos en base a ciertos criterios conjuntos, pero sin que esta información implique romper el anonimato de cada uno de los usuarios.
+
+Es una solución si, pero no es la definitiva.
+
+ 
+
+ 
+Las etiquetas FLoC de Google. La solución a las cookies de terceros
+
+ 
+
+Recientemente, Google nos ha presentado una nueva tecnología que parece ser la solución final a todo este lío. ¡Las etiquetas FLoC!
+
+Aunque tienen un nombre que fácilmente podría usarse para una marca de cereales, vienen para dar el salto definitivo a la privacidad en la publicidad online.
+
+Su funcionamiento se basa en cohortes , es decir, con la información de la que disponen, crean grupos de usuarios con intereses similares, de manera que las empresas puedan impactarlos con su publicidad personalizada pero sin llegar a atacar su privacidad. Según sus previsiones, los anunciantes podrán llegar a obtener hasta el 95% del rendimiento actual , una cifra realmente esperanzadora para muchas personas.
+
+La parte positiva de todo esto es que todo el proceso se realiza en el navegador , sin que la ID de los usuarios se comparta como si se hace en el modelo actual. Con esta iniciativa, son los ID de los cohortes los que se comparten, de manera que ya no estará trackeando la información individual de cada uno de los usuarios, sino que se utilizará su ID de cohorte para que, junto a miles de personas con preferencias similares, pueda recibir anuncios personalizados en vez de impactos individuales.
+
+De esta manera se logrará mantener la privacidad de los datos individuales de los usuarios intactas, dado que los cohortes solamente ofrecerán información agregada sobre los intereses afines a los usuarios que pertenezcan a un cohorte específico.
+
+Sin duda es un gran paso adelante en la privacidad, pero a su vez también es un paso atrás en su seguridad , dado que esta tecnología no puede igualar a muchos de los sistemas antifraude de las cookies actuales .
+
+ 
+
+ 
+¿Cuándo vamos a empezar a navegar con FLoC y no con cookies?
+
+ 
+
+Está previsto que el sistema FLoC se despliegue a lo largo de este 2021 a modo de pruebas y que los anunciantes puedan probarlo a lo largo de la segunda mitad del año. De esta manera se conseguirá una “transición” sencilla entre el sistema actual y el fin de las cookies para el que tan solo queda un año.
+
+Aunque todo apunta a que esto va a ser un gran avance en el sector, las FLoC ya se han ganado sus primeros enemigos, algunas asociaciones antimonopolio cuestionan este sistema afirmando que ataca directamente a la libre competencia del sector.
+
+Otras entidades afirman que este sistema puede usarse para segmentar a la publicación utilizando criterios que no son del todo éticos, como podrían ser la raza, el sexo, o incluso, la situación económica de manera que los anunciantes pudiesen segmentar negativamente excluyendo a determinados grupos sociales. Google ya se ha defendido afirmando que su algoritmo no considera este tipo de categorías para la segmentación.
+
+Actualmente no nos queda otra solución que esperar y adaptarnos a lo que venga, al fin y al cabo. ¿No llevamos desde 1997 adaptándonos a todos los cambios que ha vivido internet?
+
+¡Veamos qué nos depara el futuro!
+Comparte
+
+¿Qué te interesa?
+
+    Actualidad (38)
+    Ampliamos equipo (5)
+    Consejos (31)
+    Noticias VP (31)
+    Otras noticias (27)
+    Publicaciones web (2)
+    Tutoriales (5)
+
+Últimos posts
+
+    El formato “Story” llega a Pinterest 18 marzo, 2021
+    La respuesta definitiva de Google al fin de las cookies de terceros 16 marzo, 2021
+    Premio Paraguas a la Mejor Estrategia de Marketing Digital 26 febrero, 2021
+    ¿Cuánto cuesta mantener una web en 2021? 4 febrero, 2021
+    Ideas para empujar tus ventas en la campaña navideña 15 diciembre, 2020 
+
+Tags
+#WhatsApp (2) Bonilla (1) Bonilla a la vista (1) Buscadores (1) Ciberataques (2) community manager (2) consejos internet (2) Content Marketing (6) covid19 (1) desarrollo web (6) DigitalMarketing (1) Diseño gráfico (4) diseño web (9) E-commerce (5) Galicia (1) gestión de redes sociales (2) Identidad corporativa (2) Imagen corporativa (2) Instagram (3) Internet (2) Marketing (2) Marketing Digital (8) Mejor estrategia de Marketing Digital (1) Oscar2020 (1) Paid Strategy (1) Pinterest (1) Posicionamiento orgánico (4) Premios Paraguas (1) Publicidad Digital (3) Redes Sociales (4) Seguridad (2) SEM (2) SEO (6) social media (5) social media marketing (3) software (1) Story (1) Story Pins (1) teletrabajo (1) Tendencias (2) Tendencias web (2) Tipografías (2) Twitter (4) web (3) Web Corporativa (3)
+Newsletter
+
+Suscríbete y recibe todas las novedades sobre diseño web, tiendas virtuales o marketing digital en tu email.
+
+
+Autorizo a dar mis datos para recibir publicidad. Más información en la  Política de privacidad y el  Aviso legal .
+
+INFORMACIÓN BÁSICA SOBRE PROTECCIÓN DE DATOS
+
+    Nosotros
+        Nuestro equipo
+        Trabaja con nosotros 
+    Diseño web
+        Diseño páginas web
+        Tienda online
+        Desarrollo de Apps
+        E-learning
+        Diseño gráfico
+        Contenidos web 
+    Marketing digital
+        Posicionamiento SEO
+        Analítica y usabilidad web
+        Redes Sociales y Community
+        SEM. Campañas Adwords.
+        Mail Marketing 
+    Asesoría digital
+        Asesores digitales
+        Consultoría, auditoría y estrategia
+        Mantenimiento web
+        Dominios y alojamientos web 
+    Portfolio
+    Blog
+    Contacto
+
+Te ayudamos
+Si necesitas el Diseño de una Página Web en CORUÑA ,
+
+981 12 95 03
+Si necesitas el Diseño de una Página Web en MADRID para tu empresa…
+
+911 09 41 02
+Si necesitas el Diseño de una Página Web en VIGO para tu empresa…
+
+986 48 01 67
+Si necesitas el Diseño de una Página Web en BARCELONA para tu empresa…
+
+931 35 59 65
+Si necesitas el Diseño de una Página Web en LUGO para tu empresa…
+
+982 83 10 74
+Si eres cliente y necesitas el soporte de tu Página Web o Tienda Virtual
+
+986 09 36 88
+Aviso legal Cookies Política de privacidad Fondos públicos
+
+Dónde estamos
+
+Visualpublinet Vigo Coruña Madrid barcelona Visualpublinet Vigo Coruña Madrid barcelona
+Diseño Web Coruña - Agencia Marketing Digital Vigo - Seo Madrid - Diseño Web Vigo - Sem Madrid - Social Media Vigo - Diseño Web Madrid - Agencia Marketing Digital Coruña - Sem Coruña - Redes Sociales Vigo - Seo Vigo -Seo Coruña
+Unión Europea

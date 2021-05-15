@@ -1,4 +1,4 @@
-\subsection{Protocolo de Federated Learning}
+\subsection{Protocolo de Federated Learning}\label{Protocolo}
 El protocolo de Federated Learning que se va a reproducir en este proyecto es una adaptación de lo que proponen los autores de \autocite{bonawitzFederatedLearningScale2019a}. En este protocolo se definen tres fases importantes, la selección de participantes, la configuración del mecanismo de agregación y el envío reporte de cada participante.
 \\\\
 Para este caso se han introducido leves cambios en este protocolo que se irán explicando en las sucesivas partes del mismo.  
@@ -84,7 +84,7 @@ La comunicación con los participantes se realiza de la misma forma que los part
 \subsubsection{Comparación de modelos}
 En el momento que el modelo llega al participante este tiene que valorar si realmente le supone una mejora o no, para ello como puede verse en el diagrama \ref{fig:Flow_Compare} existen varias fases a llevar a cabo.
 
-En primer lugar al igual que como con el servidor de agregación se debe descifrar el modelo recibido. Después, compararlo con el modelo del participante, esto se puede hacer tratando de analizar la precisión de las predicciones para varios subconjuntos de datos de test con los que cuente el dispositivo. En resumen, predecir para usuarios existentes su ranking con los dos modelos, y quedarse con el modelo que más acierte.
+En primer lugar, al igual que como con el servidor de agregación se debe descifrar el modelo recibido. Después, compararlo con el modelo del participante, esto se puede hacer tratando de analizar la precisión de las predicciones para varios subconjuntos de datos de test con los que cuente el dispositivo. En resumen, predecir para usuarios existentes su ranking con los dos modelos, y quedarse con el modelo que más acierte.
 
 \begin{figure}[H]
     \centering

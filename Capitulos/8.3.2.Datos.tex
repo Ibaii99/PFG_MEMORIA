@@ -1,5 +1,5 @@
 \subsection{Datos involucrados}
-Este proyecto al tratarse de una modificación del sistema de recomendación de R.Sánchez se heredarán todos los datos. Cabe mencionar que R.Sánchez utilizó información proporcionada por el proyecto Green Soul\autocite{EcoawarePersuasiveNetworked} para crear su sistema de recomendación. El proyecto Green Soul trataba de persuadir a los usuarios para que aumentase su conciencia energética y cambiasen sus hábitos de consumo, para ello, se realizaron una serie de encuestas donde se les preguntaba a los usuarios por sus datos personales y se les pedía que ordenasen en función de su critério que estrategias de persuasión les parecían más efectivas.
+Este proyecto al tratarse de una modificación del sistema de recomendación de R.Sánchez se heredarán todos los datos. Cabe mencionar que R.Sánchez utilizó información proporcionada por el proyecto Green Soul\autocite{EcoawarePersuasiveNetworked} para crear su sistema de recomendación. El proyecto Green Soul trataba de persuadir a los usuarios para que aumentase su conciencia energética y cambiaran sus hábitos de consumo, para ello, se realizaron una serie de encuestas donde se les preguntaba a los usuarios por sus datos personales y se les pedía que ordenaran en función de su criterio qué estrategias de persuasión les parecían más efectivas.
 \\ \\
 Por tanto, las estrategias de persuasión que se recomiendan pertenecen al ámbito de la concienciación del consumo energético, aunque podrían ser extrapolables a otros casos. De todas formas, se eludirán los detalles sobre estas estrategias ya que no son el caso de estudio y no entran en el alcance de este proyecto.
 \\ \\
@@ -11,7 +11,7 @@ Teniendo en cuenta todo lo anterior, este capítulo se ha redactado para entende
 \end{itemize} 
 
 \subsubsection{No sensibles}
-Como se ha mencionado antes, en la categoría de datos no sensibles se encuentran los datos que no son personales ni hacen referencia a ningún usuario. En esta categoría unicamente aparecen aquellos datos que hacen referencia a los elementos que se van a recomendar en el sistema y sus atributos.
+Como se ha mencionado antes, en la categoría de datos no sensibles se encuentran los datos que no son personales ni hacen referencia a ningún usuario. En esta categoría únicamente aparecen aquellos datos que hacen referencia a los elementos que se van a recomendar en el sistema y sus atributos.
 \\ \\
 Cada estrategia de persuasión que pueda recomendar el sistema contará con hasta dos atributos para que de esta forma el sistema pueda conocer mejor las estrategias y realizar recomendaciones más precisas en base a esta información. En la tabla \ref{tab:EstrategiasPersuasion} se muestran las estrategias de persuasión involucradas en el sistema de recomendación y sus atributos.
 \begin{table}[H]
@@ -27,7 +27,7 @@ Cada estrategia de persuasión que pueda recomendar el sistema contará con hast
             \textbf{ID} & \textbf{Descripción} & \textbf{Atributo 1} & \textbf{Atributo 2} \\ 
             % -------------
             \hline
-            \textbf{V2} &  Reconocimiento público/social de mi contribuciónal ahorro de energía. & Reconocimiento social & -\\
+            \textbf{V2} &  Reconocimiento público/social de mi contribución al ahorro de energía. & Reconocimiento social & -\\
             % -------------
             \hline
             \rowcolor{GrisTabla}
@@ -72,9 +72,9 @@ Cada estrategia de persuasión que pueda recomendar el sistema contará con hast
 
 
 \subsubsection{Sensibles}
-En cuanto a los datos sensibles hay que mencionar dos grupos, los datos personales de los usuarios y los rankings de los usuarios. Este primer grupo esta formado por los datos personales de los usuarios participantes. Estos intervienen en dos puntos clave: en el entrenamiento de los modelos de inteligencia artificial y a la hora de agregar estos modelos. El grupo de los datos de los rankings está formado por las preferencias de los anteriores usuarios a la hora de ordenar las estrategias de persuasión, es decir, el ranking de estrategias para cada usuario.
+En cuanto a los datos sensibles hay que mencionar dos grupos, los datos personales de los usuarios y los rankings de los usuarios. Este primer grupo está formado por los datos personales de los usuarios participantes. Estos intervienen en dos puntos clave: en el entrenamiento de los modelos de inteligencia artificial y a la hora de agregar estos modelos. El grupo de los datos de los rankings está formado por las preferencias de los anteriores usuarios a la hora de ordenar las estrategias de persuasión, es decir, el ranking de estrategias para cada usuario.
 \\ \\
-Tanto los datos personales de los usuarios como los datos de los rankings de estos son necesarios para entrenar un modelo de inteligencia artificial. Los atributos de los usuarios, al igual que los atributos de las estrategias de persuasión, sirven para correlacionar los distintos usuarios con los diferentes rankings y de esta forma poder realizar recomendaciones en base al tipo de usuario.
+Tanto los datos personales de los usuarios como los datos de los rankings de estos son necesarios para entrenar un modelo de inteligencia artificial. Los atributos de los usuarios, al igual que los atributos de las estrategias de persuasión, sirven para relacionar los distintos usuarios con los diferentes rankings y de esta forma poder realizar recomendaciones en base al tipo de usuario.
 
 \paragraph{Datos de usuarios\\}
 Los datos personales de los usuarios que intervienen en este proyecto son los presentes en la tabla \ref{tab:AtributosUsuarios}. Estos datos han sido transformados a objetos json para su posterior utilización, formando una lista de objetos en los que cada uno representa los datos personales de un usuario.
@@ -116,7 +116,7 @@ Los datos personales de los usuarios que intervienen en este proyecto son los pr
             % -------------
             \hline
             \rowcolor{GrisTabla} 
-            \textbf{7} & Intenciones & Intenciones ante el cambio3\\
+            \textbf{7} & Intenciones & Intenciones ante el cambio\\
             % -------------
             \hline
             \textbf{8} & Confianza  & Confianza ante el cambio\\
