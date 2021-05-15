@@ -1,0 +1,17 @@
+\chapter{Conclusiones y trabajo futuro}
+\thispagestyle{fancy}
+\fancyhead[LE]{\thechapter.Conclusiones y trabajo futuro}
+
+En cuanto a las conclusiones queda claro que el aprendizaje federado es una tecnología habilitadora que permite distribuir el aprendizaje automático. Hay que tener en cuenta que la separación de los datos en ocasiones puede traer mejoras de rendimiento asociadas.
+\\\\
+En los sistemas de aprendizaje federado la agregación se realiza pidiendo a cada participante que envíe unos hiperparámetros de su modelo para poder usarlos para crear el modelo global, el objetivo que se persigue en este proyecto es un cambio de enfoque en la agregción y afrontarla desde el reentrenado de los modelos de cada participante. El reentrenado permite que cada participante se beneficie individualmente sin compartir ningún elemento de su modelo, funcionamiento que viene bien para evitar ataques de envenenamiento de datos o modelo, ya que es dificil que infiera en los demás participantes.
+\\\\
+Además, el reentrenado evita que un participante cuando reciba el modelo trate de averiguar información sobre otros modelos ya que no dispone de ella. 
+\\\\
+Otro punto a considerar es que el aprendizaje federado agregado por modelo de consenso permite que no haya que desarrollar todos los modelos sobre el mismo framework, al contrario que con los sistemas existentes el consenso no necesita de métodos própios de un tipo concreto de objeto, lo que permite que haya redes con modelos heterogéneos de distintas librerías que puedan participar y beneficiarse de la misma forma.
+\\\\
+Lo más positivo de este sistema es que cada participante tiene su propio modelo y su propia información y solo él decide con que información entrenar el modelo que quiere compartir. De esta forma cada participante es libre de definir la información sensible que no quiere utilizar o la información de usuarios que han expresado su negativa expresa. 
+\\\\
+En cuanto a la agregación todavía existen posibilidades no exploradas a la hora de realizar una función de consenso más eficaz, en este proyecto se ha partido de la moda y mediana estadísticas para la realización del estudio sobre el sistema, pero en lo que se refiere a la función se podrían desarrolllar otras soluciones que tuvieran más elementos en cuenta para aumentar su precisión.
+\\\\
+Las comunicaciones ya eran un reto del aprendizaje federado y en este proyecto aunque se ha tratado de solventarlo ligeramente con compresión y encriptado el flujo de red es bastante grande. Con el objetivo de reducir el tamaño de las comunicaciones se podrían estudiar distintos algoritmos de compresión o minimizar el tamaño del modelo.
