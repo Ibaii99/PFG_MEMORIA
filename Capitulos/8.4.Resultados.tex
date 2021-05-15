@@ -6,9 +6,9 @@
 Partiendo del caso de uso con los datos del sistema de R.Sánchez se ha dividido los datos de los usuarios en función de su posición geográfica, de esta forma, cada participante de la red de aprendizaje federado representa el conjunto de usuarios para una determinada ubicación.
 \\ \\
 Cada participante se entrena con el 80\% de sus datos, lo que en algunos casos supondrá una mayor cantidad debido a que se dispondrá de más usuarios para esa ubicación y en otros casos será menor debido a la poca cantidad de datos. El ciclo de procesos que recorre un participante es el mismo que el descrito en el protocolo de Federated Learning \ref{Protocolo}, a la hora de realizar el estudio de los resultados del sistema de consenso se han abordado varias configuraciones diferentes para los experimentos con cada participante.
-
+\\\\
 En primer lugar se realizarán las pruebas con conjuntos de usuarios sintéticos de distinto tamaño, para poder analizar con cuantos usuarios se consiguen los mejores resultados. En segundo lugar se realizarán los consensos con todos los valores de \textit{W$_c$} posibles, para poder estudiar que parametrización del algoritmo es la que mejor funciona.
-
+\\\\
 Para poder comparar los resultados que dan los modelos reentrenados en primer lugar se ha probado el modelo de cada participante contra su propia información, para ello se han cogido cien muestras del tamaño del 20\% total de la propia información del participante. Los resultados a estas pruebas son los presentes en la tabla \ref{tab:NDPM_PARTICIPANTES}. 
 \begin{table}[H]
     \begin{center}
@@ -41,9 +41,9 @@ Para poder comparar los resultados que dan los modelos reentrenados en primer lu
     \end{center}    
 \end{table}
 
-Una vez teniendo un punto de referencia, se realizan los experimentos para los distintos participantes, donde cada prueba consiste en analizar de la misma forma que para la tabla \ref{tab:NDPM_PARTICIPANTES} los modelos reentrenados con diferentes conjuntos de usuarios sintéticos consensuados con diferentes pesos. Lo que da como resultado las siguientes tablas \ref{tab:NDPM_PARTICIPANTE_1}, \ref{tab:NDPM_PARTICIPANTE_2}, \ref{tab:NDPM_PARTICIPANTE_3}, \ref{tab:NDPM_PARTICIPANTE_4} con los resultados de cada participante.
+Una vez teniendo un punto de referencia, se realizan los experimentos para los distintos participantes, donde cada prueba consiste en analizar de la misma forma que para la tabla \ref{tab:NDPM_PARTICIPANTES} los modelos reentrenados con diferentes conjuntos de usuarios sintéticos, consensuados con diferentes pesos. Lo que da como resultado las siguientes tablas \ref{tab:NDPM_PARTICIPANTE_1}, \ref{tab:NDPM_PARTICIPANTE_2}, \ref{tab:NDPM_PARTICIPANTE_3}, \ref{tab:NDPM_PARTICIPANTE_4} con los resultados de cada participante.
 \\ \\
-De acuerdo a estos datos se puede afirmar que el modelo del participante 1 de la tabla \ref{tab:NDPM_PARTICIPANTE_1} no se ve beneficiado por el sistema en este experimento, sin embargo, su participación permite que tanto el participante 2 (tabla \ref{tab:NDPM_PARTICIPANTE_2}) como el participante 3 (tabla \ref{tab:NDPM_PARTICIPANTE_3}) se vean ampliamente beneficiados y consigan un mejor resultado respecto a su estado previo.
+De acuerdo a estos datos se puede afirmar que el modelo del participante 1 de la tabla \ref{tab:NDPM_PARTICIPANTE_1} no se ve beneficiado por el sistema en este experimento, sin embargo, su participación permite que tanto el participante 2 (tabla \ref{tab:NDPM_PARTICIPANTE_2}) como el participante 4 (tabla \ref{tab:NDPM_PARTICIPANTE_4}) se vean ampliamente beneficiados y consigan un mejor resultado respecto a su estado previo.
 \\ \\
 A la vista de estos resultados se puede observar como existe una ventana de rendimiento óptimo en los modelos reentrenados con un conjunto de 50 usuarios sintéticos y el parámetro de peso entre cero y uno. En esta ventana el participante 3 (tabla \ref{tab:NDPM_PARTICIPANTE_3}) consigue una leve mejora respecto a su anterior modelo y se ve beneficiado del sistema. 
 {
