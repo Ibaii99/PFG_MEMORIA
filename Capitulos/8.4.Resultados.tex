@@ -1,10 +1,15 @@
-\section{Estudio de resultados}
-
 \newtoggle{inTableHeader}% Track if still in header of table
 \toggletrue{inTableHeader}% Set initial value
 \newcommand*{\StartTableHeader}{\global\toggletrue{inTableHeader}}%
 \newcommand*{\EndTableHeader}{\global\togglefalse{inTableHeader}}%
+\section{Estudio de resultados}
+Partiendo del caso de uso con los datos del sistema de R.Sánchez se ha dividido los datos de los usuarios en función de su posición geográfica, de esta forma, cada participante de la red de aprendizaje federado representa el conjunto de usuarios para una determinada ubicación.
+\\ \\
+Cada participante se entrena con el 80\% de sus datos, lo que en algunos casos supondrá una mayor cantidad debido a que se dispondrá de más usuarios para esa ubicación y en otros casos será menor debido a la poca cantidad de datos. El ciclo de procesos que recorre un participante es el mismo que el descrito en el protocolo de Federated Learning \ref{Protocolo}, a la hora de realizar el estudio de los resultados del sistema de consenso se han abordado varias configuraciones diferentes para los experimentos con cada participante.
 
+En primer lugar se realizarán las pruebas con conjuntos de usuarios sintéticos de distinto tamaño, para poder analizar con cuantos usuarios se consiguen los mejores resultados. En segundo lugar se realizarán los consensos con todos los valores de \textit{W$_c$} posibles, para poder estudiar que parametrización del algoritmo es la que mejor funciona.
+
+Para poder comparar los resultados que dan los modelos reentrenados en primer lugar se ha probado el modelo de cada participante contra su propia información, para ello se han cogido cien muestras del tamaño del 20\% total de la propia información del participante. Los resultados a estas pruebas son los presentes en la tabla \ref{tab:NDPM_PARTICIPANTES}. 
 \begin{table}[H]
     \begin{center}
     %Se centra la tabla.
@@ -36,6 +41,11 @@
     \end{center}    
 \end{table}
 
+Una vez teniendo un punto de referencia, se realizan los experimentos para los distintos participantes, donde cada prueba consiste en analizar de la misma forma que para la tabla \ref{tab:NDPM_PARTICIPANTES} los modelos reentrenados con diferentes conjuntos de usuarios sintéticos consensuados con diferentes pesos. Lo que da como resultado las siguientes tablas \ref{tab:NDPM_PARTICIPANTE_1}, \ref{tab:NDPM_PARTICIPANTE_2}, \ref{tab:NDPM_PARTICIPANTE_3}, \ref{tab:NDPM_PARTICIPANTE_4} con los resultados de cada participante.
+\\ \\
+De acuerdo a estos datos se puede afirmar que el modelo del participante 1 de la tabla \ref{tab:NDPM_PARTICIPANTE_1} no se ve beneficiado por el sistema en este experimento, sin embargo, su participación permite que tanto el participante 2 (tabla \ref{tab:NDPM_PARTICIPANTE_2}) como el participante 3 (tabla \ref{tab:NDPM_PARTICIPANTE_3}) se vean ampliamente beneficiados y consigan un mejor resultado respecto a su estado previo.
+\\ \\
+A la vista de estos resultados se puede observar como existe una ventana de rendimiento óptimo en los modelos reentrenados con un conjunto de 50 usuarios sintéticos y el parámetro de peso entre cero y uno. En esta ventana el participante 3 (tabla \ref{tab:NDPM_PARTICIPANTE_3}) consigue una leve mejora respecto a su anterior modelo y se ve beneficiado del sistema. 
 {
     % Redefine tabular to initialize \StartTableHeader at start and end
     \let\OldTabular\tabular%
@@ -64,7 +74,7 @@
     \setlength{\fboxsep}{3mm} % box size
     \setlength{\tabcolsep}{0pt}
 
-    \begin{table}[H]
+    \begin{table}[h]
         \begin{center}
         %Se centra la tabla.
             \begin{tabular}{|c|*{1}{R}|*{1}{R}|*{1}{R}|*{1}{R}|}
@@ -128,7 +138,7 @@
     \setlength{\fboxsep}{3mm} % box size
     \setlength{\tabcolsep}{0pt}
 
-    \begin{table}[H]
+    \begin{table}[h]
         \begin{center}
         %Se centra la tabla.
             \begin{tabular}{|c|*{1}{R}|*{1}{R}|*{1}{R}|*{1}{R}|}
@@ -163,7 +173,6 @@
     \end{table}
 }
 
-
 {
     % Redefine tabular to initialize \StartTableHeader at start and end
     \let\OldTabular\tabular%
@@ -192,7 +201,7 @@
     \setlength{\fboxsep}{3mm} % box size
     \setlength{\tabcolsep}{0pt}
 
-    \begin{table}[H]
+    \begin{table}[h]
         \begin{center}
         %Se centra la tabla.
             \begin{tabular}{|c|*{1}{R}|*{1}{R}|*{1}{R}|*{1}{R}|}
@@ -226,7 +235,6 @@
         \end{center}    
     \end{table}
 }
-
 
 {
     % Redefine tabular to initialize \StartTableHeader at start and end
@@ -290,3 +298,10 @@
         \end{center}    
     \end{table}
 }
+Teniendo en cuenta lo anteriormente mencionado podría decirse que este sistema permite que los participantes que cuentan con pocos datos se beneficien del conocimiento de otros usuarios aunque estos no se vean compensados en ocasiones. Con cada iteración del protocolo el conocimiento pasa a ser más homogéneo a lo largo de los participantes. Además, con la introducción de nuevos datos en cada participante se consigue un sistema sostenible en el tiempo.
+\\ \\
+Las diferencias que plantea el aprendizaje federado sobre el aprendizaje automático convencional pueden resultar en ocasiones beneficiosas, en este caso, debido a la heterogeneidad de los datos en ocasiones cada grupo de usuarios necesita su propio modelo porque un modelo global les perjudicaría, como es el caso del participante 1 en el caso del aprendizaje federado. El caso es que este mismo sistema si se ejecuta de forma centralizada y con el se entrenase un único modelo con el 80\% de los datos y se probase con el 20\% restante el resultado sería de menor precisión, siendo el NDPM 0.164493 de media durante cien repeticiones.
+\\ \\
+El valor NDPM del sistema centralizado es únicamente menor que el del participante 4, sin embargo, este participante en la ventana de rendimiento consigue alcanzar un valor NDPM bastante similar al del sistema centralizado durante la primera iteración del protocolo, lo que haría que el sistema centralizado dejase de ser superior al rendimiento que ofrece el modelo de cualquiera de los cuatro participantes. 
+\\ \\
+En este caso queda claro que la heterogeneidad de los sistemas de recomendación en ocasiones perjudica a un sistema centralizado y beneficia aun sistema distribuido. 
