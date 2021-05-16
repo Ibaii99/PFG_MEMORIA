@@ -1,4 +1,4 @@
-\subsection{Valoración} \label{Valoracion}
+\subsection{Valoración de las predicciones} \label{Valoracion}
 La función de valoración es un elemento fundamental en cualquier sistema de recomendación, ya que es la única forma de medir la eficacia, precisión o margen de error del sistema. Esta métrica mide la diferencia entre  la predicción realizada y la realidad. Para analizar este rendimiento se utilizará la métrica de rendimiento basado en la distancia normalizada (NDPM, Normalized Distance based Performance Measure). Esta métrica es bastante usada porque diferencia entre ordenes correctos, incorrectos o vinculados.
 \\ \\
 El funcionamiento de esta métrica es el siguiente, dada una relación de preferencias de un usuario $\succ$ sobre un conjunto de estrategias \textit{E} = $\begin{bmatrix} \textit{e$_{1}$} & \textit{e$_{2}$} \end{bmatrix}$ se valora la distancia entre los elementos $e_1$ y $e_2$ de los rankings $\succ_1$ y $\succ_2$ como $\delta_{\succ_1, \succ_2}(e_1, e_2)$. Estos rankings $\succ_1$ y $\succ_2$ se pueden relacionar como:
