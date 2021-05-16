@@ -2,14 +2,62 @@
 \toggletrue{inTableHeader}% Set initial value
 \newcommand*{\StartTableHeader}{\global\toggletrue{inTableHeader}}%
 \newcommand*{\EndTableHeader}{\global\togglefalse{inTableHeader}}%
-\section{Estudio de resultados}
-Partiendo del caso de uso con los datos del sistema de R.Sánchez se ha dividido los datos de los usuarios en función de su posición geográfica, de esta forma, cada participante de la red de aprendizaje federado representa el conjunto de usuarios para una determinada ubicación.
+\newcommand*{\figuretitle}[1]{%
+    {\centering%   <--------  will only affect the title because of the grouping (by the
+    \textbf{#1}%              braces before \centering and behind \medskip). If you remove
+    \par\medskip}%            these braces the whole body of a {figure} env will be centered.
+}
+\section{Experimentos y resultados}
+
+La valoración del resultado de las predicciones se ha hecho de acuerdo a la métrica NDPM explicada en el apartado \ref{Valoracion}, de forma que cuanto menor valor tenga el NDPM más parecida será la predicción al ranking real.
+
+\subsection{Sistema de recomendación convencional}
+
+Un RS convencional basado en ML cuenta con toda la información centralizada, tanto de los elementos a recomendar como la información relativa a los usuarios. Para evaluar y obtener un resultado NDPM representativo del modelo se han realizado cien pruebas, cada una de ellas constaba de tres pasos:
+\begin{enumerate}
+    \item Crear un modelo de LightFM.
+    \item Entrenar el modelo con el 80\% de los usuarios disponibles.
+    \item Predecir el ranking con el 20\% de los usuarios restante.
+\end{enumerate} 
+
+Después de realizar las cien pruebas se ha calculado la media de los valores NDPM para obtener un valor que represente la precisión del modelo, tabla \ref{tab:NDPM_CENTRAL}.
+
+\begin{table}[H]
+    \begin{center}
+    %Se centra la tabla.
+        \begin{tabular}{|c|c|}
+            % -------------
+            \hline
+            \rowcolor{Cyan} 
+            % -------------
+             & \textbf{NDPM} \\ 
+            % -------------
+            \hline
+            % -------------
+            \textbf{RS convencional} & 0.164493 \\
+            \hline
+        \end{tabular}
+        \caption{\centering Valor NDPM para el RS convencional.}\label{tab:NDPM_CENTRAL}
+    \end{center}    
+\end{table}
+
+\subsection{Sistema de recomendación con aprendizaje federado}
+
+\subsubsection{Descripción del experimento}
+Partiendo de los datos del sistema de R.Sánchez se ha dividido los datos de los usuarios en función de su posición geográfica, de esta forma, cada participante de la red de FL representa el conjunto de usuarios para una determinada ubicación. De esta manera, cada Raspberry de la figura \ref{fig:FLMapaRed} representa al conjunto de usuarios de un país.
+\\\\
+Cada participante se entrena con el 80\% de sus datos, lo que en algunos casos supondrá una mayor cantidad debido a que se dispondrá de más usuarios para esa ubicación mientras que en otros casos será menor debido a la poca cantidad de datos. A la hora de predecir los rankings, estas predicciones se hacen con una muestra aleatoria del 20\% de los usuarios, esto se repite cien veces para tener un valor NDPM representativo del modelo respecto al conjunto total de los usuarios.
 \\ \\
-Cada participante se entrena con el 80\% de sus datos, lo que en algunos casos supondrá una mayor cantidad debido a que se dispondrá de más usuarios para esa ubicación y en otros casos será menor debido a la poca cantidad de datos. El ciclo de procesos que recorre un participante es el mismo que el descrito en el protocolo de Federated Learning \ref{Protocolo}, a la hora de realizar el estudio de los resultados del sistema de consenso se han abordado varias configuraciones diferentes para los experimentos con cada participante.
+El ciclo de procesos que recorre cada participante es el mismo que el descrito en el Protocolo de Federated Learning \ref{Protocolo}. A la hora de realizar el estudio de los resultados del sistema de consenso se han abordado varias configuraciones diferentes para los experimentos con cada participante.
 \\\\
-En primer lugar se realizarán las pruebas con conjuntos de usuarios sintéticos de distinto tamaño, para poder analizar con cuantos usuarios se consiguen los mejores resultados. En segundo lugar se realizarán los consensos con todos los valores de \textit{W$_c$} posibles, para poder estudiar que parametrización del algoritmo es la que mejor funciona.
+En primer lugar, se realizarán las pruebas con conjuntos de usuarios sintéticos de distinto tamaño, para poder analizar con cuantos usuarios se consiguen los mejores resultados. En segundo lugar, se realizarán los consensos con todos los valores de \textit{W$_c$} posibles, para poder estudiar que parametrización del algoritmo es la que mejor funciona.
+
+\subsubsection{Situación previa}
+
+Antes de proceder al aprendizaje colaborativo se ha valorado el NDPM del modelo de IA de cada participante, lo que es muy importante por dos motivos: muestra las diferencias respecto al RS convencional centralizado y respecto al RS basado en FL. 
+\\ \\
+En primer lugar, respecto al RS convencional, la tabla \ref{tab:NDPM_PARTICIPANTES} que representa los valores NDPM del modelo de cada participante muestra las diferencias entre los modelos, siendo algunos más precisos que el sistema centralizado y otros menos.
 \\\\
-Para poder comparar los resultados que dan los modelos reentrenados en primer lugar se ha probado el modelo de cada participante contra su propia información, para ello se han cogido cien muestras del tamaño del 20\% total de la propia información del participante. Los resultados a estas pruebas son los presentes en la tabla \ref{tab:NDPM_PARTICIPANTES}. 
 \begin{table}[H]
     \begin{center}
     %Se centra la tabla.
@@ -41,11 +89,75 @@ Para poder comparar los resultados que dan los modelos reentrenados en primer lu
     \end{center}    
 \end{table}
 
-Una vez teniendo un punto de referencia, se realizan los experimentos para los distintos participantes, donde cada prueba consiste en analizar de la misma forma que para la tabla \ref{tab:NDPM_PARTICIPANTES} los modelos reentrenados con diferentes conjuntos de usuarios sintéticos, consensuados con diferentes pesos. Lo que da como resultado las siguientes tablas \ref{tab:NDPM_PARTICIPANTE_1}, \ref{tab:NDPM_PARTICIPANTE_2}, \ref{tab:NDPM_PARTICIPANTE_3}, \ref{tab:NDPM_PARTICIPANTE_4} con los resultados de cada participante.
+Coloreando la tabla respecto al valor del RS convencional, tabla \ref{tab:NDPM_CENTRAL}, se puede observar que los valores de los participantes 1 y 3 son bastante inferiores a la media del RS convencional, mientras que los modelos de los participantes 2 y 4 se mantienen por encima.
+{
+    % Redefine tabular to initialize \StartTableHeader at start and end
+    \let\OldTabular\tabular%
+    \let\OldEndTabular\endtabular%
+    \renewenvironment{tabular}{\StartTableHeader\OldTabular}{\OldEndTabular\StartTableHeader}%
+
+    %The min, mid and max values
+    \newcommand*{\MinNumber}{0.125}%
+    \newcommand*{\MidNumber}{0.165} %
+    \newcommand*{\MaxNumber}{0.205}%
+
+    %Apply the gradient macro
+    \newcommand{\ApplyGradient}[1]{%
+    \iftoggle{inTableHeader}{#1}{
+        \ifdim #1 pt > \MidNumber pt
+            \pgfmathsetmacro{\PercentColor}{max(min(100.0*(#1 - \MidNumber)/(\MaxNumber-\MidNumber),100.0),0.00)} %
+            \hspace{-0.33em}\colorbox{red!\PercentColor!yellow}{#1}
+        \else
+            \pgfmathsetmacro{\PercentColor}{max(min(100.0*(\MidNumber - #1)/(\MidNumber-\MinNumber),100.0),0.00)} %
+            \hspace{-0.33em}\colorbox{green!\PercentColor!yellow}{#1}
+        \fi
+    }}
+
+    \newcolumntype{R}{>{\collectcell\ApplyGradient}c<{\endcollectcell}}
+    \renewcommand{\arraystretch}{0}
+    \setlength{\fboxsep}{3mm} % box size
+    \setlength{\tabcolsep}{0pt}
+
+    \begin{table}[H]
+        \begin{center}
+        %Se centra la tabla.
+            \begin{tabular}{|c|*{1}{R}|}
+                % -------------
+                \hline
+                \rowcolor{Cyan} 
+                % -------------
+                \textbf{Participantes \strut} & \textbf{NDPMs \strut} \EndTableHeader\\ 
+                % -------------
+                \hline
+                % -------------
+                \textbf{1} & 0.134249 \\
+                \hline
+                % -------------
+                \rowcolor{GrisTabla}
+                \textbf{2} & 0.175000 \\
+                \hline
+                % -------------
+                \textbf{3} & 0.128981 \\
+                \hline
+                % -------------
+                \rowcolor{GrisTabla}
+                \textbf{4} & 0.182858 \\
+                \hline
+                % -------------
+            \end{tabular}
+            \caption{\centering Valores NDPM para el modelo de cada participante.}\label{tab:NDPM_PARTICIPANTES_COLOR}
+        \end{center}    
+    \end{table}
+}
+
+Estas diferencias de precisión se deben a que el conjunto de usuarios puede ser bastante heterogéneo y en ocasiones algunos usuarios pueden distorsionar los resultados de predicción de otros. Sin embargo, es precisamente para mejorar la precisión de los participantes para lo que se utiliza el FL. Mediante las rondas de comunicación se trata de mejorar el modelo de cada participante, consiguiendo que cada modelo consiga mejores resultados que un modelo convencional.
+
+\subsubsection{Experimentos y resultados}
+Los modelos reentrenados con diferentes conjuntos de usuarios sintéticos y consensuados con diferentes pesos dan como resultados las tablas \ref{tab:NDPM_PARTICIPANTE_1}, \ref{tab:NDPM_PARTICIPANTE_2}, \ref{tab:NDPM_PARTICIPANTE_3}, \ref{tab:NDPM_PARTICIPANTE_4}, donde cada una representa los resultados para el modelo de cada participante.
 \\ \\
 De acuerdo a estos datos se puede afirmar que el modelo del participante 1 de la tabla \ref{tab:NDPM_PARTICIPANTE_1} no se ve beneficiado por el sistema en este experimento, sin embargo, su participación permite que tanto el participante 2 (tabla \ref{tab:NDPM_PARTICIPANTE_2}) como el participante 4 (tabla \ref{tab:NDPM_PARTICIPANTE_4}) se vean ampliamente beneficiados y consigan un mejor resultado respecto a su estado previo.
 \\ \\
-A la vista de estos resultados se puede observar como existe una ventana de rendimiento óptimo en los modelos reentrenados con un conjunto de 50 usuarios sintéticos y el parámetro de peso entre cero y uno. En esta ventana el participante 3 (tabla \ref{tab:NDPM_PARTICIPANTE_3}) consigue una leve mejora respecto a su anterior modelo y se ve beneficiado del sistema. 
+A la vista de estos resultados se puede observar como existe una ventana de rendimiento óptimo en la que los modelos reentrenados con un conjunto de 50 usuarios sintéticos y el parámetro de peso entre cero y uno dan mejores resultados. En esta ventana, el participante 3 (tabla \ref{tab:NDPM_PARTICIPANTE_3}) consigue una leve mejora respecto a su anterior modelo y se ve beneficiado del sistema. 
 {
     % Redefine tabular to initialize \StartTableHeader at start and end
     \let\OldTabular\tabular%
@@ -74,7 +186,7 @@ A la vista de estos resultados se puede observar como existe una ventana de rend
     \setlength{\fboxsep}{3mm} % box size
     \setlength{\tabcolsep}{0pt}
 
-    \begin{table}[h]
+    \begin{table}[H]
         \begin{center}
         %Se centra la tabla.
             \begin{tabular}{|c|*{1}{R}|*{1}{R}|*{1}{R}|*{1}{R}|}
@@ -138,7 +250,7 @@ A la vista de estos resultados se puede observar como existe una ventana de rend
     \setlength{\fboxsep}{3mm} % box size
     \setlength{\tabcolsep}{0pt}
 
-    \begin{table}[h]
+    \begin{table}[H]
         \begin{center}
         %Se centra la tabla.
             \begin{tabular}{|c|*{1}{R}|*{1}{R}|*{1}{R}|*{1}{R}|}
@@ -201,7 +313,7 @@ A la vista de estos resultados se puede observar como existe una ventana de rend
     \setlength{\fboxsep}{3mm} % box size
     \setlength{\tabcolsep}{0pt}
 
-    \begin{table}[h]
+    \begin{table}[H]
         \begin{center}
         %Se centra la tabla.
             \begin{tabular}{|c|*{1}{R}|*{1}{R}|*{1}{R}|*{1}{R}|}
@@ -298,10 +410,244 @@ A la vista de estos resultados se puede observar como existe una ventana de rend
         \end{center}    
     \end{table}
 }
-Teniendo en cuenta lo anteriormente mencionado podría decirse que este sistema permite que los participantes que cuentan con pocos datos se beneficien del conocimiento de otros usuarios aunque estos no se vean compensados en ocasiones. Con cada iteración del protocolo el conocimiento pasa a ser más homogéneo a lo largo de los participantes. Además, con la introducción de nuevos datos en cada participante se consigue un sistema sostenible en el tiempo.
+
+Después de esta ronda del protocolo de FL donde cada participante ha comparado su modelo con el recibido del servidor los participantes 2 y 4 se quedarían con el modelo reentrenado recibido del servidor, mientras que los participantes 1 y 3 renegarían de él y se quedarían con el suyo propio. De esta forma la tabla \ref{tab:NDPM_PARTICIPANTES_COLOR} se actualizará de la siguiente forma:
+{
+    % Redefine tabular to initialize \StartTableHeader at start and end
+    \let\OldTabular\tabular%
+    \let\OldEndTabular\endtabular%
+    \renewenvironment{tabular}{\StartTableHeader\OldTabular}{\OldEndTabular\StartTableHeader}%
+
+    %The min, mid and max values
+    \newcommand*{\MinNumber}{0.125}%
+    \newcommand*{\MidNumber}{0.165} %
+    \newcommand*{\MaxNumber}{0.205}%
+
+    %Apply the gradient macro
+    \newcommand{\ApplyGradient}[1]{%
+    \iftoggle{inTableHeader}{#1}{
+        \ifdim #1 pt > \MidNumber pt
+            \pgfmathsetmacro{\PercentColor}{max(min(100.0*(#1 - \MidNumber)/(\MaxNumber-\MidNumber),100.0),0.00)} %
+            \hspace{-0.33em}\colorbox{red!\PercentColor!yellow}{#1}
+        \else
+            \pgfmathsetmacro{\PercentColor}{max(min(100.0*(\MidNumber - #1)/(\MidNumber-\MinNumber),100.0),0.00)} %
+            \hspace{-0.33em}\colorbox{green!\PercentColor!yellow}{#1}
+        \fi
+    }}
+
+    \newcolumntype{R}{>{\collectcell\ApplyGradient}c<{\endcollectcell}}
+    \renewcommand{\arraystretch}{0}
+    \setlength{\fboxsep}{3mm} % box size
+    \setlength{\tabcolsep}{0pt}
+
+
+    \begin{table}[H]
+        \begin{minipage}[t]{0.49\linewidth}  % <---
+            \centering
+            \begin{tabular}{|c|*{1}{R}|}
+                % -------------
+                \hline
+                \rowcolor{Cyan} 
+                % -------------
+                \textbf{Participantes \strut} & \textbf{NDPMs \strut} \EndTableHeader\\ 
+                % -------------
+                \hline
+                % -------------
+                \textbf{1} & 0.134249 \\
+                \hline
+                % -------------
+                \rowcolor{GrisTabla}
+                \textbf{2} & 0.137148 \\
+                \hline
+                % -------------
+                \textbf{3} & 0.128453 \\
+                \hline
+                % -------------
+                \rowcolor{GrisTabla}
+                \textbf{4} & 0.165097 \\
+                \hline
+                % -------------
+            \end{tabular}
+            \caption{\centering Valores NDPM para el modelo de cada participante actualizado con \textit{W$_c$ $=0$} y 50 usuarios sintéticos.}\label{tab:NDPM_PARTICIPANTES_COLOR_W0}
+        \end{minipage}
+        \hfill
+        \begin{minipage}[t]{0.5\linewidth}  % <---
+            \centering
+            \begin{tabular}{|c|*{1}{R}|}
+                % -------------
+                \hline
+                \rowcolor{Cyan} 
+                % -------------
+                \textbf{Participantes \strut} & \textbf{NDPMs \strut} \EndTableHeader\\ 
+                % -------------
+                \hline
+                % -------------
+                \textbf{1} & 0.134249 \\
+                \hline
+                % -------------
+                \rowcolor{GrisTabla}
+                \textbf{2} & 0.139962 \\
+                \hline
+                % -------------
+                \textbf{3} & 0.128981 \\
+                \hline
+                % -------------
+                \rowcolor{GrisTabla}
+                \textbf{4} & 0.167861 \\
+                \hline
+                % -------------
+            \end{tabular}
+            \caption{\centering \centering Valores NDPM para el modelo de cada participante actualizado con \textit{W$_c$ $=1$} y 50 usuarios sintéticos}\label{tab:NDPM_PARTICIPANTES_COLOR_W1}
+        \end{minipage} 
+    \end{table}
+}
+\subsubsection{Análisis de los valores de la ventana de rendimiento óptimo}
+Debido a la gran cantidad dee experimentos y pruebas que se han realizado solo se analizarán en detalle los de la ventana de rendimiento óptimo que se han mencionado anteriormente, estos son los experimentos con 50 usuarios sintéticos y \textit{W$_c$ $=1$} y \textit{W$_c$ $=0$}.
 \\ \\
-Las diferencias que plantea el aprendizaje federado sobre el aprendizaje automático convencional pueden resultar en ocasiones beneficiosas, en este caso, debido a la heterogeneidad de los datos en ocasiones cada grupo de usuarios necesita su propio modelo porque un modelo global les perjudicaría, como es el caso del participante 1 en el caso del aprendizaje federado. El caso es que este mismo sistema si se ejecuta de forma centralizada y con el se entrenase un único modelo con el 80\% de los datos y se probase con el 20\% restante el resultado sería de menor precisión, siendo el NDPM 0.164493 de media durante cien repeticiones.
+Los valores de media de los gráficos que se van a mostrar son los representados en las tablas, la única diferencia es que en este apartado se mostrará el valor en cada una de las cien predicciones y no únicamente una media global.
+
+\paragraph{Detalle de los resultados del participante 1}
+Como se puede observar en los gráficos \ref{fig:PI1_CAJAS} y \ref{fig:PI1_DISP}, los valores del modelo original del participante 1 siempre se mantienen por encima de los del modelo reentrenado en el servidor de FL, tanto con \textit{W$_c$ $=1$} como con \textit{W$_c$ $=0$}. En los gráficos se pueden observar varias líneas horizontales que hacen referencia a la media, mediana y moda, dibujadas en negro, rosa y marrón respectivamente.
+
+\paragraph{Detalle de los resultados del participante 2}
+Como se puede observar en los gráficos \ref{fig:PI2_CAJAS} y \ref{fig:PI2_DISP}, los valores del modelo original del participante 2 siempre se mantienen por debajo de los del modelo reentrenado en el servidor de FL, tanto con \textit{W$_c$ $=1$} como con \textit{W$_c$ $=0$}. En los gráficos se pueden observar varias líneas horizontales que hacen referencia a la media, mediana y moda, dibujadas en negro, rosa y marrón respectivamente.
+
+\begin{sidewaysfigure}
+    \centering
+    \subfloat[Modelo original]
+        {\includegraphics[width=0.5\textheight]
+        {Figuras/Reports/PI_1_W0_LOC_CAJAS.png}}
+        \quad
+    \subfloat[Reentrenado con \textit{W$_c$ $=0$}]
+        {\includegraphics[width=0.5\textheight]
+        {Figuras/Reports/PI_1_W0_EXT_CAJAS.png}}
+    \subfloat[Reentrenado con \textit{W$_c$ $=1$}]{
+        \includegraphics[width=0.5\textheight]
+        {Figuras/Reports/PI_1_W1_EXT_CAJAS.png}}
+    \caption{Diagramas de cajas y bigotes de los valores NDPM del participante 1\label{fig:PI1_CAJAS}}
+\end{sidewaysfigure}
+\clearpage
+\begin{sidewaysfigure}
+    \centering
+    \subfloat[Modelo original]
+        {\includegraphics[width=0.5\textheight]
+        {Figuras/Reports/PI_1_W0_LOC_DISP.png}}
+        \quad
+    \subfloat[Reentrenado con \textit{W$_c$ $=0$}]
+        {\includegraphics[width=0.5\textheight]
+        {Figuras/Reports/PI_1_W0_EXT_DISP.png}}
+    \subfloat[Reentrenado con \textit{W$_c$ $=1$}]{
+        \includegraphics[width=0.5\textheight]
+        {Figuras/Reports/PI_1_W1_EXT_DISP.png}}
+    \caption{Gráfico de los valores NDPM del participante 1\label{fig:PI1_DISP}}
+\end{sidewaysfigure}
+\clearpage
+
+\begin{sidewaysfigure}
+    \centering
+    \subfloat[Modelo original]
+        {\includegraphics[width=0.5\textheight]
+        {Figuras/Reports/PI_2_W0_LOC_CAJAS.png}}
+        \quad
+    \subfloat[Reentrenado con \textit{W$_c$ $=0$}]
+        {\includegraphics[width=0.5\textheight]
+        {Figuras/Reports/PI_2_W0_EXT_CAJAS.png}}
+    \subfloat[Reentrenado con \textit{W$_c$ $=1$}]{
+        \includegraphics[width=0.5\textheight]
+        {Figuras/Reports/PI_2_W1_EXT_CAJAS.png}}
+    \caption{Diagramas de cajas y bigotes de los valores NDPM del participante 2\label{fig:PI2_CAJAS}}
+\end{sidewaysfigure}
+\clearpage
+\begin{sidewaysfigure}
+    \centering
+    \subfloat[Modelo original]
+        {\includegraphics[width=0.5\textheight]
+        {Figuras/Reports/PI_2_W0_LOC_DISP.png}}
+        \quad
+    \subfloat[Reentrenado con \textit{W$_c$ $=0$}]
+        {\includegraphics[width=0.5\textheight]
+        {Figuras/Reports/PI_2_W0_EXT_DISP.png}}
+    \subfloat[Reentrenado con \textit{W$_c$ $=1$}]{
+        \includegraphics[width=0.5\textheight]
+        {Figuras/Reports/PI_2_W1_EXT_DISP.png}}
+    \caption{Gráfico de los valores NDPM del participante 2\label{fig:PI2_DISP}}
+\end{sidewaysfigure}
+\clearpage
+
+\paragraph{Detalle de los resultados del participante 3}
+Como se puede observar en los gráficos \ref{fig:PI3_CAJAS} y \ref{fig:PI3_DISP}, los valores del modelo original del participante 3 siempre se mantienen parecidos a los del modelo reentrenado en el servidor de FL, con \textit{W$_c$ $=1$} el valor del modelo reentrenado es peor que el original pero con \textit{W$_c$ $=0$} el valor del modelo reentrenado es mejor que el original. En los gráficos se pueden observar varias líneas horizontales que hacen referencia a la media, mediana y moda, dibujadas en negro, rosa y marrón respectivamente.
+
+\paragraph{Detalle de los resultados del participante 4}
+Como se puede observar en los gráficos \ref{fig:PI4_CAJAS} y \ref{fig:PI4_DISP}, los valores del modelo original del participante 4 siempre se mantienen por debajo de los del modelo reentrenado en el servidor de FL, tanto con \textit{W$_c$ $=1$} como con \textit{W$_c$ $=0$}, aunque no con tanta diferencia como el participante 2. En los gráficos se pueden observar varias líneas horizontales que hacen referencia a la media, mediana y moda, dibujadas en negro, rosa y marrón respectivamente.
+
+\begin{sidewaysfigure}
+    \centering
+    \subfloat[Modelo original]
+        {\includegraphics[width=0.5\textheight]
+        {Figuras/Reports/PI_3_W0_LOC_CAJAS.png}}
+        \quad
+    \subfloat[Reentrenado con \textit{W$_c$ $=0$}]
+        {\includegraphics[width=0.5\textheight]
+        {Figuras/Reports/PI_3_W0_EXT_CAJAS.png}}
+    \subfloat[Reentrenado con \textit{W$_c$ $=1$}]{
+        \includegraphics[width=0.5\textheight]
+        {Figuras/Reports/PI_3_W1_EXT_CAJAS.png}}
+    \caption{Diagramas de cajas y bigotes de los valores NDPM del participante 3\label{fig:PI3_CAJAS}}
+\end{sidewaysfigure}
+\clearpage
+\begin{sidewaysfigure}
+    \centering
+    \subfloat[Modelo original]
+        {\includegraphics[width=0.5\textheight]
+        {Figuras/Reports/PI_3_W0_LOC_DISP.png}}
+        \quad
+    \subfloat[Reentrenado con \textit{W$_c$ $=0$}]
+        {\includegraphics[width=0.5\textheight]
+        {Figuras/Reports/PI_3_W0_EXT_DISP.png}}
+    \subfloat[Reentrenado con \textit{W$_c$ $=1$}]{
+        \includegraphics[width=0.5\textheight]
+        {Figuras/Reports/PI_3_W1_EXT_DISP.png}}
+    \caption{Gráfico de los valores NDPM del participante 3\label{fig:PI3_DISP}}
+\end{sidewaysfigure}
+\clearpage
+
+\begin{sidewaysfigure}
+    \centering
+    \subfloat[Modelo original]
+        {\includegraphics[width=0.5\textheight]
+        {Figuras/Reports/PI_4_W0_LOC_CAJAS.png}}
+        \quad
+    \subfloat[Reentrenado con \textit{W$_c$ $=0$}]
+        {\includegraphics[width=0.5\textheight]
+        {Figuras/Reports/PI_4_W0_EXT_CAJAS.png}}
+    \subfloat[Reentrenado con \textit{W$_c$ $=1$}]{
+        \includegraphics[width=0.5\textheight]
+        {Figuras/Reports/PI_4_W1_EXT_CAJAS.png}}
+    \caption{Diagramas de cajas y bigotes de los valores NDPM del participante 4\label{fig:PI4_CAJAS}}
+\end{sidewaysfigure}
+\clearpage
+\begin{sidewaysfigure}
+    \centering
+    \subfloat[Modelo original]
+        {\includegraphics[width=0.5\textheight]
+        {Figuras/Reports/PI_4_W0_LOC_DISP.png}}
+        \quad
+    \subfloat[Reentrenado con \textit{W$_c$ $=0$}]
+        {\includegraphics[width=0.5\textheight]
+        {Figuras/Reports/PI_4_W0_EXT_DISP.png}}
+    \subfloat[Reentrenado con \textit{W$_c$ $=1$}]{
+        \includegraphics[width=0.5\textheight]
+        {Figuras/Reports/PI_4_W1_EXT_DISP.png}}
+    \caption{Gráfico de los valores NDPM del participante 4\label{fig:PI4_DISP}}
+\end{sidewaysfigure}
+\clearpage
+
+
+
+
+\subsubsection{Conclusiones}
+Teniendo en cuenta lo anteriormente mencionado podría decirse que este sistema permite que los participantes que cuentan con pocos datos se beneficien del conocimiento de otros usuarios, aunque estos no se vean compensados en ocasiones. Con cada iteración del protocolo el conocimiento pasa a ser más homogéneo a lo largo de los participantes. Además, con la introducción de nuevos datos en cada participante se consigue un sistema sostenible en el tiempo.
 \\ \\
-El valor NDPM del sistema centralizado es únicamente menor que el del participante 4, sin embargo, este participante en la ventana de rendimiento consigue alcanzar un valor NDPM bastante similar al del sistema centralizado durante la primera iteración del protocolo, lo que haría que el sistema centralizado dejase de ser superior al rendimiento que ofrece el modelo de cualquiera de los cuatro participantes. 
+Las diferencias que plantea el FL sobre el ML convencional pueden resultar en ocasiones beneficiosas, en este caso, debido a la heterogeneidad de los datos la segregación de modelos es beneficiosa. En ocasiones cada grupo de usuarios necesita su propio modelo porque un modelo global les perjudica, como es el caso del participante 1 en la tabla \ref{tab:NDPM_PARTICIPANTE_1}. El caso es que el participante 1 en el sistema FL de información descentralizada es capaz de elaborar predicciones con más precisión que un RS con información centralizada.
 \\ \\
-En este caso queda claro que la heterogeneidad de los sistemas de recomendación en ocasiones perjudica a un sistema centralizado y beneficia aun sistema distribuido. 
+En este caso queda claro que la heterogeneidad de los RSs en ocasiones perjudica a un sistema centralizado y beneficia a un sistema distribuido. 
