@@ -1,27 +1,26 @@
 \chapter{Introducción al Federated Learning}
 \thispagestyle{fancy}
 \fancyhead[LE]{\thechapter.Introducción al Federated Learning} 
-Es de gran importancia comprender y conocer lo que es el Federated Learning para entender tanto el desarrollo, como la resolución de los problemas y retos que supone su implementación, por eso, en el presente apartado se explicará a conciencia de que se trata esta tecnología. 
+Es de gran importancia comprender y conocer lo que es el Federated Learning (FL) para entender tanto el desarrollo, como la resolución de los problemas y retos que supone su implementación, por eso, en el presente apartado se explicará a conciencia de que se trata esta tecnología. 
 
 \section{Información general}
-El aprendizaje federado, es una técnica de aprendizaje automático que entrena un algoritmo a través de diversos dispositivos descentralizados, manteniendo siempre la información en cada uno de ellos (Fig\ref{fig:FedLearArquitectura}). El algoritmo que se busca entrenar en los dispositivos puede ser de cualquier tipo dentro del campo del aprendizaje automático, redes neuronales artificiales, aprendizaje profundo, árbol de decisión, etc. Por lo cual, se puede decir que el aprendizaje federado es una tecnología habilitadora para el entrenamiento de modelos de aprendizaje automático en redes de dispositivos.
+El FL, es una técnica de ML que entrena un algoritmo a través de diversos dispositivos descentralizados, manteniendo siempre la información en cada uno de ellos (Fig\ref{fig:FedLearArquitectura}). El algoritmo que se busca entrenar en los dispositivos puede ser de cualquier tipo dentro del campo del ML: redes neuronales artificiales, aprendizaje profundo, árbol de decisión, etc. Por lo cual, se puede decir que el FL es una tecnología habilitadora para el entrenamiento de modelos de ML en redes de dispositivos.
 \\ \\
-Al contrario del aprendizaje automático convencional que reúne toda la información en un mismo computador, el aprendizaje federado busca entrenar un algoritmo en cada uno de los dispositivos que participen en la red, para luego combinarlos y conseguir un modelo de aprendizaje robusto. Los dispositivos que forman parte de esta red son denominados participantes y todos ellos forman la denominada como red de aprendizaje colaborativo. En esta red, todos aprenden de todos sin necesidad de compartir su información, consiguiendo mejorar la precisión y eficacia del algoritmo. 
-\begin{figure}[thbp]
+Al contrario del ML convencional, que reúne toda la información en un mismo dispositivo, el FL busca entrenar un algoritmo en cada uno de los dispositivos que participen en la red, para luego combinarlos y conseguir un modelo de aprendizaje robusto. Los dispositivos que forman parte de esta red son denominados participantes y todos ellos forman la denominada como red de aprendizaje colaborativo. En esta red, todos aprenden de todos sin necesidad de compartir su información, consiguiendo mejorar la precisión y eficacia del algoritmo. 
+\begin{figure}[H]
     \centering
     \fbox{\includegraphics[width=0.5\textwidth]{Figuras/FedLeaConcept.png}}
-    \caption{Diagrama de una red de Federated Learning} 
+    \caption{Diagrama de una red de FL} 
     \label{fig:FedLearArquitectura}
 \end{figure}
+Esta red permite repartir la carga de trabajo entre todos los participantes, puesto que cada uno se encarga de entrenar su propio modelo y enviar al servidor de FL únicamente algunos parámetros del modelo concretos, en ningún momento datos personales ni privados. Esto es posible gracias a que cada vez los dispositivos móviles tienen procesadores más rápidos y más potentes, lo que permite que sean capaces de realizar tareas más complejas y pesadas. De esta forma, se consigue que cada dispositivo sea propietario exclusivo de su información y no tenga que compartirla con ningún otro. Además, hoy en día, los costes de comunicación son superiores a los de computación, por lo que cuanto más acciones se puedan computar en los dispositivos de los participantes menor será el consumo del entrenamiento del algoritmo. 
 \\ \\
-Esta red permite repartir la carga de trabajo entre todos los participantes, puesto que cada uno se encarga de entrenar su propio modelo. Esto es posible gracias a que cada vez los dispositivos móviles tienen procesadores más rápidos y más potentes, lo que permite que sean capaces de realizar tareas más complejas y pesadas. De esta forma, se consigue que cada dispositivo sea propietario exclusivo de su información y no tenga que compartirla con ningún otro. Además, hoy en día los costes de comunicación son superiores a los de computación, por lo que cuanto más acciones se puedan computar en los dispositivos de los participantes menor será el consumo del entrenamiento del algoritmo. 
-\\ \\
-Sin embargo, debido a estas características propias del aprendizaje federado también sufre de grandes inconvenientes. El hecho de que la red está formada por diferentes participantes la hace heterogénea, con diferentes capacidades de cómputo y diferentes velocidades de conexión entre los distintos participantes, lo que puede incurrir en desconexiones o pérdidas de paquetes durante el proceso de aprendizaje.
+Sin embargo, debido a estas características propias del FL también sufre de grandes inconvenientes. El hecho de que la red está formada por diferentes participantes la hace heterogénea, con diferentes capacidades de cómputo y diferentes velocidades de conexión entre los distintos participantes, lo que puede incurrir en desconexiones o pérdidas de paquetes durante el proceso de aprendizaje.
 
 \section{Fundamentos y Protocolo}
-En general existen dos tipos de entidades en los sistemas de Federated Learning, los propietarios de la información (participantes de la red) y el propietario del modelo (servidor de Federated Learning). Los propietarios de la información entrenan localmente el modelo con la información de la que disponen, mientras que el propietario del modelo agrega los diferentes modelos recibidos de los participantes para mejorar el algoritmo. 
+En general existen dos tipos de entidades en los sistemas de FL, los propietarios de la información (participantes de la red) y el propietario del modelo (servidor de FL). Los propietarios de la información entrenan localmente el modelo con la información de la que disponen, mientras que el propietario del modelo agrega los diferentes parámetros de los modelos recibidos de los participantes para mejorar el algoritmo. 
 \\ \\
-La comunicación puede ser llevada a cabo de diferentes maneras, de hecho, hay diseños de protocolos de aprendizaje federado como el desarrollado por los autores del trabajo \autocite{bonawitzFederatedLearningScale2019}, que lo dividen en 3 fases:
+La comunicación puede ser llevada a cabo de diferentes maneras, de hecho, hay diseños de protocolos de FL como el desarrollado por los autores del trabajo \autocite{bonawitzFederatedLearningScale2019}, que lo dividen en 3 fases:
 
 \begin{itemize}
     \item Selección de los participantes: El servidor elige un grupo de dispositivos conectados para participar en la red.
@@ -33,18 +32,18 @@ Además, estos autores definen un parámetro de población con el objetivo de li
 
 \section{Problemas presentes}
 \subsection{Técnicos}
-Como se ha mencionado antes, implementar el aprendizaje federado implica problemas y costes que hay que asumir y tratar con el objetivo de crear un sistema eficiente y estable. 
+Como se ha mencionado antes, implementar el FL implica problemas y costes que hay que asumir y tratar con el objetivo de crear un sistema eficiente y estable. 
 \\ \\
-Cada actualización del modelo conlleva millones de parámetros, además se llevan tantas actualizaciones a cabo como precisión se quiera en el modelo. La gran dimensión de las actualizaciones puede incurrir en un aumento de los costes de conexión y generar un cuello de botella que puede verse agravado por los participantes, ya sea por la asimetría en las velocidades de internet o por la asimetría en la capacidad de cómputo. Es por eso, que para mejorar el rendimiento y reducir el coste de comunicación se deben considerar varias cosas.
+Cada actualización del modelo conlleva millones de parámetros, además, se llevan tantas actualizaciones a cabo como precisión se quiera en el modelo. La gran dimensión de las actualizaciones puede incurrir en un aumento de los costes de conexión y generar un cuello de botella, que puede verse agravado por los participantes, ya sea por la asimetría en las velocidades de internet o por la asimetría en la capacidad de cómputo. Es por eso, que para mejorar el rendimiento y reducir el coste de comunicación se deben considerar varias cosas.
 \begin{itemize}
-    \item En primer lugar, todos los dispositivos deben contar con una conexión estable, preferiblemente conexión por cable, o en su defecto conexión inalámbrica por Wi-Fi, descartando por completo todas aquellas conexiones por telefonía móvil.
+    \item En primer lugar, todos los dispositivos deben contar con una conexión estable, preferiblemente conexión por cable, o en su defecto conexión inalámbrica por Wi-Fi, descartando en lo posible todas aquellas conexiones por telefonía móvil.
     \item En segundo lugar, para minimizar el número de rondas de comunicación se puede realizar computación adicional en los dispositivos para que la agregación global se realice antes.
     \item También se puede reducir el tamaño de las comunicaciones, ya sea por compresión del modelo, compresión de los datos, o por el uso de una pequeña muestra representativa de estos en vez de enviarlos por completo.
     \item Por último, se pueden minimizar las actualizaciones de los modelos en base a la importancia de estas. Evitando enviar el modelo global hasta que este no suponga una clara mejora para los participantes.
 \end{itemize}
 
 \subsection{Privacidad}
-Uno de los objetivos principales del Federated Learning es la protección de la privacidad de los usuarios. Los usuarios solo necesitan compartir los parámetros del modelo de ML, en lugar de compartir los datos reales. No obstante, varios estudios han demostrado que estos modelos aún pueden ser susceptibles a ataques informáticos que puedan extraer datos reales.
+Uno de los objetivos principales del FL es la protección de la privacidad de los usuarios. Los usuarios solo necesitan compartir los parámetros del modelo de ML, en lugar de compartir los datos reales. No obstante, varios estudios han demostrado que estos modelos aún pueden ser susceptibles a ataques informáticos que puedan extraer datos reales.
 \\ \\
 Véase un ejemplo de vulnerabilidad con FaceScrub, un dataset con más de cien mil imágenes de caras de 530 personas. Mientras se desarrollaba el modelo ML, los desarrolladores se percataron de que, tan solo con inspeccionar el modelo ML, los atacantes podían extraer el 90\% de la información real.
 \\ \\
@@ -53,11 +52,9 @@ Por mucho que se haya avanzado en el desarrollo de modelos que protejan a los us
 En un artículo publicado por expertos en ciberseguridad, se especifica otro caso en el que, mediante ataques relativamente sencillos contra plataformas de la talla de Amazon Machine Learning, es posible extraer modelos basados en árboles de decisión o en regresión logística \autocite{tramèr2016stealing}.
 
 \subsection{Seguridad}
-Los modelos de datos de Federated Learning son también susceptibles a ataques de envenenamiento de datos. Un participante puede ir entrenando datos y enviándolos al servidor para su posterior procesamiento y análisis. Sin embargo, otro participante puede crear una serie de datos corruptos y enviarlos al servidor con el fin de generar falsos parámetros. Este tipo de ataques, con la desclasificación de los procesos Deep Learning como principal objetivo, tienen una posibilidad de éxito del 90\% si se ejecutan bien \autocite{armknechtGuideFullyHomomorphic2015}.
+Los modelos de datos de FL son también susceptibles a ataques de envenenamiento de datos. Un participante puede ir entrenando datos y enviándolos al servidor para su posterior procesamiento y análisis. Sin embargo, otro participante puede crear una serie de datos corruptos y enviarlos al servidor con el fin de generar falsos parámetros. Este tipo de ataques, con la desclasificación de los procesos Deep Learning como principal objetivo, tienen una posibilidad de éxito del 90\% si se ejecutan bien \autocite{armknechtGuideFullyHomomorphic2015}.
 \\ \\
-A diferencia de los ataques de envenenamiento de datos, cuyo objetivo es la generación de datos corruptos para alterar el resultado del modelo generado, los ataques de envenenamiento por modelo buscan alterar el modelo generado en su totalidad. Cuando el modelo de datos generado a través de Federated Learning es muy grande y cuenta con una gran cantidad de participantes, este tipo de ataque tiende a ser más exitoso \autocite{bhagoji2019analyzing}.
-\\ \\
-El motivo del éxito de este método es que la alteración y generación de datos corruptos para el ataque mencionado anteriormente depende directamente de la cantidad de datos que se encuentre en el servidor. Al contrario, en el caso de este tipo de ataques, el modelo generado es envenenado en su totalidad, independientemente de la cantidad de datos que este albergue.
+A diferencia de los ataques de envenenamiento de datos, cuyo objetivo es la generación de datos corruptos para alterar el resultado del modelo generado, los ataques de envenenamiento por modelo buscan alterar el modelo generado en su totalidad. Cuando el modelo de datos generado a través de FL es muy grande y cuenta con una gran cantidad de participantes, este tipo de ataque tiende a ser más exitoso \autocite{bhagoji2019analyzing}.
 \\ \\
 Existen maneras de prevenir este ataque, como por ejemplo, analizando si el modelo generado por un participante puede ayudar a mejorar el modelo global de datos. Si se da el caso de que no, este modelo será marcado como potencialmente peligroso, y se analizarán los cambios realizados en el modelo de manera exhaustiva para comprobar si se trata de un atacante. 
 \\ \\ 
