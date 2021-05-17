@@ -1,5 +1,5 @@
 \subsection{Arquitectura}
-En este apartado se explicarán los componentes que forman parte de la arquitectura de la solución, el cómo se deben conectar para emular una red de FL y el propio montaje físico de los dispositivos. De esta forma, se podrá comprender porque se han seleccionado los dispositivos que van a participar en el FL, cuál es el mapa de red de una red de FL, como se va a representar localmente y como queda el montaje de todos los dispositivos acorde al mapa de red.  
+En este apartado se explicarán los componentes que forman parte de la arquitectura de la solución, el cómo se deben conectar para emular una red de FL y el propio montaje físico de los dispositivos. De esta forma, se podrá comprender por qué se han seleccionado los dispositivos que van a participar en el FL, cuál es el mapa de red de una red de FL, cómo se va a representar localmente y cómo queda el montaje de todos los dispositivos acorde al mapa de red.  
 
 \subsubsection{Componentes}
 Para la recreación de un ejemplo real de una red de FL se han utilizado dispositivos de capacidad de cómputo acotada como son las Raspberries Pi. De esta forma, se pretende demostrar la viabilidad de la aplicación del FL a campos como el del internet de las cosas, donde los dispositivos participantes disponen de escasa capacidad de cómputo.
@@ -32,7 +32,7 @@ Los dispositivos que se utilizarán en concreto son los siguientes: (x4) Raspber
 \newpage
 
 \subsubsection{Mapa de red}
-Las conexiones entre los dispositivos que interactúan en la red (Raspberries y Jetson Nano) será por cable, conectando todos al mismo switch para permitir la comunicación entre ellos. A su vez, este switch se conectará al router que provee de acceso a internet, permitiendo así, que los ordenadores de la red puedan acceder a estos dispositivos y estos dispositivos puedan conectarse a internet para lo que necesiten. Todo ello queda representado en el mapa de de la figura \ref{fig:MapaRed}, que sería el mapa de red físico del que parte el proyecto.
+Las conexiones entre los dispositivos que interactúan en la red (Raspberries y Jetson Nano) será por cable, conectando todos al mismo switch para permitir la comunicación entre ellos. A su vez, este switch se conectará al router que provee de acceso a internet, permitiendo así, que los ordenadores de la red puedan acceder a estos dispositivos y estos dispositivos puedan conectarse a internet para lo que necesiten. Todo ello queda representado en el mapa de la figura \ref{fig:MapaRed}, que sería el mapa de red físico del que parte el proyecto.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{Figuras/Network_map.png}    

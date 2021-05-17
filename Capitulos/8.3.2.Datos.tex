@@ -15,8 +15,6 @@ Como se ha mencionado antes, en la categoría de datos no sensibles se encuentra
 \\ \\
 Cada estrategia de persuasión que pueda recomendar el RS contará con hasta dos atributos, para que de esta forma, el sistema pueda conocer mejor las estrategias y realizar recomendaciones más precisas en base a esta información. En la tabla \ref{tab:EstrategiasPersuasion} se muestran las estrategias de persuasión involucradas en el RS y sus atributos.
 \begin{table}[H]
-    %Con esta función se inicia el entorno tabla, que se puede posicionar con respecto al texto al igual que una imagen.
-    
     \begin{center}
     %Se centra la tabla.
         \begin{tabular}{|c|p{0.45\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
@@ -74,10 +72,10 @@ Cada estrategia de persuasión que pueda recomendar el RS contará con hasta dos
 \subsubsection{Sensibles}
 En cuanto a los datos sensibles hay que mencionar dos grupos, los datos personales de los usuarios y los rankings de los usuarios. Este primer grupo está formado por los datos personales de los usuarios participantes, que intervienen en dos puntos clave: en el entrenamiento de los modelos de IA y a la hora de agregar estos modelos. El grupo de los datos de los rankings está formado por las preferencias de los anteriores usuarios a la hora de ordenar las estrategias de persuasión, es decir, el ranking de estrategias para cada usuario.
 \\ \\
-Tanto los datos personales de los usuarios como los datos de los rankings de estos son necesarios para entrenar un modelo de IA. Los atributos de los usuarios, al igual que los atributos de las estrategias de persuasión, sirven para relacionar los distintos usuarios entre sí y encontrar relación entre sus diferentes atributos con el orden que le han dado a las diferentes estrategias de persuasión, de esta forma, se pueden realizar recomendaciones en base al tipo de usuario.
+Tanto los datos personales de los usuarios como los datos de los rankings de estos, son necesarios para entrenar un modelo de IA. Los atributos de los usuarios, al igual que los atributos de las estrategias de persuasión, sirven para relacionar los distintos usuarios entre sí y encontrar relación entre sus diferentes atributos con el orden que le han dado a las diferentes estrategias de persuasión, de esta forma, se pueden realizar recomendaciones en base al tipo de usuario.
 
 \paragraph{Datos de usuarios\\}
-Los datos personales de los usuarios que intervienen en este proyecto son los presentes en la tabla \ref{tab:AtributosUsuarios}. Estos datos han sido transformados a objetos json para su posterior utilización, formando una lista de objetos en los que cada uno representa los datos personales de un usuario.
+Los datos personales de los usuarios que intervienen en este proyecto son los presentes en la tabla \ref{tab:AtributosUsuarios}. Estos datos han sido transformados a objetos \textit{json} para su posterior utilización, formando una lista de objetos en los que cada uno representa los datos personales de un usuario.
 \begin{table}[H]
     %Con esta función se inicia el entorno tabla, que se puede posicionar con respecto al texto al igual que una imagen.
     

@@ -33,7 +33,7 @@ El entrenamiento es algo que en el protocolo se omite pero que es importante men
 \subsubsection{Comunicación con el servidor}
 La comunicación con el servidor es un proceso crucial en el que se debe asegurar que los modelos de los participantes lleguen sin modificaciones y sin ser interceptados por ningún atacante. Para detallar este proceso se ha elaborado una sección donde se explican más a fondo los pasos llevados para conseguir que las comunicaciones sean seguras, sección \ref{SegCom}.
 \\ \\
-Debido a este protocolo de seguridad, los participantes deberán enviar tanto los modelos cifrados como las claves cifradas, como se puede observar en las siguientes imágenes.
+Debido a este protocolo de seguridad, los participantes deberán enviar tanto los modelos cifrados como las claves cifradas, acorde las siguientes imágenes.
 
 \begin{figure}[H]
     \begin{minipage}[t]{0.45\linewidth}  % <---
@@ -55,7 +55,7 @@ En este proceso, como tal, no va a ocurrir una agregación de modelos, sino más
 De todas formas, para verlo de una forma más sencilla, se puede observar el siguiente diagrama \ref{fig:Flow_Agregation} en el cual se muestra el flujo de los datos y de los modelos para ser agregados. El proceso que recorre este diagrama puede ser dividido en 4 partes:
 \begin{itemize}
     \item Se reciben los modelos de los participantes (en este caso 4), se descifran siguiendo el diagrama \ref{fig:Flow_Decryption} (explicado con detalle en en la sección de securización de las comunicaciones \ref{SegCom}) y se guardan los modelos para su posterior utilización.
-    \item Una vez se cuente con los modelos descifrados, se generan los usuarios sintéticos, después, con el modelo de cada participante se realiza la predicción del ranking para estos usuarios y se almacena para su posterior utilización. 
+    \item Una vez se cuente con los modelos descifrados, se generan los usuarios sintéticos. Después, con el modelo de cada participante se realiza la predicción del ranking para estos usuarios y se almacena para su posterior utilización. 
     \item Mediante el modelo de consenso explicado en el apartado \ref{Consenso} estas predicciones son convertidas a una única predicción por usuario sintético generado. Después, la información se almacena para su uso final.
     \item Por último, se coge toda la información de los usuarios sintéticos y los rankings consensuados para reentrenar el modelo de cada participante. 
 \end{itemize}
@@ -67,7 +67,7 @@ De todas formas, para verlo de una forma más sencilla, se puede observar el sig
 \end{figure}
 \newpage
 \subsubsection{Comunicación con los participantes}
-La comunicación con los participantes se realiza de la misma forma que los participantes se comunican con el servidor, la única diferencia es que el receptor en este caso son los participantes.
+La comunicación del servidor con los participantes se realiza de la misma forma en la que los participantes se comunican con el servidor. La única diferencia es que el receptor en este caso son los participantes y el emisor el servidor.
 \begin{figure}[H]
     \begin{minipage}[t]{0.45\linewidth}  % <---
         \centering
@@ -82,9 +82,9 @@ La comunicación con los participantes se realiza de la misma forma que los part
     \end{minipage}
 \end{figure}
 \subsubsection{Comparación de modelos}
-En el momento que el modelo llega al participante este tiene que valorar si realmente le supone una mejora o no, para ello como puede verse en el diagrama \ref{fig:Flow_Compare}, existen varias fases a llevar a cabo.
+En el momento que el modelo llega al participante, este tiene que valorar si realmente le supone una mejora o no. Para ello como puede verse en el diagrama \ref{fig:Flow_Compare}, existen varias fases a llevar a cabo.
 
-En primer lugar, al igual que como con el servidor de agregación, se debe descifrar el modelo recibido. Después, compararlo con el modelo del participante, esto se puede hacer tratando de analizar la precisión de las predicciones para varios subconjuntos de datos de test con los que cuente el dispositivo. En resumen, predecir para los usuarios existentes de su ranking con los dos modelos y quedarse con el modelo que más acierte.
+En primer lugar, al igual que como con el servidor de agregación, se debe descifrar el modelo recibido. Después, compararlo con el modelo del participante. Esto se puede hacer tratando de analizar la precisión de las predicciones para varios subconjuntos de datos de test con los que cuente el dispositivo. En resumen, predecir para los usuarios existentes de su ranking con los dos modelos y quedarse con el modelo que más acierte.
 
 \begin{figure}[H]
     \centering
