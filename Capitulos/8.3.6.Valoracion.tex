@@ -1,11 +1,11 @@
 \subsection{Valoración de las predicciones} \label{Valoracion}
-La función de valoración es un elemento fundamental en cualquier sistema de recomendación, ya que es la única forma de medir la eficacia, precisión o margen de error del sistema. Esta métrica mide la diferencia entre  la predicción realizada y la realidad. Para analizar este rendimiento se utilizará la métrica de rendimiento basado en la distancia normalizada (NDPM, Normalized Distance based Performance Measure). Esta métrica es bastante usada porque diferencia entre ordenes correctos, incorrectos o vinculados.
+La función de valoración es un elemento fundamental en cualquier RS, ya que es la única forma de medir la eficacia, precisión o margen de error del sistema. Para analizar este rendimiento se utilizará la métrica de rendimiento basado en la distancia normalizada (NDPM, Normalized Distance based Performance Measure). Esta métrica es bastante usada porque diferencia entre ordenes correctos, incorrectos o vinculados.
 \\ \\
-El funcionamiento de esta métrica es el siguiente, dada una relación de preferencias de un usuario $\succ$ sobre un conjunto de estrategias \textit{E} = $\begin{bmatrix} \textit{e$_{1}$} & \textit{e$_{2}$} \end{bmatrix}$ se valora la distancia entre los elementos $e_1$ y $e_2$ de los rankings $\succ_1$ y $\succ_2$ como $\delta_{\succ_1, \succ_2}(e_1, e_2)$. Estos rankings $\succ_1$ y $\succ_2$ se pueden relacionar como:
+El funcionamiento de esta métrica es el siguiente, dada una relación de preferencias de un usuario $\succ$ sobre un conjunto de estrategias \textit{E} = $\begin{bmatrix} \textit{e$_{1}$} & \textit{e$_{2}$} \end{bmatrix}$, se valora la relación entre los elementos $e_1$ y $e_2$ de los rankings $\succ_1$ y $\succ_2$ como $\delta_{\succ_1, \succ_2}(e_1, e_2)$. Estos rankings $\succ_1$ y $\succ_2$ se pueden relacionar como:
 \begin{itemize}
     \item Coincidencia si los rankings $\succ_1$ y $\succ_2$ coinciden en el orden para $e_1$ y $e_2$, de forma que, $e_1$ $\succ$ $e_2$ o $e_2$ $\succ$ $e_1$ en ambos rankings.
     \item Discrepancia si los rankings $\succ_1$ y $\succ_2$ no coinciden en el orden para $e_1$ y $e_2$, de forma que, $e_1$ $\succ_1$ $e_2$ y $e_2$ $\succ_2$ $e_1$ o viceversa. 
-    \item Compatibilidad si para el ranking $\succ_1$ el orden es $e_1$ $\succ_1$ $e_2$ o $e_2$ $\succ_1$ $e_1$ y para $\succ_2$ el orden no es ni $e_1$ $\succ_2$ $e_2$ ni $e_2$ $\succ_2$ $e_1$ o viceversa. Esto es porque los datos están vinculados\footnote{Que los datos estén vinculados quiere decir que tienen el mismo valor, es decir, que $e_1$ = $e_2$, por lo que ninguno va delante del otro.} o son incompatibles porque alguna de las estrategias no está en el otro ranking.   
+    \item Compatibilidad si para el ranking $\succ_1$ el orden es $e_1$ $\succ_1$ $e_2$ o $e_2$ $\succ_1$ $e_1$ y para $\succ_2$ el orden no es ni $e_1$ $\succ_2$ $e_2$ ni $e_2$ $\succ_2$ $e_1$ o viceversa. Esto es porque los datos están vinculados\footnote{Que los datos estén vinculados quiere decir que o tienen el mismo valor, es decir, que $e_1$ = $e_2$, por lo que ninguno va delante del otro.} o son incompatibles porque alguna de las estrategias no está en el otro ranking.   
 \end{itemize}
 Los valores para cada tipo de relación son los siguientes: 
 \[ 
@@ -18,12 +18,12 @@ Los valores para cada tipo de relación son los siguientes:
     \end{cases}
 \]
 \\ \\
-Para calcular la distancia total entre los rankings $\succ_1$ y $\succ_2$ se define una función de distancia $\beta$ donde se suma la distancia entre todos los elementos de la siguiente forma:
+Para calcular la distancia total entre los rankings $\succ_1$ y $\succ_2$ se define una función de distancia $\beta$, donde se suma la distancia entre todos los elementos de la siguiente forma:
 \[  
         dpm(\succ_1, \succ_2) \equiv \beta(\succ_1, \succ_2) = \sum\limits_{e_1, e_2} \delta_{\succ_1, \succ_2}(e_1, e_2)
 \]
 \\ \\
-A fin de normalizar el valor de la distancia entre los dos rankings se introduce el valor max(dpm($\succ_n, \succ$)) que representa la distancia máxima que puede tener cualquier ranking $\succ_n$ sobre el ranking de referencia $\succ$, de esta forma una distancia de 200 a 100 es considerada igual que una distancia de 2 a 1.
+A fin de normalizar el valor de la distancia entre los dos rankings se introduce el valor max(dpm($\succ_n, \succ$)), que representa la distancia máxima que puede tener cualquier ranking $\succ_n$ sobre el ranking de referencia $\succ$. De esta forma, una distancia de 200 a 100 es considerada igual que una distancia de 2 a 1.
 \[  
         ndpm(\succ_1, \succ_2) \equiv \frac{\beta(\succ_1, \succ_2)}{max(dpm(\succ_n, \succ))} = \frac{\sum\limits_{e_1, e_2} \delta_{\succ_1, \succ_2}(e_1, e_2)}{max(dpm(\succ_n, \succ))}
 \]

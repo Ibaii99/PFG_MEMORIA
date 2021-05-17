@@ -1,9 +1,9 @@
 \section{Tecnologías utilizadas}
 
 \subsection{Sistema de recomendación}
-El sistema de recomendación de R.Sánchez utiliza LightFM\footnote{LightFM es una implementación en python de varios algoritmos populares de recomendación.} para crear los modelos de inteligencia artificial. Para implementar el aprendizaje federado se ha tenido que modificar gran parte del sistema de recomendación previo y se ha tenido que hacer uso de las utilidades que proporciona LightFM que se van a explicar en los siguientes apartados. 
+El RS de R.Sánchez y col. utiliza LightFM\footnote{LightFM es una implementación en python de varios algoritmos populares de recomendación.} para crear los modelos de IA. Para implementar el FL se ha tenido que modificar gran parte del RS previo y se ha tenido que hacer uso de las utilidades que proporciona LightFM que se van a explicar en los siguientes apartados. 
 \subsubsection{Creación del modelo}
-El paso de creación del modelo es un paso complejo puesto que conlleva la correcta gestión de muchos datos e información. Asimismo, estos datos han de estar correctamente estructurados y construidos, puesto que LightFM requiere que la información este convertida a matrices dispersas y no tolera elementos vacíos en ellas. Para ello LightFM proveé de herramientas de creación de datasets que facilitan la creación de las matrices, de forma que sea más fácil incluirlas en el modelo. 
+El paso de creación del modelo es un paso complejo puesto que conlleva la correcta gestión de muchos datos e información. Asimismo, estos datos han de estar correctamente estructurados y construidos, puesto que LightFM requiere que la información este convertida a matrices dispersas y no tolera elementos vacíos en ellas. Para ello LightFM provee de herramientas de creación de datasets que facilitan la creación de las matrices, de forma que sea más fácil incluirlas en el modelo. 
 \\ \\
 Entre estas herramientas se encuentran:
 
@@ -17,9 +17,9 @@ Hay que tener en cuenta que las matrices CSR (Compressed Sparse Row) hacen refer
 
 
 \paragraph{Atributos de los usuario}
-Para crear el modelo es necesario, entre otras cosas, disponer de las características de los usuarios. En este caso contamos con multitud de atributos sobre cada usuario: edad, género, nivel educativo, país, cultura de trabajo, perfil PST (Pinball, Shortcut, Thought-ful), barreras, intenciones y confianza.
+Para crear el modelo, es necesario entre otras cosas, disponer de las características de los usuarios. En este caso contamos con multitud de atributos sobre cada usuario (véase la tabla \ref{tab:AtributosUsuarios}).
 \\ \\
-Para convertir toda esa información del usuario a la matriz CSR que exige LightFM habrá que llamar a \textit{build\_user\_features($\ldots$)} con los IDs de usuario y y sus atributos, formando una lista que tenga listas de los IDs de los usuarios con sus listas de atributos, es decir:
+Para convertir toda esa información del usuario a la matriz CSR que exige LightFM habrá que llamar a \textit{build\_user\_features($\ldots$)} con los IDs de usuario y sus atributos, formando una lista que tenga listas de los IDs de los usuarios con sus listas de atributos, es decir:
 
 \begin{figure}[H]
     \centering
@@ -29,7 +29,7 @@ Para convertir toda esa información del usuario a la matriz CSR que exige Light
 \end{figure}
 
 \paragraph{Atributos de los elementos}
-Además de los usuarios y de sus atributos, también se ha de disponer de los elementos a ordenar en el ranking, llamados items, y de sus características. En este caso estos items representan las estrategias de persuasión por las que se preguntó a los usuarios en el cuestionario. Sin embargo, al contrario que en el punto anterior, no contamos con tantos atributos sobre estos items, sino que cada estrategia de persuasión cuenta con dos atributos llamados dimensiones. Estos atributos no se encuentran presente en todas las estrategias, lo que da como resultado que haya algunas que tengan dos, una o ninguna dimension.
+Además de los usuarios y de sus atributos, también se ha de disponer de los elementos a ordenar en el ranking, llamados items, y de sus características. En este caso estos items representan las estrategias de persuasión por las que se preguntó a los usuarios en el cuestionario. Sin embargo, al contrario que en el punto anterior, no contamos con tantos atributos sobre estos items, sino que cada estrategia de persuasión cuenta con dos atributos llamados dimensiones. Estos atributos no se encuentran presente en todas las estrategias, lo que da como resultado que haya algunas que tengan dos, una o ninguna dimension (véase la tabla \ref{tab:EstrategiasPersuasion}).
 \\ \\
 Para convertir toda esa información de los items a la matriz CSR que exige LightFM habrá que llamar a \textit{build\_item\_features($\ldots$)} con los IDs de las estrategias y y sus atributos, formando una lista que tenga listas de los IDs de las estrategias con sus listas de atributos, es decir:
 
@@ -50,7 +50,7 @@ Para crear las interacciones de entrenamiento y de testeo LightFM nos facilita u
 \end{figure}
 
 \subsubsection{Ajuste}
-Para permitir que el modelo pueda ser reajustado con nuevos datos y permitir el aprendizaje incremental LightFM implementa una variante del la herramienta \textit{fit($\cdots$)}. En un principio \textit{fit($\cdots$)} ajusta el modelo pero si se vuelve a utilizar esta herramienta se reajusta desde cero, sin mantener ningún dato insertado en el modelo antes.
+Para permitir que el modelo pueda ser reajustado con nuevos datos y permitir el aprendizaje incremental LightFM implementa una variante de la herramienta \textit{fit($\cdots$)}. En un principio \textit{fit($\cdots$)} ajusta el modelo pero si se vuelve a utilizar esta herramienta se reajusta desde cero, sin mantener ningún dato insertado en el modelo antes.
 \\ \\
 Para solucionar esto LightFM tiene una variante llamada \textit{fit$\_$partial($\cdots$)}, esta herramienta permite ajustar datos al modelo tantas veces como se quiera sin perder los datos insertados previamente.
 \begin{figure}[H]
@@ -75,11 +75,11 @@ Para este caso no se incluirá ninguna métrica ni método de LightFM, sino que 
 
 
 \subsection{Memoria}
-La memoria técnica de este proyecto ha sido elaborada en \LaTeX. Esta ha sido escrita en el editor de código \textit{Visual Studio Code} gracias al complemento \textit{LaTeX Workshop}, que proporciona las características básicas para la composición tipográfica de \LaTeX en Visual Studio Code, y gracias a \textit{MiKTeX}, distribución Tex para Windows, la cual permite la compilación de documentos \LaTeX en Windows.
+La memoria técnica de este proyecto ha sido elaborada en \LaTeX. Esta ha sido escrita en el editor de código \textit{Visual Studio Code} gracias al complemento \textit{LaTeX Workshop}, que proporciona las características básicas para la composición tipográfica de \LaTeX $ $ en \textit{Visual Studio Code}, y gracias a \textit{MiKTeX}, distribución Tex para Windows, la cual permite la compilación de documentos \LaTeX $ $ en Windows.
 \\ \\
 Además, para controlar el avance y las versiones de la memoria se ha utilizado el controlador de versiones GIT. Para que las versiones no permaneciesen en el ordenador local se decidió abrir un repositorio en GitHub\footnote{Repositorio: $https://github.com/Ibaii99/PFG\_MEMORIA$} donde se ha ido desarrollando este proyecto.
 \\ \\
-Para la gestión bibliográfica se ha utilizado \textit{Zotero}, herramienta que permite gestionar las citas bibliográficas a través de una app y un complemento en el navegador. Para exportar estas referencias a \LaTeX se ha utilizado el paquete \textit{Bibtex}.
+Para la gestión bibliográfica se ha utilizado \textit{Zotero}, herramienta que permite gestionar las citas bibliográficas a través de una app y un complemento en el navegador. Para exportar estas referencias a \LaTeX $ $ se ha utilizado el paquete \textit{BibTex}.
 \subsection{Desarrollo}
 El desarrollo de este proyecto se ha realizado en el editor \textit{Visual Studio Code} y con el leguaje de programación \textit{Python}, al igual que la memoria se ha utilizado el controlador de versiones GIT con un repositorio en Github. A lo largo del desarrollo del proyecto han surgido diferentes necesidades que se han ido solucionando con la incorporación de ciertas herramientas, estas herramientas han sido agrupadas en función de las necesidades que han solventado en el proyecto, se detallan a continuación.
 \subsubsection{Matrices}
@@ -95,11 +95,11 @@ Uno de los principales problemas del proyecto era el envío de los modelos y par
 \subsubsection{Securización} 
 Para la implementación de la seguridad en las comunicaciones y realizar las operaciones criptográficas se ha utilizado el paquete \textit{cryptography}, este paquete provee de métodos de cifrado y descifrado simétricos y asimétricos de alto nivel, lo que permite un nivel de abstracción mayor y por ende una más fácil gestión. 
 \subsubsection{Compresión}
-Un elemento fundamental del proyecto era minimizar el volumen de las comunicaciones puesto que es uno de los grandes inconvenientes del aprendizaje federado. Con el objetivo de minimizar el tamaño de las comunicaciones se identificaron donde se daban los mayores volúmenes de conexión y se averiguó que era en el intercambio de modelos entre los participantes y el servidor y viceversa. Para ello la compresión de las comunicaciones se realizo mediante la biblioteca \textit{zlib}. 
+Un elemento fundamental del proyecto era minimizar el volumen de las comunicaciones puesto que es uno de los grandes inconvenientes del FL. Con el objetivo de minimizar el tamaño de las comunicaciones se identificaron donde se daban los mayores volúmenes de conexión y se averiguó que era en el intercambio de modelos entre los participantes y el servidor y viceversa. Para ello la compresión de las comunicaciones se realizó mediante la biblioteca \textit{zlib}. 
 \subsubsection{Gestión de la ejecución}
-Como en este proyecto se gestionan muchos dispositivos y se tiene que reproducir en protocolo de aprendizaje federado en orden es crucial poder controlar lo que se ejecuta en cada dispositivo. Para poder gestionarlo con más facilidad se ha implementado el paquete \textit{OptionParser} para poder definir ciertos \textit{flags} para especificar que proceso se quiere ejecutar en el dispositivo.
+Como en este proyecto se gestionan muchos dispositivos y se tiene que reproducir en protocolo de FL en orden es crucial poder controlar lo que se ejecuta en cada dispositivo. Para poder gestionarlo con más facilidad se ha implementado el paquete \textit{OptionParser} para poder definir ciertos \textit{flags} para especificar qué proceso se quiere ejecutar en el dispositivo.
 \\ \\
-En cuanto a los flags generales se encuentrán:
+En cuanto a los flags generales se encuentran:
 \begin{itemize}
     \item \textit{-k}, para generar las claves públicas y privadas de encriptación.
     \item \textit{-e}, para encriptar los modelos con la clave pública del receptor.
@@ -111,7 +111,7 @@ Sin embargo, debido al funcionamiento dispar del nodo respecto a los participant
     \item \textit{-c}, para comparar el modelo reentrenado recibido con el que tiene el dispositivo.
     \item \textit{-v}, para realizar el entrenado del modelo y la encriptación.
     \item \textit{-w}, para desencriptar el modelo reentrenado y compararlo con el local.
-    \item \textit{-a}, flag extra solo usado en desarrollo que permite simular virtualmente a los participantes, su única utilidad ha sido durante el desarrollo y no durante el sistema de recomendación.
+    \item \textit{-a}, flag extra solo usado en desarrollo que permite simular virtualmente a los participantes, su única utilidad ha sido durante el desarrollo y no durante el RS.
 \end{itemize}
 A su vez, el nodo de agregación ha tenido también sus diferentes tareas:
 \begin{itemize}

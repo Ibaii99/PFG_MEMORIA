@@ -1,5 +1,5 @@
 \subsection{Datos involucrados}
-Este proyecto al tratarse de una modificación del sistema de recomendación de R.Sánchez se heredarán todos los datos. Cabe mencionar que R.Sánchez utilizó información proporcionada por el proyecto Green Soul\autocite{EcoawarePersuasiveNetworked} para crear su sistema de recomendación. El proyecto Green Soul trataba de persuadir a los usuarios para que aumentase su conciencia energética y cambiaran sus hábitos de consumo, para ello, se realizaron una serie de encuestas donde se les preguntaba a los usuarios por sus datos personales y se les pedía que ordenaran en función de su criterio qué estrategias de persuasión les parecían más efectivas.
+Al tratarse este proyecto de una modificación del sistema de recomendación de R.Sánchez y col., se heredarán todos los datos. Cabe mencionar que R.Sánchez y col. utilizaron información proporcionada por el proyecto Green Soul\autocite{EcoawarePersuasiveNetworked} para crear su sistema de recomendación. El proyecto Green Soul trataba de persuadir a los usuarios para que aumentase su conciencia energética y cambiaran sus hábitos de consumo, para ello, se realizaron una serie de encuestas donde se les preguntaba a los usuarios por sus datos personales y se les pedía que ordenarán en función de su criterio qué estrategias de persuasión les parecían más efectivas.
 \\ \\
 Por tanto, las estrategias de persuasión que se recomiendan pertenecen al ámbito de la concienciación del consumo energético, aunque podrían ser extrapolables a otros casos. De todas formas, se eludirán los detalles sobre estas estrategias ya que no son el caso de estudio y no entran en el alcance de este proyecto.
 \\ \\
@@ -7,13 +7,13 @@ Teniendo en cuenta todo lo anterior, este capítulo se ha redactado para entende
 \begin{itemize}
     \item \textbf{No sensibles}, la información de los elementos a recomendar, que no son ni personales ni suministrados por ninguna persona.
     \item  \textbf{Sensibles}, datos que hacen referencia a información personal o que son proporcionados por las personas involucradas en el cuestionario.
-    \item \textbf{Sintéticos}, datos de usuarios generados aleatoriamente para paliar la necesidad de datos personales del modelo de consenso (sección \ref{Consenso}).
+    \item \textbf{Sintéticos}, datos de usuarios generados aleatoriamente para paliar la necesidad de datos personales del modelo de consenso (sección \ref{Consenso}.Agregación de modelos por consenso).
 \end{itemize} 
 
 \subsubsection{No sensibles}
 Como se ha mencionado antes, en la categoría de datos no sensibles se encuentran los datos que no son personales ni hacen referencia a ningún usuario. En esta categoría únicamente aparecen aquellos datos que hacen referencia a los elementos que se van a recomendar en el sistema y sus atributos.
 \\ \\
-Cada estrategia de persuasión que pueda recomendar el sistema contará con hasta dos atributos para que de esta forma el sistema pueda conocer mejor las estrategias y realizar recomendaciones más precisas en base a esta información. En la tabla \ref{tab:EstrategiasPersuasion} se muestran las estrategias de persuasión involucradas en el sistema de recomendación y sus atributos.
+Cada estrategia de persuasión que pueda recomendar el RS contará con hasta dos atributos, para que de esta forma, el sistema pueda conocer mejor las estrategias y realizar recomendaciones más precisas en base a esta información. En la tabla \ref{tab:EstrategiasPersuasion} se muestran las estrategias de persuasión involucradas en el RS y sus atributos.
 \begin{table}[H]
     %Con esta función se inicia el entorno tabla, que se puede posicionar con respecto al texto al igual que una imagen.
     
@@ -72,9 +72,9 @@ Cada estrategia de persuasión que pueda recomendar el sistema contará con hast
 
 
 \subsubsection{Sensibles}
-En cuanto a los datos sensibles hay que mencionar dos grupos, los datos personales de los usuarios y los rankings de los usuarios. Este primer grupo está formado por los datos personales de los usuarios participantes. Estos intervienen en dos puntos clave: en el entrenamiento de los modelos de inteligencia artificial y a la hora de agregar estos modelos. El grupo de los datos de los rankings está formado por las preferencias de los anteriores usuarios a la hora de ordenar las estrategias de persuasión, es decir, el ranking de estrategias para cada usuario.
+En cuanto a los datos sensibles hay que mencionar dos grupos, los datos personales de los usuarios y los rankings de los usuarios. Este primer grupo está formado por los datos personales de los usuarios participantes, que intervienen en dos puntos clave: en el entrenamiento de los modelos de IA y a la hora de agregar estos modelos. El grupo de los datos de los rankings está formado por las preferencias de los anteriores usuarios a la hora de ordenar las estrategias de persuasión, es decir, el ranking de estrategias para cada usuario.
 \\ \\
-Tanto los datos personales de los usuarios como los datos de los rankings de estos son necesarios para entrenar un modelo de inteligencia artificial. Los atributos de los usuarios, al igual que los atributos de las estrategias de persuasión, sirven para relacionar los distintos usuarios con los diferentes rankings y de esta forma poder realizar recomendaciones en base al tipo de usuario.
+Tanto los datos personales de los usuarios como los datos de los rankings de estos son necesarios para entrenar un modelo de IA. Los atributos de los usuarios, al igual que los atributos de las estrategias de persuasión, sirven para relacionar los distintos usuarios entre sí y encontrar relación entre sus diferentes atributos con el orden que le han dado a las diferentes estrategias de persuasión, de esta forma, se pueden realizar recomendaciones en base al tipo de usuario.
 
 \paragraph{Datos de usuarios\\}
 Los datos personales de los usuarios que intervienen en este proyecto son los presentes en la tabla \ref{tab:AtributosUsuarios}. Estos datos han sido transformados a objetos json para su posterior utilización, formando una lista de objetos en los que cada uno representa los datos personales de un usuario.
@@ -131,7 +131,7 @@ Los datos personales de los usuarios que intervienen en este proyecto son los pr
     \end{center}    
 \end{table}
 \paragraph{Rankings\\}
-Los usuarios a parte de introducir sus datos personales anteriores también introducen el orden de las estrategias de persuasión en base a la relevancia que consideran que tienen. Este ranking de estrategia es recogido y transformado a formato json formando una lista de objetos json en la que cada objeto representa los datos de la tabla \ref{tab:RankingUsuario}.
+Los usuarios, a parte de introducir sus datos personales anteriores, también introducen el orden de las estrategias de persuasión en base a la relevancia que consideran que tienen. Este ranking de estrategia es recogido y transformado a formato json formando una lista de objetos json en la que cada objeto representa los datos de la tabla \ref{tab:RankingUsuario}.
 \begin{table}[H]
     \begin{center}
     %Se centra la tabla.
@@ -163,6 +163,6 @@ Los usuarios a parte de introducir sus datos personales anteriores también intr
 
 
 \subsubsection{Sintéticos}
-En cuanto a los datos sintéticos se debe tener en cuenta que los datos sensibles han sido directamente suministrados por los usuarios, por lo cual es técnicamente imposible acceder a ellos desde el servidor de agregación, ya que sería una evidente violación de la privacidad de los usuarios. Esto genera un gran problema debido a que el propio modelo de consenso, explicado en la sección \ref{Consenso}, requiere de datos de usuarios para funcionar.
+En cuanto a los datos sintéticos, se debe tener en cuenta que los datos sensibles han sido directamente suministrados por los usuarios, por lo cual, es técnicamente imposible acceder a ellos desde el servidor de agregación, ya que sería una evidente violación de la privacidad de los usuarios. Esto genera un gran problema debido a que el propio modelo de consenso, explicado en la sección \ref{Consenso}, requiere de datos de usuarios para funcionar.
 \\ \\
-La forma de abordar el problema de la necesidad de datos es mediante la creación de usuarios sintéticos como se explica en la subsección \ref{Consenso:Usuarios_Sinteticos}. Estos usuarios sintéticos tendrán los mismos atributos que los usuarios normales (tabla \ref{tab:AtributosUsuarios}), tendrán que clasificar las mismas estrategias de persuasión (tabla \ref{tab:EstrategiasPersuasion}) y el ranking se gestionará de la misma forma (tabla \ref{tab:RankingUsuario}).
+La forma de abordar el problema de la necesidad de datos es mediante la creación de usuarios sintéticos, como se explica en la subsección \ref{Consenso:Usuarios_Sinteticos}. Estos usuarios sintéticos tendrán los mismos atributos que los usuarios normales (tabla \ref{tab:AtributosUsuarios}), tendrán que clasificar las mismas estrategias de persuasión (tabla \ref{tab:EstrategiasPersuasion}) y el ranking se gestionará de la misma forma (tabla \ref{tab:RankingUsuario}).
