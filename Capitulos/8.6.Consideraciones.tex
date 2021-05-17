@@ -1,5 +1,5 @@
 \section{Consideraciones sobre la implementación}
-En este capítulo se describirán tanto las causas que han llevado a adoptar la previa especificación del diseño del sistema, como las razones detrás de ellas. Con el objetivo de ayudar a entender el porqué de las decisiones tomadas se hablará sobre la privacidad, seguridad, la combinación de los modelos y las limitaciones técnicas presentes en este proyecto.
+En este capítulo se describirán tanto las causas que han llevado a adoptar la previa especificación del diseño del sistema, como las razones detrás de ellas. Con el objetivo de ayudar a entender el por qué de las decisiones tomadas se hablará sobre la privacidad, seguridad, la combinación de los modelos y las limitaciones técnicas presentes en este proyecto.
 \subsection{Privacidad}
 Con el objetivo de no vulnerar la privacidad de los datos, la agregación de los modelos será realizada por consenso sobre usuarios sintéticos. De esta forma, se evitan problemas derivados del robo de datos y las consecuencias tanto legales como personales de este.
 \\ \\
@@ -8,11 +8,11 @@ Partiendo del principio de que si no circula ningún dato de ningún usuario por
 \subsection{Seguridad}
 Este sistema está expuesto a los ataques de seguridad derivados de la implementación del FL. Sin embargo, debido a la naturaleza del algoritmo de consenso, algunos ataques podrían ser minimizados o incluso erradicados.
 \\ \\
-Un ejemplo de ello es el ataque por envenenamiento. Existen dos tipos de envenenamiento, por datos y por modelo, pero ambos consisten en que un participante de la red, con el objetivo de dañar tanto al sistema como a los participantes, envía modelos de IA (o los datos si es por envenenamiento de datos) debidamente manipulados. En los sistemas de agregación de modelos de IA por ensamblado este tipo de ataque suele ser bastante dañino, ya que es capaz de distorsionar por completo los resultados del modelo final con lo recibido del atacante.
+Un ejemplo de ello es el ataque por envenenamiento. Existen dos tipos de envenenamiento, por datos y por modelo. Ambos consisten en que un participante de la red, con el objetivo de dañar tanto al sistema como a los participantes, envía modelos de IA (o los datos si es por envenenamiento de datos) debidamente manipulados. En los sistemas de agregación de modelos de IA por ensamblado este tipo de ataque suele ser bastante dañino, ya que es capaz de distorsionar por completo los resultados del modelo final con lo recibido del atacante.
 \\ \\
 Sin embargo, debido a la condición del sistema de agregación por consenso, este tipo de ataques no son tan efectivos, ya que el modelo con datos envenenados podría ser ignorado si el método por el que se realiza el consenso es la moda. Con la moda se elegiría el ranking en función de los valores más frecuentes, es decir, el modelo del atacante sería ignorado por presentar predicciones que no se ajustan a ninguno de los demás participantes.
 \\ \\
-Cabe destacar que con el objetivo de detectar ataques y encontrar posibles modelos maliciosos se podrían descartar del proceso todos aquellos modelos que presenten unas predicciones totalmente diferentes. Se podría analizar la varianza de las predicciones de cada modelo para descartar del proceso a presuntos modelos envenenados.
+Cabe destacar que con el objetivo de detectar ataques y encontrar posibles modelos maliciosos, se podrían descartar del proceso todos aquellos modelos que presenten unas predicciones totalmente diferentes. Se podría analizar la varianza de las predicciones de cada modelo para descartar del proceso a presuntos modelos envenenados.
 
 \subsection{Combinación de modelos}
 Debido a que el principal objetivo de este proyecto es el desarrollo de un RS basado en FL con la privacidad como patrón de diseño, la combinación de los diferentes modelos de los participantes ha sido un factor muy importante a tener en cuenta. En el ML tradicional esta agregación de modelos se producía mediante el ensamblado de modelos. Sin embargo, este proceso no es compatible con este proyecto puesto que para poder ensamblar los modelos habría que compartir información de los participantes de la red.

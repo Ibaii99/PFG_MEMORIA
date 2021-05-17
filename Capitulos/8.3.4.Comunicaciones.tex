@@ -7,16 +7,16 @@ En cuanto al protocolo de comunicación, se ha optado por la utilización del pr
 El protocolo SSH permite el acceso remoto a un servidor o dispositivo por un canal seguro a través de una clave. Además, el protocolo usa técnicas de cifrado que impiden que la información que viaje en la red lo haga de forma legible. El protocolo SCP permite la transferencia de archivos entre dispositivos de la red usando el protocolo SSH como base.
 
 \subsubsection{Cifrado de la comunicación}
-Aunque las comunicaciones en el protocolo SCP y SSH vayan cifradas son susceptibles de ser atacadas. Para mejorar este aspecto se ha realizado un sistema de cifrado de los modelos que viajen por la red para preservar la privacidad y seguridad de los participantes.
+Aunque las comunicaciones en el protocolo SCP y SSH vayan cifradas, son susceptibles de ser atacadas. Para mejorar este aspecto, se ha realizado un sistema de cifrado de los modelos que viajen por la red para preservar la privacidad y seguridad de los participantes.
 \\ \\ 
-Para esta labor se han utilizado el método criptográfico de criptografía híbrida, que usa tanto la criptografía simétrica como asimétrica.
+Para esta labor se ha utilizado el método criptográfico de criptografía híbrida, que usa tanto la criptografía simétrica como asimétrica.
 
 \paragraph{Cifrado simétrico} 
 El cifrado simétrico es aquel sistema de cifrado en el que la misma clave sirve para cifrar como para descifrar el mensaje. 
 \\ \\
 El problema de este sistema es que toda la seguridad reside en la clave empleada en el cifrado. Esto es un gran impedimento a la hora de gestionar comunicaciones debido al la forma de envíar la clave, ya que, si no se hace por un canal seguro, el mensaje sera fácilmente descifrable.
 \\ \\
-Por otro lado, este sistema cuenta con dos grandes ventajas, es sencillo, es rápido y requiere menos recursos para llevarlo a cabo.
+Por otro lado, este sistema cuenta con tres grandes ventajas, es sencillo, es rápido y requiere menos recursos para llevarlo a cabo.
 
 \paragraph{Cifrado asimétrico}
 El cifrado asimétrico es aquel sistema de cifrado que consta de dos claves criptográficas, una pública y una privada. La clave pública es utilizada para cifrar el mensaje, mientras que la privada es utilizada para descifrarlo. 
@@ -28,14 +28,14 @@ Este sistema cuenta con tres grandes desventajas que impiden su uso en exclusivo
     \item El mensaje cifrado ocupa más espacio que el original.
 \end{itemize}
 
-Debido a que los dispositivos con los que se cuenta no tienen una gran capacidad de cómputo no se podría establecer un tamaño de clave lo suficientemente grande como para poder cifrar el modelo de IA completo. Este modelo, pesa alrededor de los 7Kb y para cifrarlo con este sistema habría que generar una clave del mismo tamaño o mayor.
+Debido a que los dispositivos con los que se cuenta no tienen una gran capacidad de cómputo, no se podría establecer un tamaño de clave lo suficientemente grande como para poder cifrar el modelo de IA completo. Este modelo, pesa alrededor de los 7Kb y para cifrarlo con este sistema habría que generar una clave del mismo tamaño o mayor.
 \\ \\
-Sin embargo, este sistema al constar de dos claves independientes es más sencillo de implementar, puesto que no se envía la clave con la que se descifra el mensaje, sino con la que se cifra, lo que facilita la tarea y evita la búsqueda de canales seguros para enviar las cláves.
+Sin embargo, este sistema al constar de dos claves independientes es más sencillo de implementar, puesto que no se envía la clave con la que se descifra el mensaje, sino con la que se cifra, lo que facilita la tarea y evita la búsqueda de canales seguros para enviar las claves.
 
 \paragraph{Cifrado híbrido}
 Teniendo en cuenta los anteriores dos tipos de cifrado se decidió utilizar el sistema híbrido para obtener los resultados más óptimos, protegiendo la privacidad y pudiendo realizar las tareas de cifrado desde dispositivos con menor capacidad computacional.
 \\ \\ 
-El proceso de cifrado se ha realizado de acuerdo al diagrama de flujo representado en la figura \ref{fig:Flow_Encryption}. En este diagrama se pueden observar los pasos que se han realizado para la encriptación de la información, en primer lugar el modelo de LightFM se convirtió a bytes y se comprimió para reducir el volumen de datos a enviar por la red, pudiendo agilizar así las comunicaciones. Después se cifró simétricamente, generando una clave y un mensaje cifrado. Por un lado este mensaje cifrado sería comprimido y se guardaría en un fichero para su posterior envío. Mientras que por el otro lado, la clave de cifrado simétrica se encriptó asimétricamente con la clave pública del receptor del mensaje, dando como resultado una clave de cifrado simétrico cifrada asimétricamente. Esta clave sería guardada en un fichero para ser enviada al igual que el mensaje.
+El proceso de cifrado se ha realizado de acuerdo al diagrama de flujo representado en la figura \ref{fig:Flow_Encryption}. En este diagrama se pueden observar los pasos que se han realizado para la encriptación de la información. En primer lugar el modelo de LightFM se convirtió a bytes y se comprimió para reducir el volumen de datos a enviar por la red, pudiendo agilizar así las comunicaciones. Después se cifró simétricamente, generando una clave y un mensaje cifrado. Por un lado este mensaje cifrado sería comprimido y se guardaría en un fichero para su posterior envío. Mientras que por el otro lado, la clave de cifrado simétrica se encriptó asimétricamente con la clave pública del receptor del mensaje, dando como resultado una clave de cifrado simétrico cifrada asimétricamente. Esta clave sería guardada en un fichero para ser enviada al igual que el mensaje.
 \begin{figure}[H]
     \centering
     \includegraphics[height=0.6\textheight]{Figuras/flowchart_encryption.png}    
