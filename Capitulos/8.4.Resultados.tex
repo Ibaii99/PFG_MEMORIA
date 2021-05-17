@@ -44,7 +44,7 @@ Después de realizar las cien pruebas se ha calculado la media de los valores ND
 \subsection{Sistema de recomendación con aprendizaje federado}
 
 \subsubsection{Descripción del experimento}
-Partiendo de los datos del RS de R.Sánchez se han dividido los datos de los usuarios en función de su posición geográfica (el atributo país de la tabla \ref{tab:AtributosUsuarios}), de esta forma, cada participante de la red de FL representa el conjunto de usuarios para una determinada ubicación. De esta manera, cada Raspberry Pi de la figura \ref{fig:FLMapaRed} representa al conjunto de usuarios de un país.
+Partiendo de los datos del RS de R.Sánchez y col. se han dividido los datos de los usuarios en función de su posición geográfica (el atributo país de la tabla \ref{tab:AtributosUsuarios}), de esta forma, cada participante de la red de FL representa el conjunto de usuarios para una determinada ubicación. De esta manera, cada Raspberry Pi de la figura \ref{fig:FLMapaRed} representa al conjunto de usuarios de un país.
 \\\\
 Cada participante se entrena con el 80\% de sus datos, lo que en algunos casos supondrá una mayor cantidad debido a que se dispondrá de más usuarios para esa ubicación, mientras que en otros casos será menor debido a la poca cantidad de datos. A la hora de probar los modelos, las predicciones se hacen con una muestra aleatoria del 20\% de los usuarios, esto se repite cien veces para tener un valor NDPM que represente la precisión del modelo respecto al conjunto total de los usuarios.
 \\ \\
