@@ -8,12 +8,12 @@
     \par\medskip}%            these braces the whole body of a {figure} env will be centered.
 }
 \section{Experimentos y resultados}
-
-La valoración del resultado de las predicciones se ha hecho de acuerdo a la métrica NDPM explicada en el apartado \ref{Valoracion}, de forma que cuanto menor valor tenga el NDPM más parecida será la predicción al ranking real.
+%\ref{Consensuar_predicciones} para donde se explica W_c = 0
+La valoración del resultado de las predicciones se ha hecho de acuerdo a la métrica NDPM explicada en el apartado \ref{Valoracion}, de forma que, cuanto menor valor tenga el NDPM, más parecida será la predicción al ranking real.
 
 \subsection{Sistema de recomendación convencional}
 
-Un RS convencional basado en ML cuenta con toda la información centralizada, tanto de los elementos a recomendar como la información relativa a los usuarios. Para evaluar y obtener un resultado NDPM representativo del modelo se han realizado cien pruebas, cada una de ellas constaba de tres pasos:
+Un RS convencional basado en ML cuenta con toda la información centralizada, tanto de los elementos a recomendar como de la información relativa a los usuarios. Para evaluar y obtener un resultado NDPM representativo del modelo se han realizado cien pruebas, cada una de ellas constaba de tres pasos:
 \begin{enumerate}
     \item Crear un modelo de LightFM.
     \item Entrenar el modelo con el 80\% de los usuarios disponibles.
@@ -44,19 +44,19 @@ Después de realizar las cien pruebas se ha calculado la media de los valores ND
 \subsection{Sistema de recomendación con aprendizaje federado}
 
 \subsubsection{Descripción del experimento}
-Partiendo de los datos del sistema de R.Sánchez se ha dividido los datos de los usuarios en función de su posición geográfica, de esta forma, cada participante de la red de FL representa el conjunto de usuarios para una determinada ubicación. De esta manera, cada Raspberry de la figura \ref{fig:FLMapaRed} representa al conjunto de usuarios de un país.
+Partiendo de los datos del RS de R.Sánchez se han dividido los datos de los usuarios en función de su posición geográfica (el atributo país de la tabla \ref{tab:AtributosUsuarios}), de esta forma, cada participante de la red de FL representa el conjunto de usuarios para una determinada ubicación. De esta manera, cada Raspberry Pi de la figura \ref{fig:FLMapaRed} representa al conjunto de usuarios de un país.
 \\\\
-Cada participante se entrena con el 80\% de sus datos, lo que en algunos casos supondrá una mayor cantidad debido a que se dispondrá de más usuarios para esa ubicación mientras que en otros casos será menor debido a la poca cantidad de datos. A la hora de predecir los rankings, estas predicciones se hacen con una muestra aleatoria del 20\% de los usuarios, esto se repite cien veces para tener un valor NDPM representativo del modelo respecto al conjunto total de los usuarios.
+Cada participante se entrena con el 80\% de sus datos, lo que en algunos casos supondrá una mayor cantidad debido a que se dispondrá de más usuarios para esa ubicación, mientras que en otros casos será menor debido a la poca cantidad de datos. A la hora de probar los modelos, las predicciones se hacen con una muestra aleatoria del 20\% de los usuarios, esto se repite cien veces para tener un valor NDPM que represente la precisión del modelo respecto al conjunto total de los usuarios.
 \\ \\
 El ciclo de procesos que recorre cada participante es el mismo que el descrito en el Protocolo de Federated Learning \ref{Protocolo}. A la hora de realizar el estudio de los resultados del sistema de consenso se han abordado varias configuraciones diferentes para los experimentos con cada participante.
 \\\\
-En primer lugar, se realizarán las pruebas con conjuntos de usuarios sintéticos de distinto tamaño, para poder analizar con cuantos usuarios se consiguen los mejores resultados. En segundo lugar, se realizarán los consensos con todos los valores de \textit{W$_c$} posibles, para poder estudiar que parametrización del algoritmo es la que mejor funciona.
+En primer lugar, se realizarán las pruebas con conjuntos de usuarios sintéticos de distinto tamaño, para así, poder analizar con cuantos usuarios se consiguen los mejores resultados. En segundo lugar, se realizarán los consensos con todos los valores de \textit{W$_c$}\footnote{\textit{W$_c$}=0 significa que no hay ningún peso extra y \textit{W$_c$}=3 es el peso máximo, ver sección \ref{Consensuar_predicciones} para más detalle.} posibles, para así, poder estudiar que parametrización del algoritmo es la que mejor funciona.
 
 \subsubsection{Situación previa}
 
-Antes de proceder al aprendizaje colaborativo se ha valorado el NDPM del modelo de IA de cada participante, lo que es muy importante por dos motivos: muestra las diferencias respecto al RS convencional centralizado y respecto al RS basado en FL. 
+Antes de proceder al aprendizaje colaborativo se ha calculado el valor NDPM del modelo de IA de cada participante, lo que es muy importante por dos motivos: muestra las diferencias respecto al RS convencional centralizado y respecto al RS basado en FL. 
 \\ \\
-En primer lugar, respecto al RS convencional, la tabla \ref{tab:NDPM_PARTICIPANTES} que representa los valores NDPM del modelo de cada participante muestra las diferencias entre los modelos, siendo algunos más precisos que el sistema centralizado y otros menos.
+La tabla \ref{tab:NDPM_PARTICIPANTES} representa los valores NDPM del modelo de IA de cada participante, en ella se pueden observar las diferencias entre los modelos, siendo algunos más precisos que el sistema centralizado y otros menos.
 \\\\
 \begin{table}[H]
     \begin{center}
@@ -89,7 +89,7 @@ En primer lugar, respecto al RS convencional, la tabla \ref{tab:NDPM_PARTICIPANT
     \end{center}    
 \end{table}
 
-Coloreando la tabla respecto al valor del RS convencional, tabla \ref{tab:NDPM_CENTRAL}, se puede observar que los valores de los participantes 1 y 3 son bastante inferiores a la media del RS convencional, mientras que los modelos de los participantes 2 y 4 se mantienen por encima.
+Para mejor comprensión, si se colorea la tabla respecto al RS convencional, tabla \ref{tab:NDPM_CENTRAL}, se puede observar que los valores de los participantes 1 y 3 son bastante inferiores a la media del RS convencional, mientras que los modelos de los participantes 2 y 4 se mantienen por encima.
 {
     % Redefine tabular to initialize \StartTableHeader at start and end
     \let\OldTabular\tabular%
@@ -157,7 +157,7 @@ Los modelos reentrenados con diferentes conjuntos de usuarios sintéticos y cons
 \\ \\
 De acuerdo a estos datos se puede afirmar que el modelo del participante 1 de la tabla \ref{tab:NDPM_PARTICIPANTE_1} no se ve beneficiado por el sistema en este experimento, sin embargo, su participación permite que tanto el participante 2 (tabla \ref{tab:NDPM_PARTICIPANTE_2}) como el participante 4 (tabla \ref{tab:NDPM_PARTICIPANTE_4}) se vean ampliamente beneficiados y consigan un mejor resultado respecto a su estado previo.
 \\ \\
-A la vista de estos resultados se puede observar como existe una ventana de rendimiento óptimo en la que los modelos reentrenados con un conjunto de 50 usuarios sintéticos y el parámetro de peso entre cero y uno dan mejores resultados. En esta ventana, el participante 3 (tabla \ref{tab:NDPM_PARTICIPANTE_3}) consigue una leve mejora respecto a su anterior modelo y se ve beneficiado del sistema. 
+A la vista de estos resultados se ve que existe una ventana de rendimiento óptimo en la que los modelos reentrenados con un conjunto de 50 usuarios sintéticos y el parámetro de peso entre cero y uno dan mejores resultados. En esta ventana, el participante 3 (tabla \ref{tab:NDPM_PARTICIPANTE_3}) consigue una leve mejora respecto a su anterior modelo y se ve beneficiado del sistema, dejando al participante 1 como único no beneficiado. 
 {
     % Redefine tabular to initialize \StartTableHeader at start and end
     \let\OldTabular\tabular%
@@ -411,7 +411,7 @@ A la vista de estos resultados se puede observar como existe una ventana de rend
     \end{table}
 }
 
-Después de esta ronda del protocolo de FL donde cada participante ha comparado su modelo con el recibido del servidor los participantes 2 y 4 se quedarían con el modelo reentrenado recibido del servidor, mientras que los participantes 1 y 3 renegarían de él y se quedarían con el suyo propio. De esta forma la tabla \ref{tab:NDPM_PARTICIPANTES_COLOR} se actualizará de la siguiente forma:
+Después de esta ronda del protocolo de FL, donde cada participante ha comparado su modelo con el recibido del servidor, los participantes 2 y 4 se quedarían con el modelo reentrenado recibido del servidor en ambos casos de la ventana de rendimiento, el participante 3 aceptaría el modelo reentrenado con \textit{W$_c$}= 0 y rechazaría el reentrenado con \textit{W$_c$}= 1 y el participante 1 renegaría de los dos modelos reentrenados en el servidor, quedándose con el suyo propio. De esta forma la tabla \ref{tab:NDPM_PARTICIPANTES_COLOR} se actualizará de la siguiente forma:
 {
     % Redefine tabular to initialize \StartTableHeader at start and end
     \let\OldTabular\tabular%
@@ -502,9 +502,11 @@ Después de esta ronda del protocolo de FL donde cada participante ha comparado 
     \end{table}
 }
 \subsubsection{Análisis de los valores de la ventana de rendimiento óptimo}
-Debido a la gran cantidad dee experimentos y pruebas que se han realizado solo se analizarán en detalle los de la ventana de rendimiento óptimo que se han mencionado anteriormente, estos son los experimentos con 50 usuarios sintéticos y \textit{W$_c$ $=1$} y \textit{W$_c$ $=0$}.
+Debido a la gran cantidad de experimentos y pruebas que se han realizado sólo se analizarán en detalle los de la ventana de rendimiento óptimo que se han mencionado anteriormente, estos son los experimentos con 50 usuarios sintéticos y \textit{W$_c$ $=1$} y \textit{W$_c$ $=0$}.
 \\ \\
 Los valores de media de los gráficos que se van a mostrar son los representados en las tablas, la única diferencia es que en este apartado se mostrará el valor en cada una de las cien predicciones y no únicamente una media global.
+\\ \\
+El objetivo de estos gráficos es demostrar la veracidad del experimento y servir como base para la posterior conclusión.
 
 \paragraph{Detalle de los resultados del participante 1}
 Como se puede observar en los gráficos \ref{fig:PI1_CAJAS} y \ref{fig:PI1_DISP}, los valores del modelo original del participante 1 siempre se mantienen por encima de los del modelo reentrenado en el servidor de FL, tanto con \textit{W$_c$ $=1$} como con \textit{W$_c$ $=0$}. En los gráficos se pueden observar varias líneas horizontales que hacen referencia a la media, mediana y moda, dibujadas en negro, rosa y marrón respectivamente.
@@ -646,8 +648,8 @@ Como se puede observar en los gráficos \ref{fig:PI4_CAJAS} y \ref{fig:PI4_DISP}
 
 
 \subsubsection{Conclusiones}
-Teniendo en cuenta lo anteriormente mencionado podría decirse que este sistema permite que los participantes que cuentan con pocos datos se beneficien del conocimiento de otros usuarios, aunque estos no se vean compensados en ocasiones. Con cada iteración del protocolo el conocimiento pasa a ser más homogéneo a lo largo de los participantes. Además, con la introducción de nuevos datos en cada participante se consigue un sistema sostenible en el tiempo.
+Teniendo en cuenta lo anteriormente mencionado, podría decirse que este sistema permite que los participantes que cuentan con pocos datos se beneficien del conocimiento de otros usuarios, aunque estos no se vean compensados en ocasiones. Con cada iteración del protocolo el conocimiento pasa a ser más homogéneo a lo largo de los participantes. Además, con la introducción de nuevos datos en cada participante se consigue un sistema sostenible en el tiempo.
 \\ \\
-Las diferencias que plantea el FL sobre el ML convencional pueden resultar en ocasiones beneficiosas, en este caso, debido a la heterogeneidad de los datos la segregación de modelos es beneficiosa. En ocasiones cada grupo de usuarios necesita su propio modelo porque un modelo global les perjudica, como es el caso del participante 1 en la tabla \ref{tab:NDPM_PARTICIPANTE_1}. El caso es que el participante 1 en el sistema FL de información descentralizada es capaz de elaborar predicciones con más precisión que un RS con información centralizada.
+Las diferencias que plantea el FL sobre el ML convencional pueden resultar en ocasiones beneficiosas, en este caso, debido a la heterogeneidad de los datos, la segregación de modelos es beneficiosa. En ocasiones, cada grupo de usuarios necesita su propio modelo porque un modelo global les perjudica, como es el caso del participante 1 en la tabla \ref{tab:NDPM_PARTICIPANTE_1}. El caso es que el participante 1 en el sistema FL de información descentralizada es capaz de elaborar predicciones con más precisión que un RS con información centralizada, su participación en el sistema de FL permite que participantes que tendrían peores resultados que el RS convencional mejoren bastante su rendimiento. Esto se puede ver claramente en las tablas \ref{tab:NDPM_PARTICIPANTES_COLOR_W0} y \ref{tab:NDPM_PARTICIPANTES_COLOR_W1}, donde todos los participantes consiguen resultados mucho mejores que el RS convencional, siendo el participante 4 el único que se acerca al rendimiento del RS convencional por debajo. 
 \\ \\
 En este caso queda claro que la heterogeneidad de los RSs en ocasiones perjudica a un sistema centralizado y beneficia a un sistema distribuido. 
