@@ -1,7 +1,7 @@
 \section{Tecnologías utilizadas}
 
 \subsection{Sistema de recomendación}
-El RS de R.Sánchez y col. utiliza LightFM\footnote{LightFM es una implementación en python de varios algoritmos populares de recomendación.} para crear los modelos de IA. Para implementar el FL se ha tenido que modificar gran parte del RS previo y se ha tenido que hacer uso de las utilidades que proporciona LightFM que se van a explicar en los siguientes apartados. 
+El RS de R. Sánchez y col. utiliza LightFM\footnote{LightFM es una implementación en python de varios algoritmos populares de recomendación.} para crear los modelos de IA. Para implementar el FL se ha tenido que modificar gran parte del RS previo y se ha tenido que hacer uso de las utilidades que proporciona LightFM que se van a explicar en los siguientes apartados. 
 \subsubsection{Creación del modelo}
 El paso de creación del modelo es un paso complejo puesto que conlleva la correcta gestión de muchos datos e información. Asimismo, estos datos han de estar correctamente estructurados y construidos, puesto que LightFM requiere que la información este convertida a matrices dispersas y no tolera elementos vacíos en ellas. Para ello LightFM provee de herramientas de creación de datasets que facilitan la creación de las matrices, de forma que sea más fácil incluirlas en el modelo. 
 \\ \\
